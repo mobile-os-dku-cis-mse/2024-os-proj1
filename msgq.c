@@ -12,7 +12,7 @@ int main()
 	msgq = msgget( key, IPC_CREAT | 0666);
 	printf("msgq id: %d\n", msgq);
 
-	struct msgbuf msg;
+	struct my_msgbuf msg;
 	memset(&msg, 0, sizeof(msg));
 	msg.mtype = 0;
 	msg.pid = getpid();
