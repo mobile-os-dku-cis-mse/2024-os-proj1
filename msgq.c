@@ -3,6 +3,8 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 #include "msg.h"
+#include <string.h>
+#include <unistd.h>
 
 int main()
 {
@@ -14,10 +16,10 @@ int main()
 
 	struct my_msgbuf msg;
 	memset(&msg, 0, sizeof(msg));
-	msg.mtype = 0;
+	msg.mtype = 1;
 	msg.pid = getpid();
 	msg.io_time = 10;
-	ret = msgsnd(msgq, &msg, sizeof(msg), NULL);
+	ret = msgsnd(msgq, &msg, sizeof(msg) - sizeof(long), 0);
 	printf("msgsnd ret: %d\n", ret);
 
 	return 0;
