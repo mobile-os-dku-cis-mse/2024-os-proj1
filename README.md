@@ -2,7 +2,7 @@
 Proj1: Simple scheduling
 
 
-Programming assignment #1 due by Nov. 17. 
+Programming assignment #1 due by Nov. 10. 
 
 # Scheduling simulation
 # Basic requirement for cpu scheduling
