@@ -19,8 +19,8 @@ int main()
 	sigaction(SIGALRM, &new_sa, &old_sa);
 
 	struct itimerval new_itimer, old_itimer;
-	new_itimer.it_interval.tv_sec = 1;
-	new_itimer.it_interval.tv_usec = 0;
+	new_itimer.it_interval.tv_sec = 0;
+	new_itimer.it_interval.tv_usec = 1;
 	new_itimer.it_value.tv_sec = 1;
 	new_itimer.it_value.tv_usec = 0;
 	setitimer(ITIMER_REAL, &new_itimer, &old_itimer);
@@ -34,7 +34,7 @@ void signal_handler(int signo)
 	printf("signaled! %d \n", signo);
 	count++;
 
-	if (count == 3) exit(0);
+	if (count == 5) exit(0);
 }
 
 
