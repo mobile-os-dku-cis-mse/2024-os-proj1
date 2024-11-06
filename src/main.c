@@ -11,7 +11,7 @@ int main(int argc, char * arg[])
 	int n_process = 10;
 	pid_t* pid_arr = malloc(sizeof(pid_t) * n_process);
 
-	generate_child_process(pid_arr, n_process);
+	launch_scheduler_and_worker(pid_arr, n_process);
 
 	return 0;
 }

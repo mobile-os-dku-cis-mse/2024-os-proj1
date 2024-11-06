@@ -11,6 +11,7 @@
 #define TIME_QUANTUAM 5
 #endif
 
+
 int cpu_burst = 0;
 int io_burst = 0;
 int run_flag = 0;
@@ -37,7 +38,7 @@ void child_SIGUSR2(int sig) {
     run_flag = 0;
 }
 
-void do_work_child() {
+void init_child() {
     // enroll the SIGNAL Handler
     if(signal(SIGALRM, child_SIGALRM) == SIG_ERR) {
         perror("signal");

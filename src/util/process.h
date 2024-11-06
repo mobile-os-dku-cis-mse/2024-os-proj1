@@ -4,11 +4,9 @@
 
 #ifndef UTILS_H
 #define UTILS_H
-#include <sched.h>
-#include <sched.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-void generate_child_process(pid_t* pid, int n_process);
+
+#include "pid_queue.h"
+
+void launch_scheduler_and_worker(pcb_queue* ready_queue, int n_process);
 
 #endif //UTILS_H

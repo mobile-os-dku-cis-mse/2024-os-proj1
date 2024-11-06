@@ -56,12 +56,12 @@ build CMakeFiles/scheduler.dir/src/main.c.o: C_COMPILER__scheduler_unscanned_Deb
   OBJECT_DIR = CMakeFiles/scheduler.dir
   OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src
 
-build CMakeFiles/scheduler.dir/src/scheduler.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/scheduler.c || cmake_object_order_depends_target_scheduler
-  DEP_FILE = CMakeFiles/scheduler.dir/src/scheduler.c.o.d
+build CMakeFiles/scheduler.dir/src/entity/scheduler.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/entity/scheduler.c || cmake_object_order_depends_target_scheduler
+  DEP_FILE = CMakeFiles/scheduler.dir/src/entity/scheduler.c.o.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
   OBJECT_DIR = CMakeFiles/scheduler.dir
-  OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src
+  OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src/entity
 
 build CMakeFiles/scheduler.dir/src/util/process.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/process.c || cmake_object_order_depends_target_scheduler
   DEP_FILE = CMakeFiles/scheduler.dir/src/util/process.c.o.d
@@ -70,12 +70,33 @@ build CMakeFiles/scheduler.dir/src/util/process.c.o: C_COMPILER__scheduler_unsca
   OBJECT_DIR = CMakeFiles/scheduler.dir
   OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src/util
 
-build CMakeFiles/scheduler.dir/src/child.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/child.c || cmake_object_order_depends_target_scheduler
-  DEP_FILE = CMakeFiles/scheduler.dir/src/child.c.o.d
+build CMakeFiles/scheduler.dir/src/entity/child.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/entity/child.c || cmake_object_order_depends_target_scheduler
+  DEP_FILE = CMakeFiles/scheduler.dir/src/entity/child.c.o.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
   OBJECT_DIR = CMakeFiles/scheduler.dir
-  OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src
+  OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src/entity
+
+build CMakeFiles/scheduler.dir/src/util/pid_queue.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/pid_queue.c || cmake_object_order_depends_target_scheduler
+  DEP_FILE = CMakeFiles/scheduler.dir/src/util/pid_queue.c.o.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
+  OBJECT_DIR = CMakeFiles/scheduler.dir
+  OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src/util
+
+build CMakeFiles/scheduler.dir/src/util/timer.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/timer.c || cmake_object_order_depends_target_scheduler
+  DEP_FILE = CMakeFiles/scheduler.dir/src/util/timer.c.o.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
+  OBJECT_DIR = CMakeFiles/scheduler.dir
+  OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src/util
+
+build CMakeFiles/scheduler.dir/src/util/messge_queue.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/messge_queue.c || cmake_object_order_depends_target_scheduler
+  DEP_FILE = CMakeFiles/scheduler.dir/src/util/messge_queue.c.o.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
+  OBJECT_DIR = CMakeFiles/scheduler.dir
+  OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src/util
 
 
 # =============================================================================
@@ -85,7 +106,7 @@ build CMakeFiles/scheduler.dir/src/child.c.o: C_COMPILER__scheduler_unscanned_De
 #############################################
 # Link the executable scheduler
 
-build scheduler: C_EXECUTABLE_LINKER__scheduler_Debug CMakeFiles/scheduler.dir/src/main.c.o CMakeFiles/scheduler.dir/src/scheduler.c.o CMakeFiles/scheduler.dir/src/util/process.c.o CMakeFiles/scheduler.dir/src/child.c.o
+build scheduler: C_EXECUTABLE_LINKER__scheduler_Debug CMakeFiles/scheduler.dir/src/main.c.o CMakeFiles/scheduler.dir/src/entity/scheduler.c.o CMakeFiles/scheduler.dir/src/util/process.c.o CMakeFiles/scheduler.dir/src/entity/child.c.o CMakeFiles/scheduler.dir/src/util/pid_queue.c.o CMakeFiles/scheduler.dir/src/util/timer.c.o CMakeFiles/scheduler.dir/src/util/messge_queue.c.o
   FLAGS = -g
   OBJECT_DIR = CMakeFiles/scheduler.dir
   POST_BUILD = :

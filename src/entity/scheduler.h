@@ -4,5 +4,6 @@
 
 #ifndef SCHEDULER_H
 #define SCHEDULER_H
-
+void scheduler_run();
+void start_scheduler();
 #endif //SCHEDULER_H
