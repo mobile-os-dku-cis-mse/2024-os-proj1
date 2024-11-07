@@ -18,4 +18,5 @@ add_executable(scheduler
         src/util/timer.h
         src/util/messge_queue.c
         src/util/messge_queue.h
+        src/entity/child.c
 )

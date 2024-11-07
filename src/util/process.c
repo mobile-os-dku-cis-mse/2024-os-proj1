@@ -27,7 +27,7 @@ void launch_scheduler_and_worker(pcb_queue* ready_queue, int n_process) {
         }
 
         if (pid == 0) {  // Child process
-            do_work_child();
+            child_main(0, NULL);
             exit(EXIT_SUCCESS);  // Ensure child exits after work is done
         } else {
             // create pcb
@@ -35,7 +35,7 @@ void launch_scheduler_and_worker(pcb_queue* ready_queue, int n_process) {
             child_pcb->pid = pid;
             child_pcb->state = PROCESS_READY;
 
-            enqueue_pcb(ready_queue, pid);
+            enqueue_pcb(ready_queue, child_pcb);
         }
     }
 

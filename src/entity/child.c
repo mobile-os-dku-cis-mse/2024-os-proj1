@@ -53,13 +53,15 @@ void init_child() {
         exit(1);
     }
 
-    printf("[do_work_child] init child process");
-
-    child_main(0, NULL);
+    printf("[do_work_child] init child process\n");
 }
 
 int child_main(int argc, char **argv) {
-
+    init_child();
+#ifdef DEBUG
+    printf("[Child]");
+#endif
+    exit(1);
     /* some of the works gonna held */
     if(io_burst_flag) {
         /* do IO stuff work - msgsnd to kernel (parent process) */
