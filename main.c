@@ -7,12 +7,14 @@
 #include <sys/wait.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
+
 #include "pidq.h"
+#include "iopq.h"
 
 int ticks;
 int msqid;
 pidq running_q;
-pidq waiting_q;
+iopq waiting_q;
 
 struct msgbuf
 {
@@ -63,7 +65,7 @@ int main()
 {
 	msqid = msgget(IPC_PRIVATE, IPC_CREAT | 0666);
 	pidq_init(&running_q, 10);
-	pidq_init(&waiting_q, 10);
+	iopq_init(&waiting_q, 10);
 
 	// spawning 10 child processes.
 	for (int i = 0; i < 10; i++)
@@ -90,6 +92,6 @@ int main()
 	disable_ticks();
 	
 	pidq_destroy(&running_q);
-	pidq_destroy(&waiting_q);
+	iopq_destroy(&waiting_q);
 	exit(0);
 }
