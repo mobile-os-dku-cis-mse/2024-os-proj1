@@ -8,11 +8,6 @@ static inline void __iopq_pair_swap(iopq_pair *p1, iopq_pair *p2)
 	*p2 = temp;
 }
 
-static inline int __iopq_pair_cmp(iopq_pair *p1, iopq_pair *p2)
-{
-	return p1->burst - p2->burst;
-}
-
 void iopq_init(iopq *q, int cap)
 {
 	q->mem = malloc(sizeof(iopq_pair) * cap);
