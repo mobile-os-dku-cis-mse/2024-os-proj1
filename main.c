@@ -24,7 +24,7 @@ struct msgbuf
 
 void run()
 {
-	// get message from parent.
+
 }
 
 void alarm_handler(int)
@@ -51,7 +51,6 @@ static void disable_ticks()
 
 void schedule()
 {
-	puts("scheduler invoked!");
 	/*
 	1. if child has finished job, pop and push to waiting queue.
 	2. if child has used all ticks, pop and push to back.
@@ -67,7 +66,7 @@ int main()
 	pidq_init(&running_q, 10);
 	iopq_init(&waiting_q, 10);
 
-	// spawning 10 child processes.
+	// spawn 10 child processes.
 	for (int i = 0; i < 10; i++)
 	{
 		pid_t pid = fork();
