@@ -16,6 +16,7 @@ void pidq_init(pidq*, int);
 void pidq_destroy(pidq*);
 int pidq_empty(pidq*);
 void pidq_push(pidq*, pid_t);
+pid_t pidq_peek(pidq*);
 pid_t pidq_pop(pidq*);
 pid_t pidq_at(pidq*, int);
 

@@ -27,6 +27,11 @@ void pidq_push(pidq *q, pid_t val)
 	q->sz++;
 }
 
+pid_t pidq_peek(pidq *q)
+{
+	return q->mem[0];
+}
+
 pid_t pidq_pop(pidq *q)
 {
 	q->sz--;

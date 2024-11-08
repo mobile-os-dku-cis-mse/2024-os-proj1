@@ -73,6 +73,11 @@ void iopq_push(iopq *q, iopq_pair elem)
 	__iopq_sift_up(q, q->sz-1);
 }
 
+iopq_pair iopq_peek(iopq *q)
+{
+	return q->mem[0];
+}
+
 iopq_pair iopq_pop(iopq *q)
 {
 	iopq_pair elem = q->mem[0];

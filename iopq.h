@@ -23,6 +23,7 @@ void iopq_init(iopq*, int);
 void iopq_destroy(iopq*);
 int iopq_empty(iopq*);
 void iopq_push(iopq*, iopq_pair);
+iopq_pair iopq_peek(iopq*);
 iopq_pair iopq_pop(iopq*);
 
 #endif
