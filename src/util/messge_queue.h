@@ -6,6 +6,8 @@
 #define MESSGE_QUEUE_H
 #include "pid_queue.h"
 
+extern int msg_queue_id;
+
 typedef struct{
     long msg_t;
     pid_t pid;
