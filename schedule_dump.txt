@@ -1,0 +1,1589 @@
+------------------------------
+Initialized status of elements
+
+Timer tick: 0
+Completed 0/10 processes
+RunQ = [P_242433(9, 2), P_242434(5, 6), P_242435(9, 1), P_242436(7, 7), P_242437(2, 3), P_242438(4, 8), P_242439(2, 3), P_242440(8, 8), P_242441(5, 3), P_242442(6, 7)]
+WaitQ = []
+------------------------------
+
+Timer tick: 0
+Completed 0/10 processes
+RunQ = [P_242434(5, 6), P_242435(9, 1), P_242436(7, 7), P_242437(2, 3), P_242438(4, 8), P_242439(2, 3), P_242440(8, 8), P_242441(5, 3), P_242442(6, 7)]
+WaitQ = []
+Process 242433 moved back to run queue
+
+Timer tick: 1
+Completed 0/10 processes
+RunQ = [P_242435(9, 1), P_242436(7, 7), P_242437(2, 3), P_242438(4, 8), P_242439(2, 3), P_242440(8, 8), P_242441(5, 3), P_242442(6, 7), P_242433(6, 2)]
+WaitQ = []
+Process 242434 moved back to run queue
+
+Timer tick: 2
+Completed 0/10 processes
+RunQ = [P_242436(7, 7), P_242437(2, 3), P_242438(4, 8), P_242439(2, 3), P_242440(8, 8), P_242441(5, 3), P_242442(6, 7), P_242433(6, 2), P_242434(2, 6)]
+WaitQ = []
+Process 242435 moved back to run queue
+
+Timer tick: 3
+Completed 0/10 processes
+RunQ = [P_242437(2, 3), P_242438(4, 8), P_242439(2, 3), P_242440(8, 8), P_242441(5, 3), P_242442(6, 7), P_242433(6, 2), P_242434(2, 6), P_242435(6, 1)]
+WaitQ = []
+Process 242436 moved back to run queue
+
+Timer tick: 4
+Completed 0/10 processes
+RunQ = [P_242438(4, 8), P_242439(2, 3), P_242440(8, 8), P_242441(5, 3), P_242442(6, 7), P_242433(6, 2), P_242434(2, 6), P_242435(6, 1), P_242436(4, 7)]
+WaitQ = []
+Process 242437 moved to wait queue (CPU completed)
+
+Timer tick: 5
+Completed 0/10 processes
+RunQ = [P_242439(2, 3), P_242440(8, 8), P_242441(5, 3), P_242442(6, 7), P_242433(6, 2), P_242434(2, 6), P_242435(6, 1), P_242436(4, 7)]
+WaitQ = [P_242437(0, 3)]
+Process 242437: I/O burst decreased to 0
+Process 242438 moved back to run queue
+
+Timer tick: 6
+Completed 0/10 processes
+RunQ = [P_242440(8, 8), P_242441(5, 3), P_242442(6, 7), P_242433(6, 2), P_242434(2, 6), P_242435(6, 1), P_242436(4, 7), P_242437(8, 7), P_242438(1, 8)]
+WaitQ = []
+Process 242439 moved to wait queue (CPU completed)
+
+Timer tick: 7
+Completed 0/10 processes
+RunQ = [P_242441(5, 3), P_242442(6, 7), P_242433(6, 2), P_242434(2, 6), P_242435(6, 1), P_242436(4, 7), P_242437(8, 7), P_242438(1, 8)]
+WaitQ = [P_242439(0, 3)]
+Process 242439: I/O burst decreased to 0
+Process 242440 moved back to run queue
+
+Timer tick: 8
+Completed 0/10 processes
+RunQ = [P_242442(6, 7), P_242433(6, 2), P_242434(2, 6), P_242435(6, 1), P_242436(4, 7), P_242437(8, 7), P_242438(1, 8), P_242439(5, 2), P_242440(5, 8)]
+WaitQ = []
+Process 242441 moved back to run queue
+
+Timer tick: 9
+Completed 0/10 processes
+RunQ = [P_242433(6, 2), P_242434(2, 6), P_242435(6, 1), P_242436(4, 7), P_242437(8, 7), P_242438(1, 8), P_242439(5, 2), P_242440(5, 8), P_242441(2, 3)]
+WaitQ = []
+Process 242442 moved back to run queue
+
+Timer tick: 10
+Completed 0/10 processes
+RunQ = [P_242434(2, 6), P_242435(6, 1), P_242436(4, 7), P_242437(8, 7), P_242438(1, 8), P_242439(5, 2), P_242440(5, 8), P_242441(2, 3), P_242442(3, 7)]
+WaitQ = []
+Process 242433 moved back to run queue
+
+Timer tick: 11
+Completed 0/10 processes
+RunQ = [P_242435(6, 1), P_242436(4, 7), P_242437(8, 7), P_242438(1, 8), P_242439(5, 2), P_242440(5, 8), P_242441(2, 3), P_242442(3, 7), P_242433(3, 2)]
+WaitQ = []
+Process 242434 moved to wait queue (CPU completed)
+
+Timer tick: 12
+Completed 0/10 processes
+RunQ = [P_242436(4, 7), P_242437(8, 7), P_242438(1, 8), P_242439(5, 2), P_242440(5, 8), P_242441(2, 3), P_242442(3, 7), P_242433(3, 2)]
+WaitQ = [P_242434(0, 6)]
+Process 242434: I/O burst decreased to 3
+Process 242435 moved back to run queue
+
+Timer tick: 13
+Completed 0/10 processes
+RunQ = [P_242437(8, 7), P_242438(1, 8), P_242439(5, 2), P_242440(5, 8), P_242441(2, 3), P_242442(3, 7), P_242433(3, 2), P_242435(3, 1)]
+WaitQ = [P_242434(0, 3)]
+Process 242434: I/O burst decreased to 0
+Process 242436 moved back to run queue
+
+Timer tick: 14
+Completed 0/10 processes
+RunQ = [P_242438(1, 8), P_242439(5, 2), P_242440(5, 8), P_242441(2, 3), P_242442(3, 7), P_242433(3, 2), P_242435(3, 1), P_242434(2, 7), P_242436(1, 7)]
+WaitQ = []
+Process 242437 moved back to run queue
+
+Timer tick: 15
+Completed 0/10 processes
+RunQ = [P_242439(5, 2), P_242440(5, 8), P_242441(2, 3), P_242442(3, 7), P_242433(3, 2), P_242435(3, 1), P_242434(2, 7), P_242436(1, 7), P_242437(5, 7)]
+WaitQ = []
+Process 242438 moved to wait queue (CPU completed)
+
+Timer tick: 16
+Completed 0/10 processes
+RunQ = [P_242440(5, 8), P_242441(2, 3), P_242442(3, 7), P_242433(3, 2), P_242435(3, 1), P_242434(2, 7), P_242436(1, 7), P_242437(5, 7)]
+WaitQ = [P_242438(0, 8)]
+Process 242438: I/O burst decreased to 5
+Process 242439 moved back to run queue
+
+Timer tick: 17
+Completed 0/10 processes
+RunQ = [P_242441(2, 3), P_242442(3, 7), P_242433(3, 2), P_242435(3, 1), P_242434(2, 7), P_242436(1, 7), P_242437(5, 7), P_242439(2, 2)]
+WaitQ = [P_242438(0, 5)]
+Process 242438: I/O burst decreased to 2
+Process 242440 moved back to run queue
+
+Timer tick: 18
+Completed 0/10 processes
+RunQ = [P_242442(3, 7), P_242433(3, 2), P_242435(3, 1), P_242434(2, 7), P_242436(1, 7), P_242437(5, 7), P_242439(2, 2), P_242440(2, 8)]
+WaitQ = [P_242438(0, 2)]
+Process 242438: I/O burst decreased to 0
+Process 242441 moved to wait queue (CPU completed)
+
+Timer tick: 19
+Completed 0/10 processes
+RunQ = [P_242433(3, 2), P_242435(3, 1), P_242434(2, 7), P_242436(1, 7), P_242437(5, 7), P_242439(2, 2), P_242440(2, 8), P_242438(6, 7)]
+WaitQ = [P_242441(0, 3)]
+Process 242441: I/O burst decreased to 0
+Process 242442 moved to wait queue (CPU completed)
+
+Timer tick: 20
+Completed 0/10 processes
+RunQ = [P_242435(3, 1), P_242434(2, 7), P_242436(1, 7), P_242437(5, 7), P_242439(2, 2), P_242440(2, 8), P_242438(6, 7), P_242441(8, 4)]
+WaitQ = [P_242442(0, 7)]
+Process 242442: I/O burst decreased to 4
+Process 242433 moved to wait queue (CPU completed)
+
+Timer tick: 21
+Completed 0/10 processes
+RunQ = [P_242434(2, 7), P_242436(1, 7), P_242437(5, 7), P_242439(2, 2), P_242440(2, 8), P_242438(6, 7), P_242441(8, 4)]
+WaitQ = [P_242442(0, 4), P_242433(0, 2)]
+Process 242442: I/O burst decreased to 1
+Process 242433: I/O burst decreased to 0
+Process 242435 moved to wait queue (CPU completed)
+
+Timer tick: 22
+Completed 0/10 processes
+RunQ = [P_242436(1, 7), P_242437(5, 7), P_242439(2, 2), P_242440(2, 8), P_242438(6, 7), P_242441(8, 4)]
+WaitQ = [P_242442(0, 1), P_242433(0, 0), P_242435(0, 1)]
+Process 242442: I/O burst decreased to 0
+Process 242435: I/O burst decreased to 0
+Process 242434 moved to wait queue (CPU completed)
+
+Timer tick: 23
+Completed 0/10 processes
+RunQ = [P_242437(5, 7), P_242439(2, 2), P_242440(2, 8), P_242438(6, 7), P_242441(8, 4), P_242442(3, 6), P_242433(7, 8), P_242435(2, 7)]
+WaitQ = [P_242434(0, 7)]
+Process 242434: I/O burst decreased to 4
+Process 242436 moved to wait queue (CPU completed)
+
+Timer tick: 24
+Completed 0/10 processes
+RunQ = [P_242439(2, 2), P_242440(2, 8), P_242438(6, 7), P_242441(8, 4), P_242442(3, 6), P_242433(7, 8), P_242435(2, 7)]
+WaitQ = [P_242434(0, 4), P_242436(0, 7)]
+Process 242434: I/O burst decreased to 1
+Process 242436: I/O burst decreased to 4
+Process 242437 moved back to run queue
+
+Timer tick: 25
+Completed 0/10 processes
+RunQ = [P_242440(2, 8), P_242438(6, 7), P_242441(8, 4), P_242442(3, 6), P_242433(7, 8), P_242435(2, 7), P_242437(2, 7)]
+WaitQ = [P_242434(0, 1), P_242436(0, 4)]
+Process 242434: I/O burst decreased to 0
+Process 242436: I/O burst decreased to 1
+Process 242439 moved to wait queue (CPU completed)
+
+Timer tick: 26
+Completed 0/10 processes
+RunQ = [P_242438(6, 7), P_242441(8, 4), P_242442(3, 6), P_242433(7, 8), P_242435(2, 7), P_242437(2, 7), P_242434(10, 8)]
+WaitQ = [P_242436(0, 1), P_242439(0, 2)]
+Process 242436: I/O burst decreased to 0
+Process 242439: I/O burst decreased to 0
+Process 242440 moved to wait queue (CPU completed)
+
+Timer tick: 27
+Completed 0/10 processes
+RunQ = [P_242441(8, 4), P_242442(3, 6), P_242433(7, 8), P_242435(2, 7), P_242437(2, 7), P_242434(10, 8), P_242436(4, 3), P_242439(2, 7)]
+WaitQ = [P_242440(0, 8)]
+Process 242440: I/O burst decreased to 5
+Process 242438 moved back to run queue
+
+Timer tick: 28
+Completed 0/10 processes
+RunQ = [P_242442(3, 6), P_242433(7, 8), P_242435(2, 7), P_242437(2, 7), P_242434(10, 8), P_242436(4, 3), P_242439(2, 7), P_242438(3, 7)]
+WaitQ = [P_242440(0, 5)]
+Process 242440: I/O burst decreased to 2
+Process 242441 moved back to run queue
+
+Timer tick: 29
+Completed 0/10 processes
+RunQ = [P_242433(7, 8), P_242435(2, 7), P_242437(2, 7), P_242434(10, 8), P_242436(4, 3), P_242439(2, 7), P_242438(3, 7), P_242441(5, 4)]
+WaitQ = [P_242440(0, 2)]
+Process 242440: I/O burst decreased to 0
+Process 242442 moved to wait queue (CPU completed)
+
+Timer tick: 30
+Completed 0/10 processes
+RunQ = [P_242435(2, 7), P_242437(2, 7), P_242434(10, 8), P_242436(4, 3), P_242439(2, 7), P_242438(3, 7), P_242441(5, 4), P_242440(10, 5)]
+WaitQ = [P_242442(0, 6)]
+Process 242442: I/O burst decreased to 3
+Process 242433 moved back to run queue
+
+Timer tick: 31
+Completed 0/10 processes
+RunQ = [P_242437(2, 7), P_242434(10, 8), P_242436(4, 3), P_242439(2, 7), P_242438(3, 7), P_242441(5, 4), P_242440(10, 5), P_242433(4, 8)]
+WaitQ = [P_242442(0, 3)]
+Process 242442: I/O burst decreased to 0
+Process 242435 moved to wait queue (CPU completed)
+
+Timer tick: 32
+Completed 0/10 processes
+RunQ = [P_242434(10, 8), P_242436(4, 3), P_242439(2, 7), P_242438(3, 7), P_242441(5, 4), P_242440(10, 5), P_242433(4, 8), P_242442(9, 7)]
+WaitQ = [P_242435(0, 7)]
+Process 242435: I/O burst decreased to 4
+Process 242437 moved to wait queue (CPU completed)
+
+Timer tick: 33
+Completed 0/10 processes
+RunQ = [P_242436(4, 3), P_242439(2, 7), P_242438(3, 7), P_242441(5, 4), P_242440(10, 5), P_242433(4, 8), P_242442(9, 7)]
+WaitQ = [P_242435(0, 4), P_242437(0, 7)]
+Process 242435: I/O burst decreased to 1
+Process 242437: I/O burst decreased to 4
+Process 242434 moved back to run queue
+
+Timer tick: 34
+Completed 0/10 processes
+RunQ = [P_242439(2, 7), P_242438(3, 7), P_242441(5, 4), P_242440(10, 5), P_242433(4, 8), P_242442(9, 7), P_242434(7, 8)]
+WaitQ = [P_242435(0, 1), P_242437(0, 4)]
+Process 242435: I/O burst decreased to 0
+Process 242437: I/O burst decreased to 1
+Process 242436 moved back to run queue
+
+Timer tick: 35
+Completed 0/10 processes
+RunQ = [P_242438(3, 7), P_242441(5, 4), P_242440(10, 5), P_242433(4, 8), P_242442(9, 7), P_242434(7, 8), P_242435(4, 5), P_242436(1, 3)]
+WaitQ = [P_242437(0, 1)]
+Process 242437: I/O burst decreased to 0
+Process 242439 moved to wait queue (CPU completed)
+
+Timer tick: 36
+Completed 0/10 processes
+RunQ = [P_242441(5, 4), P_242440(10, 5), P_242433(4, 8), P_242442(9, 7), P_242434(7, 8), P_242435(4, 5), P_242436(1, 3), P_242437(2, 10)]
+WaitQ = [P_242439(0, 7)]
+Process 242439: I/O burst decreased to 4
+Process 242438 moved to wait queue (CPU completed)
+
+Timer tick: 37
+Completed 0/10 processes
+RunQ = [P_242440(10, 5), P_242433(4, 8), P_242442(9, 7), P_242434(7, 8), P_242435(4, 5), P_242436(1, 3), P_242437(2, 10)]
+WaitQ = [P_242439(0, 4), P_242438(0, 7)]
+Process 242439: I/O burst decreased to 1
+Process 242438: I/O burst decreased to 4
+Process 242441 moved back to run queue
+
+Timer tick: 38
+Completed 0/10 processes
+RunQ = [P_242433(4, 8), P_242442(9, 7), P_242434(7, 8), P_242435(4, 5), P_242436(1, 3), P_242437(2, 10), P_242441(2, 4)]
+WaitQ = [P_242439(0, 1), P_242438(0, 4)]
+Process 242439: I/O burst decreased to 0
+Process 242438: I/O burst decreased to 1
+Process 242440 moved back to run queue
+
+Timer tick: 39
+Completed 0/10 processes
+RunQ = [P_242442(9, 7), P_242434(7, 8), P_242435(4, 5), P_242436(1, 3), P_242437(2, 10), P_242441(2, 4), P_242439(2, 9), P_242440(7, 5)]
+WaitQ = [P_242438(0, 1)]
+Process 242438: I/O burst decreased to 0
+Process 242433 moved back to run queue
+
+Timer tick: 40
+Completed 0/10 processes
+RunQ = [P_242434(7, 8), P_242435(4, 5), P_242436(1, 3), P_242437(2, 10), P_242441(2, 4), P_242439(2, 9), P_242440(7, 5), P_242438(8, 6), P_242433(1, 8)]
+WaitQ = []
+Process 242442 moved back to run queue
+
+Timer tick: 41
+Completed 0/10 processes
+RunQ = [P_242435(4, 5), P_242436(1, 3), P_242437(2, 10), P_242441(2, 4), P_242439(2, 9), P_242440(7, 5), P_242438(8, 6), P_242433(1, 8), P_242442(6, 7)]
+WaitQ = []
+Process 242434 moved back to run queue
+
+Timer tick: 42
+Completed 0/10 processes
+RunQ = [P_242436(1, 3), P_242437(2, 10), P_242441(2, 4), P_242439(2, 9), P_242440(7, 5), P_242438(8, 6), P_242433(1, 8), P_242442(6, 7), P_242434(4, 8)]
+WaitQ = []
+Process 242435 moved back to run queue
+
+Timer tick: 43
+Completed 0/10 processes
+RunQ = [P_242437(2, 10), P_242441(2, 4), P_242439(2, 9), P_242440(7, 5), P_242438(8, 6), P_242433(1, 8), P_242442(6, 7), P_242434(4, 8), P_242435(1, 5)]
+WaitQ = []
+Process 242436 moved to wait queue (CPU completed)
+
+Timer tick: 44
+Completed 0/10 processes
+RunQ = [P_242441(2, 4), P_242439(2, 9), P_242440(7, 5), P_242438(8, 6), P_242433(1, 8), P_242442(6, 7), P_242434(4, 8), P_242435(1, 5)]
+WaitQ = [P_242436(0, 3)]
+Process 242436: I/O burst decreased to 0
+Process 242437 moved to wait queue (CPU completed)
+
+Timer tick: 45
+Completed 0/10 processes
+RunQ = [P_242439(2, 9), P_242440(7, 5), P_242438(8, 6), P_242433(1, 8), P_242442(6, 7), P_242434(4, 8), P_242435(1, 5), P_242436(2, 10)]
+WaitQ = [P_242437(0, 10)]
+Process 242437: I/O burst decreased to 7
+Process 242441 moved to wait queue (CPU completed)
+
+Timer tick: 46
+Completed 0/10 processes
+RunQ = [P_242440(7, 5), P_242438(8, 6), P_242433(1, 8), P_242442(6, 7), P_242434(4, 8), P_242435(1, 5), P_242436(2, 10)]
+WaitQ = [P_242437(0, 7), P_242441(0, 4)]
+Process 242437: I/O burst decreased to 4
+Process 242441: I/O burst decreased to 1
+Process 242439 moved to wait queue (CPU completed)
+
+Timer tick: 47
+Completed 0/10 processes
+RunQ = [P_242438(8, 6), P_242433(1, 8), P_242442(6, 7), P_242434(4, 8), P_242435(1, 5), P_242436(2, 10)]
+WaitQ = [P_242437(0, 4), P_242441(0, 1), P_242439(0, 9)]
+Process 242437: I/O burst decreased to 1
+Process 242441: I/O burst decreased to 0
+Process 242439: I/O burst decreased to 6
+Process 242440 moved back to run queue
+
+Timer tick: 48
+Completed 0/10 processes
+RunQ = [P_242433(1, 8), P_242442(6, 7), P_242434(4, 8), P_242435(1, 5), P_242436(2, 10), P_242440(4, 5)]
+WaitQ = [P_242437(0, 1), P_242441(0, 0), P_242439(0, 6)]
+Process 242437: I/O burst decreased to 0
+Process 242439: I/O burst decreased to 3
+Process 242438 moved back to run queue
+
+Timer tick: 49
+Completed 0/10 processes
+RunQ = [P_242442(6, 7), P_242434(4, 8), P_242435(1, 5), P_242436(2, 10), P_242440(4, 5), P_242437(4, 9), P_242441(6, 1), P_242438(5, 6)]
+WaitQ = [P_242439(0, 3)]
+Process 242439: I/O burst decreased to 0
+Process 242433 moved to wait queue (CPU completed)
+
+Timer tick: 50
+Completed 0/10 processes
+RunQ = [P_242434(4, 8), P_242435(1, 5), P_242436(2, 10), P_242440(4, 5), P_242437(4, 9), P_242441(6, 1), P_242438(5, 6), P_242439(3, 8)]
+WaitQ = [P_242433(0, 8)]
+Process 242433: I/O burst decreased to 5
+Process 242442 moved back to run queue
+
+Timer tick: 51
+Completed 0/10 processes
+RunQ = [P_242435(1, 5), P_242436(2, 10), P_242440(4, 5), P_242437(4, 9), P_242441(6, 1), P_242438(5, 6), P_242439(3, 8), P_242442(3, 7)]
+WaitQ = [P_242433(0, 5)]
+Process 242433: I/O burst decreased to 2
+Process 242434 moved back to run queue
+
+Timer tick: 52
+Completed 0/10 processes
+RunQ = [P_242436(2, 10), P_242440(4, 5), P_242437(4, 9), P_242441(6, 1), P_242438(5, 6), P_242439(3, 8), P_242442(3, 7), P_242434(1, 8)]
+WaitQ = [P_242433(0, 2)]
+Process 242433: I/O burst decreased to 0
+Process 242435 moved to wait queue (CPU completed)
+
+Timer tick: 53
+Completed 0/10 processes
+RunQ = [P_242440(4, 5), P_242437(4, 9), P_242441(6, 1), P_242438(5, 6), P_242439(3, 8), P_242442(3, 7), P_242434(1, 8), P_242433(9, 9)]
+WaitQ = [P_242435(0, 5)]
+Process 242435: I/O burst decreased to 2
+Process 242436 moved to wait queue (CPU completed)
+
+Timer tick: 54
+Completed 0/10 processes
+RunQ = [P_242437(4, 9), P_242441(6, 1), P_242438(5, 6), P_242439(3, 8), P_242442(3, 7), P_242434(1, 8), P_242433(9, 9)]
+WaitQ = [P_242435(0, 2), P_242436(0, 10)]
+Process 242435: I/O burst decreased to 0
+Process 242436: I/O burst decreased to 7
+Process 242440 moved back to run queue
+
+Timer tick: 55
+Completed 0/10 processes
+RunQ = [P_242441(6, 1), P_242438(5, 6), P_242439(3, 8), P_242442(3, 7), P_242434(1, 8), P_242433(9, 9), P_242435(7, 10), P_242440(1, 5)]
+WaitQ = [P_242436(0, 7)]
+Process 242436: I/O burst decreased to 4
+Process 242437 moved back to run queue
+
+Timer tick: 56
+Completed 0/10 processes
+RunQ = [P_242438(5, 6), P_242439(3, 8), P_242442(3, 7), P_242434(1, 8), P_242433(9, 9), P_242435(7, 10), P_242440(1, 5), P_242437(1, 9)]
+WaitQ = [P_242436(0, 4)]
+Process 242436: I/O burst decreased to 1
+Process 242441 moved back to run queue
+
+Timer tick: 57
+Completed 0/10 processes
+RunQ = [P_242439(3, 8), P_242442(3, 7), P_242434(1, 8), P_242433(9, 9), P_242435(7, 10), P_242440(1, 5), P_242437(1, 9), P_242441(3, 1)]
+WaitQ = [P_242436(0, 1)]
+Process 242436: I/O burst decreased to 0
+Process 242438 moved back to run queue
+
+Timer tick: 58
+Completed 0/10 processes
+RunQ = [P_242442(3, 7), P_242434(1, 8), P_242433(9, 9), P_242435(7, 10), P_242440(1, 5), P_242437(1, 9), P_242441(3, 1), P_242436(6, 6), P_242438(2, 6)]
+WaitQ = []
+Process 242439 moved to wait queue (CPU completed)
+
+Timer tick: 59
+Completed 0/10 processes
+RunQ = [P_242434(1, 8), P_242433(9, 9), P_242435(7, 10), P_242440(1, 5), P_242437(1, 9), P_242441(3, 1), P_242436(6, 6), P_242438(2, 6)]
+WaitQ = [P_242439(0, 8)]
+Process 242439: I/O burst decreased to 5
+Process 242442 moved to wait queue (CPU completed)
+
+Timer tick: 60
+Completed 0/10 processes
+RunQ = [P_242433(9, 9), P_242435(7, 10), P_242440(1, 5), P_242437(1, 9), P_242441(3, 1), P_242436(6, 6), P_242438(2, 6)]
+WaitQ = [P_242439(0, 5), P_242442(0, 7)]
+Process 242439: I/O burst decreased to 2
+Process 242442: I/O burst decreased to 4
+Process 242434 moved to wait queue (CPU completed)
+
+Timer tick: 61
+Completed 0/10 processes
+RunQ = [P_242435(7, 10), P_242440(1, 5), P_242437(1, 9), P_242441(3, 1), P_242436(6, 6), P_242438(2, 6)]
+WaitQ = [P_242439(0, 2), P_242442(0, 4), P_242434(0, 8)]
+Process 242439: I/O burst decreased to 0
+Process 242442: I/O burst decreased to 1
+Process 242434: I/O burst decreased to 5
+Process 242433 moved back to run queue
+
+Timer tick: 62
+Completed 0/10 processes
+RunQ = [P_242440(1, 5), P_242437(1, 9), P_242441(3, 1), P_242436(6, 6), P_242438(2, 6), P_242439(9, 1), P_242433(6, 9)]
+WaitQ = [P_242442(0, 1), P_242434(0, 5)]
+Process 242442: I/O burst decreased to 0
+Process 242434: I/O burst decreased to 2
+Process 242435 moved back to run queue
+
+Timer tick: 63
+Completed 0/10 processes
+RunQ = [P_242437(1, 9), P_242441(3, 1), P_242436(6, 6), P_242438(2, 6), P_242439(9, 1), P_242433(6, 9), P_242442(10, 10), P_242435(4, 10)]
+WaitQ = [P_242434(0, 2)]
+Process 242434: I/O burst decreased to 0
+Process 242440 moved to wait queue (CPU completed)
+
+Timer tick: 64
+Completed 0/10 processes
+RunQ = [P_242441(3, 1), P_242436(6, 6), P_242438(2, 6), P_242439(9, 1), P_242433(6, 9), P_242442(10, 10), P_242435(4, 10), P_242434(9, 10)]
+WaitQ = [P_242440(0, 5)]
+Process 242440: I/O burst decreased to 2
+Process 242437 moved to wait queue (CPU completed)
+
+Timer tick: 65
+Completed 0/10 processes
+RunQ = [P_242436(6, 6), P_242438(2, 6), P_242439(9, 1), P_242433(6, 9), P_242442(10, 10), P_242435(4, 10), P_242434(9, 10)]
+WaitQ = [P_242440(0, 2), P_242437(0, 9)]
+Process 242440: I/O burst decreased to 0
+Process 242437: I/O burst decreased to 6
+Process 242441 moved to wait queue (CPU completed)
+
+Timer tick: 66
+Completed 0/10 processes
+RunQ = [P_242438(2, 6), P_242439(9, 1), P_242433(6, 9), P_242442(10, 10), P_242435(4, 10), P_242434(9, 10), P_242440(4, 9)]
+WaitQ = [P_242437(0, 6), P_242441(0, 1)]
+Process 242437: I/O burst decreased to 3
+Process 242441: I/O burst decreased to 0
+Process 242436 moved back to run queue
+
+Timer tick: 67
+Completed 0/10 processes
+RunQ = [P_242439(9, 1), P_242433(6, 9), P_242442(10, 10), P_242435(4, 10), P_242434(9, 10), P_242440(4, 9), P_242436(3, 6)]
+WaitQ = [P_242437(0, 3), P_242441(0, 0)]
+Process 242437: I/O burst decreased to 0
+Process 242438 moved to wait queue (CPU completed)
+
+Timer tick: 68
+Completed 0/10 processes
+RunQ = [P_242433(6, 9), P_242442(10, 10), P_242435(4, 10), P_242434(9, 10), P_242440(4, 9), P_242436(3, 6), P_242437(6, 7), P_242441(4, 9)]
+WaitQ = [P_242438(0, 6)]
+Process 242438: I/O burst decreased to 3
+Process 242439 moved back to run queue
+
+Timer tick: 69
+Completed 0/10 processes
+RunQ = [P_242442(10, 10), P_242435(4, 10), P_242434(9, 10), P_242440(4, 9), P_242436(3, 6), P_242437(6, 7), P_242441(4, 9), P_242439(6, 1)]
+WaitQ = [P_242438(0, 3)]
+Process 242438: I/O burst decreased to 0
+Process 242433 moved back to run queue
+
+Timer tick: 70
+Completed 0/10 processes
+RunQ = [P_242435(4, 10), P_242434(9, 10), P_242440(4, 9), P_242436(3, 6), P_242437(6, 7), P_242441(4, 9), P_242439(6, 1), P_242438(8, 5), P_242433(3, 9)]
+WaitQ = []
+Process 242442 moved back to run queue
+
+Timer tick: 71
+Completed 0/10 processes
+RunQ = [P_242434(9, 10), P_242440(4, 9), P_242436(3, 6), P_242437(6, 7), P_242441(4, 9), P_242439(6, 1), P_242438(8, 5), P_242433(3, 9), P_242442(7, 10)]
+WaitQ = []
+Process 242435 moved back to run queue
+
+Timer tick: 72
+Completed 0/10 processes
+RunQ = [P_242440(4, 9), P_242436(3, 6), P_242437(6, 7), P_242441(4, 9), P_242439(6, 1), P_242438(8, 5), P_242433(3, 9), P_242442(7, 10), P_242435(1, 10)]
+WaitQ = []
+Process 242434 moved back to run queue
+
+Timer tick: 73
+Completed 0/10 processes
+RunQ = [P_242436(3, 6), P_242437(6, 7), P_242441(4, 9), P_242439(6, 1), P_242438(8, 5), P_242433(3, 9), P_242442(7, 10), P_242435(1, 10), P_242434(6, 10)]
+WaitQ = []
+Process 242440 moved back to run queue
+
+Timer tick: 74
+Completed 0/10 processes
+RunQ = [P_242437(6, 7), P_242441(4, 9), P_242439(6, 1), P_242438(8, 5), P_242433(3, 9), P_242442(7, 10), P_242435(1, 10), P_242434(6, 10), P_242440(1, 9)]
+WaitQ = []
+Process 242436 moved to wait queue (CPU completed)
+
+Timer tick: 75
+Completed 0/10 processes
+RunQ = [P_242441(4, 9), P_242439(6, 1), P_242438(8, 5), P_242433(3, 9), P_242442(7, 10), P_242435(1, 10), P_242434(6, 10), P_242440(1, 9)]
+WaitQ = [P_242436(0, 6)]
+Process 242436: I/O burst decreased to 3
+Process 242437 moved back to run queue
+
+Timer tick: 76
+Completed 0/10 processes
+RunQ = [P_242439(6, 1), P_242438(8, 5), P_242433(3, 9), P_242442(7, 10), P_242435(1, 10), P_242434(6, 10), P_242440(1, 9), P_242437(3, 7)]
+WaitQ = [P_242436(0, 3)]
+Process 242436: I/O burst decreased to 0
+Process 242441 moved back to run queue
+
+Timer tick: 77
+Completed 0/10 processes
+RunQ = [P_242438(8, 5), P_242433(3, 9), P_242442(7, 10), P_242435(1, 10), P_242434(6, 10), P_242440(1, 9), P_242437(3, 7), P_242436(8, 6), P_242441(1, 9)]
+WaitQ = []
+Process 242439 moved back to run queue
+
+Timer tick: 78
+Completed 0/10 processes
+RunQ = [P_242433(3, 9), P_242442(7, 10), P_242435(1, 10), P_242434(6, 10), P_242440(1, 9), P_242437(3, 7), P_242436(8, 6), P_242441(1, 9), P_242439(3, 1)]
+WaitQ = []
+Process 242438 moved back to run queue
+
+Timer tick: 79
+Completed 0/10 processes
+RunQ = [P_242442(7, 10), P_242435(1, 10), P_242434(6, 10), P_242440(1, 9), P_242437(3, 7), P_242436(8, 6), P_242441(1, 9), P_242439(3, 1), P_242438(5, 5)]
+WaitQ = []
+Process 242433 moved to wait queue (CPU completed)
+
+Timer tick: 80
+Completed 0/10 processes
+RunQ = [P_242435(1, 10), P_242434(6, 10), P_242440(1, 9), P_242437(3, 7), P_242436(8, 6), P_242441(1, 9), P_242439(3, 1), P_242438(5, 5)]
+WaitQ = [P_242433(0, 9)]
+Process 242433: I/O burst decreased to 6
+Process 242442 moved back to run queue
+
+Timer tick: 81
+Completed 0/10 processes
+RunQ = [P_242434(6, 10), P_242440(1, 9), P_242437(3, 7), P_242436(8, 6), P_242441(1, 9), P_242439(3, 1), P_242438(5, 5), P_242442(4, 10)]
+WaitQ = [P_242433(0, 6)]
+Process 242433: I/O burst decreased to 3
+Process 242435 moved to wait queue (CPU completed)
+
+Timer tick: 82
+Completed 0/10 processes
+RunQ = [P_242440(1, 9), P_242437(3, 7), P_242436(8, 6), P_242441(1, 9), P_242439(3, 1), P_242438(5, 5), P_242442(4, 10)]
+WaitQ = [P_242433(0, 3), P_242435(0, 10)]
+Process 242433: I/O burst decreased to 0
+Process 242435: I/O burst decreased to 7
+Process 242434 moved back to run queue
+
+Timer tick: 83
+Completed 0/10 processes
+RunQ = [P_242437(3, 7), P_242436(8, 6), P_242441(1, 9), P_242439(3, 1), P_242438(5, 5), P_242442(4, 10), P_242433(2, 1), P_242434(3, 10)]
+WaitQ = [P_242435(0, 7)]
+Process 242435: I/O burst decreased to 4
+Process 242440 moved to wait queue (CPU completed)
+
+Timer tick: 84
+Completed 0/10 processes
+RunQ = [P_242436(8, 6), P_242441(1, 9), P_242439(3, 1), P_242438(5, 5), P_242442(4, 10), P_242433(2, 1), P_242434(3, 10)]
+WaitQ = [P_242435(0, 4), P_242440(0, 9)]
+Process 242435: I/O burst decreased to 1
+Process 242440: I/O burst decreased to 6
+Process 242437 moved to wait queue (CPU completed)
+
+Timer tick: 85
+Completed 0/10 processes
+RunQ = [P_242441(1, 9), P_242439(3, 1), P_242438(5, 5), P_242442(4, 10), P_242433(2, 1), P_242434(3, 10)]
+WaitQ = [P_242435(0, 1), P_242440(0, 6), P_242437(0, 7)]
+Process 242435: I/O burst decreased to 0
+Process 242440: I/O burst decreased to 3
+Process 242437: I/O burst decreased to 4
+Process 242436 moved back to run queue
+
+Timer tick: 86
+Completed 0/10 processes
+RunQ = [P_242439(3, 1), P_242438(5, 5), P_242442(4, 10), P_242433(2, 1), P_242434(3, 10), P_242435(7, 6), P_242436(5, 6)]
+WaitQ = [P_242440(0, 3), P_242437(0, 4)]
+Process 242440: I/O burst decreased to 0
+Process 242437: I/O burst decreased to 1
+Process 242441 moved to wait queue (CPU completed)
+
+Timer tick: 87
+Completed 0/10 processes
+RunQ = [P_242438(5, 5), P_242442(4, 10), P_242433(2, 1), P_242434(3, 10), P_242435(7, 6), P_242436(5, 6), P_242440(10, 4)]
+WaitQ = [P_242437(0, 1), P_242441(0, 9)]
+Process 242437: I/O burst decreased to 0
+Process 242441: I/O burst decreased to 6
+Process 242439 moved to wait queue (CPU completed)
+
+Timer tick: 88
+Completed 0/10 processes
+RunQ = [P_242442(4, 10), P_242433(2, 1), P_242434(3, 10), P_242435(7, 6), P_242436(5, 6), P_242440(10, 4), P_242437(6, 4)]
+WaitQ = [P_242441(0, 6), P_242439(0, 1)]
+Process 242441: I/O burst decreased to 3
+Process 242439: I/O burst decreased to 0
+Process 242438 moved back to run queue
+
+Timer tick: 89
+Completed 0/10 processes
+RunQ = [P_242433(2, 1), P_242434(3, 10), P_242435(7, 6), P_242436(5, 6), P_242440(10, 4), P_242437(6, 4), P_242438(2, 5)]
+WaitQ = [P_242441(0, 3), P_242439(0, 0)]
+Process 242441: I/O burst decreased to 0
+Process 242442 moved back to run queue
+
+Timer tick: 90
+Completed 0/10 processes
+RunQ = [P_242434(3, 10), P_242435(7, 6), P_242436(5, 6), P_242440(10, 4), P_242437(6, 4), P_242438(2, 5), P_242441(3, 4), P_242439(2, 10), P_242442(1, 10)]
+WaitQ = []
+Process 242433 moved to wait queue (CPU completed)
+
+Timer tick: 91
+Completed 0/10 processes
+RunQ = [P_242435(7, 6), P_242436(5, 6), P_242440(10, 4), P_242437(6, 4), P_242438(2, 5), P_242441(3, 4), P_242439(2, 10), P_242442(1, 10)]
+WaitQ = [P_242433(0, 1)]
+Process 242433: I/O burst decreased to 0
+Process 242434 moved to wait queue (CPU completed)
+
+Timer tick: 92
+Completed 0/10 processes
+RunQ = [P_242436(5, 6), P_242440(10, 4), P_242437(6, 4), P_242438(2, 5), P_242441(3, 4), P_242439(2, 10), P_242442(1, 10), P_242433(5, 9)]
+WaitQ = [P_242434(0, 10)]
+Process 242434: I/O burst decreased to 7
+Process 242435 moved back to run queue
+
+Timer tick: 93
+Completed 0/10 processes
+RunQ = [P_242440(10, 4), P_242437(6, 4), P_242438(2, 5), P_242441(3, 4), P_242439(2, 10), P_242442(1, 10), P_242433(5, 9), P_242435(4, 6)]
+WaitQ = [P_242434(0, 7)]
+Process 242434: I/O burst decreased to 4
+Process 242436 moved back to run queue
+
+Timer tick: 94
+Completed 0/10 processes
+RunQ = [P_242437(6, 4), P_242438(2, 5), P_242441(3, 4), P_242439(2, 10), P_242442(1, 10), P_242433(5, 9), P_242435(4, 6), P_242436(2, 6)]
+WaitQ = [P_242434(0, 4)]
+Process 242434: I/O burst decreased to 1
+Process 242440 moved back to run queue
+
+Timer tick: 95
+Completed 0/10 processes
+RunQ = [P_242438(2, 5), P_242441(3, 4), P_242439(2, 10), P_242442(1, 10), P_242433(5, 9), P_242435(4, 6), P_242436(2, 6), P_242440(7, 4)]
+WaitQ = [P_242434(0, 1)]
+Process 242434: I/O burst decreased to 0
+Process 242437 moved back to run queue
+
+Timer tick: 96
+Completed 0/10 processes
+RunQ = [P_242441(3, 4), P_242439(2, 10), P_242442(1, 10), P_242433(5, 9), P_242435(4, 6), P_242436(2, 6), P_242440(7, 4), P_242434(7, 5), P_242437(3, 4)]
+WaitQ = []
+Process 242438 moved to wait queue (CPU completed)
+
+Timer tick: 97
+Completed 0/10 processes
+RunQ = [P_242439(2, 10), P_242442(1, 10), P_242433(5, 9), P_242435(4, 6), P_242436(2, 6), P_242440(7, 4), P_242434(7, 5), P_242437(3, 4)]
+WaitQ = [P_242438(0, 5)]
+Process 242438: I/O burst decreased to 2
+Process 242441 moved to wait queue (CPU completed)
+
+Timer tick: 98
+Completed 0/10 processes
+RunQ = [P_242442(1, 10), P_242433(5, 9), P_242435(4, 6), P_242436(2, 6), P_242440(7, 4), P_242434(7, 5), P_242437(3, 4)]
+WaitQ = [P_242438(0, 2), P_242441(0, 4)]
+Process 242438: I/O burst decreased to 0
+Process 242441: I/O burst decreased to 1
+Process 242439 moved to wait queue (CPU completed)
+
+Timer tick: 99
+Completed 0/10 processes
+RunQ = [P_242433(5, 9), P_242435(4, 6), P_242436(2, 6), P_242440(7, 4), P_242434(7, 5), P_242437(3, 4), P_242438(1, 7)]
+WaitQ = [P_242441(0, 1), P_242439(0, 10)]
+Process 242441: I/O burst decreased to 0
+Process 242439: I/O burst decreased to 7
+Process 242442 moved to wait queue (CPU completed)
+
+Timer tick: 100
+Completed 0/10 processes
+RunQ = [P_242435(4, 6), P_242436(2, 6), P_242440(7, 4), P_242434(7, 5), P_242437(3, 4), P_242438(1, 7), P_242441(6, 9)]
+WaitQ = [P_242439(0, 7), P_242442(0, 10)]
+Process 242439: I/O burst decreased to 4
+Process 242442: I/O burst decreased to 7
+Process 242433 moved back to run queue
+
+Timer tick: 101
+Completed 0/10 processes
+RunQ = [P_242436(2, 6), P_242440(7, 4), P_242434(7, 5), P_242437(3, 4), P_242438(1, 7), P_242441(6, 9), P_242433(2, 9)]
+WaitQ = [P_242439(0, 4), P_242442(0, 7)]
+Process 242439: I/O burst decreased to 1
+Process 242442: I/O burst decreased to 4
+Process 242435 moved back to run queue
+
+Timer tick: 102
+Completed 0/10 processes
+RunQ = [P_242440(7, 4), P_242434(7, 5), P_242437(3, 4), P_242438(1, 7), P_242441(6, 9), P_242433(2, 9), P_242435(1, 6)]
+WaitQ = [P_242439(0, 1), P_242442(0, 4)]
+Process 242439: I/O burst decreased to 0
+Process 242442: I/O burst decreased to 1
+Process 242436 moved to wait queue (CPU completed)
+
+Timer tick: 103
+Completed 0/10 processes
+RunQ = [P_242434(7, 5), P_242437(3, 4), P_242438(1, 7), P_242441(6, 9), P_242433(2, 9), P_242435(1, 6), P_242439(8, 9)]
+WaitQ = [P_242442(0, 1), P_242436(0, 6)]
+Process 242442: I/O burst decreased to 0
+Process 242436: I/O burst decreased to 3
+Process 242440 moved back to run queue
+
+Timer tick: 104
+Completed 0/10 processes
+RunQ = [P_242437(3, 4), P_242438(1, 7), P_242441(6, 9), P_242433(2, 9), P_242435(1, 6), P_242439(8, 9), P_242442(8, 5), P_242440(4, 4)]
+WaitQ = [P_242436(0, 3)]
+Process 242436: I/O burst decreased to 0
+Process 242434 moved back to run queue
+
+Timer tick: 105
+Completed 0/10 processes
+RunQ = [P_242438(1, 7), P_242441(6, 9), P_242433(2, 9), P_242435(1, 6), P_242439(8, 9), P_242442(8, 5), P_242440(4, 4), P_242436(8, 1), P_242434(4, 5)]
+WaitQ = []
+Process 242437 moved to wait queue (CPU completed)
+
+Timer tick: 106
+Completed 0/10 processes
+RunQ = [P_242441(6, 9), P_242433(2, 9), P_242435(1, 6), P_242439(8, 9), P_242442(8, 5), P_242440(4, 4), P_242436(8, 1), P_242434(4, 5)]
+WaitQ = [P_242437(0, 4)]
+Process 242437: I/O burst decreased to 1
+Process 242438 moved to wait queue (CPU completed)
+
+Timer tick: 107
+Completed 0/10 processes
+RunQ = [P_242433(2, 9), P_242435(1, 6), P_242439(8, 9), P_242442(8, 5), P_242440(4, 4), P_242436(8, 1), P_242434(4, 5)]
+WaitQ = [P_242437(0, 1), P_242438(0, 7)]
+Process 242437: I/O burst decreased to 0
+Process 242438: I/O burst decreased to 4
+Process 242441 moved back to run queue
+
+Timer tick: 108
+Completed 0/10 processes
+RunQ = [P_242435(1, 6), P_242439(8, 9), P_242442(8, 5), P_242440(4, 4), P_242436(8, 1), P_242434(4, 5), P_242437(4, 7), P_242441(3, 9)]
+WaitQ = [P_242438(0, 4)]
+Process 242438: I/O burst decreased to 1
+Process 242433 moved to wait queue (CPU completed)
+
+Timer tick: 109
+Completed 0/10 processes
+RunQ = [P_242439(8, 9), P_242442(8, 5), P_242440(4, 4), P_242436(8, 1), P_242434(4, 5), P_242437(4, 7), P_242441(3, 9)]
+WaitQ = [P_242438(0, 1), P_242433(0, 9)]
+Process 242438: I/O burst decreased to 0
+Process 242433: I/O burst decreased to 6
+Process 242435 moved to wait queue (CPU completed)
+
+Timer tick: 110
+Completed 0/10 processes
+RunQ = [P_242442(8, 5), P_242440(4, 4), P_242436(8, 1), P_242434(4, 5), P_242437(4, 7), P_242441(3, 9), P_242438(7, 3)]
+WaitQ = [P_242433(0, 6), P_242435(0, 6)]
+Process 242433: I/O burst decreased to 3
+Process 242435: I/O burst decreased to 3
+Process 242439 moved back to run queue
+
+Timer tick: 111
+Completed 0/10 processes
+RunQ = [P_242440(4, 4), P_242436(8, 1), P_242434(4, 5), P_242437(4, 7), P_242441(3, 9), P_242438(7, 3), P_242439(5, 9)]
+WaitQ = [P_242433(0, 3), P_242435(0, 3)]
+Process 242433: I/O burst decreased to 0
+Process 242435: I/O burst decreased to 0
+Process 242442 moved back to run queue
+
+Timer tick: 112
+Completed 0/10 processes
+RunQ = [P_242436(8, 1), P_242434(4, 5), P_242437(4, 7), P_242441(3, 9), P_242438(7, 3), P_242439(5, 9), P_242433(4, 10), P_242435(3, 2), P_242442(5, 5)]
+WaitQ = []
+Process 242440 moved back to run queue
+
+Timer tick: 113
+Completed 0/10 processes
+RunQ = [P_242434(4, 5), P_242437(4, 7), P_242441(3, 9), P_242438(7, 3), P_242439(5, 9), P_242433(4, 10), P_242435(3, 2), P_242442(5, 5), P_242440(1, 4)]
+WaitQ = []
+Process 242436 moved back to run queue
+
+Timer tick: 114
+Completed 0/10 processes
+RunQ = [P_242437(4, 7), P_242441(3, 9), P_242438(7, 3), P_242439(5, 9), P_242433(4, 10), P_242435(3, 2), P_242442(5, 5), P_242440(1, 4), P_242436(5, 1)]
+WaitQ = []
+Process 242434 moved back to run queue
+
+Timer tick: 115
+Completed 0/10 processes
+RunQ = [P_242441(3, 9), P_242438(7, 3), P_242439(5, 9), P_242433(4, 10), P_242435(3, 2), P_242442(5, 5), P_242440(1, 4), P_242436(5, 1), P_242434(1, 5)]
+WaitQ = []
+Process 242437 moved back to run queue
+
+Timer tick: 116
+Completed 0/10 processes
+RunQ = [P_242438(7, 3), P_242439(5, 9), P_242433(4, 10), P_242435(3, 2), P_242442(5, 5), P_242440(1, 4), P_242436(5, 1), P_242434(1, 5), P_242437(1, 7)]
+WaitQ = []
+Process 242441 moved to wait queue (CPU completed)
+
+Timer tick: 117
+Completed 0/10 processes
+RunQ = [P_242439(5, 9), P_242433(4, 10), P_242435(3, 2), P_242442(5, 5), P_242440(1, 4), P_242436(5, 1), P_242434(1, 5), P_242437(1, 7)]
+WaitQ = [P_242441(0, 9)]
+Process 242441: I/O burst decreased to 6
+Process 242438 moved back to run queue
+
+Timer tick: 118
+Completed 0/10 processes
+RunQ = [P_242433(4, 10), P_242435(3, 2), P_242442(5, 5), P_242440(1, 4), P_242436(5, 1), P_242434(1, 5), P_242437(1, 7), P_242438(4, 3)]
+WaitQ = [P_242441(0, 6)]
+Process 242441: I/O burst decreased to 3
+Process 242439 moved back to run queue
+
+Timer tick: 119
+Completed 0/10 processes
+RunQ = [P_242435(3, 2), P_242442(5, 5), P_242440(1, 4), P_242436(5, 1), P_242434(1, 5), P_242437(1, 7), P_242438(4, 3), P_242439(2, 9)]
+WaitQ = [P_242441(0, 3)]
+Process 242441: I/O burst decreased to 0
+Process 242433 moved back to run queue
+
+Timer tick: 120
+Completed 0/10 processes
+RunQ = [P_242442(5, 5), P_242440(1, 4), P_242436(5, 1), P_242434(1, 5), P_242437(1, 7), P_242438(4, 3), P_242439(2, 9), P_242441(5, 4), P_242433(1, 10)]
+WaitQ = []
+Process 242435 moved to wait queue (CPU completed)
+
+Timer tick: 121
+Completed 0/10 processes
+RunQ = [P_242440(1, 4), P_242436(5, 1), P_242434(1, 5), P_242437(1, 7), P_242438(4, 3), P_242439(2, 9), P_242441(5, 4), P_242433(1, 10)]
+WaitQ = [P_242435(0, 2)]
+Process 242435: I/O burst decreased to 0
+Process 242442 moved back to run queue
+
+Timer tick: 122
+Completed 0/10 processes
+RunQ = [P_242436(5, 1), P_242434(1, 5), P_242437(1, 7), P_242438(4, 3), P_242439(2, 9), P_242441(5, 4), P_242433(1, 10), P_242435(5, 3), P_242442(2, 5)]
+WaitQ = []
+Process 242440 moved to wait queue (CPU completed)
+
+Timer tick: 123
+Completed 0/10 processes
+RunQ = [P_242434(1, 5), P_242437(1, 7), P_242438(4, 3), P_242439(2, 9), P_242441(5, 4), P_242433(1, 10), P_242435(5, 3), P_242442(2, 5)]
+WaitQ = [P_242440(0, 4)]
+Process 242440: I/O burst decreased to 1
+Process 242436 moved back to run queue
+
+Timer tick: 124
+Completed 0/10 processes
+RunQ = [P_242437(1, 7), P_242438(4, 3), P_242439(2, 9), P_242441(5, 4), P_242433(1, 10), P_242435(5, 3), P_242442(2, 5), P_242436(2, 1)]
+WaitQ = [P_242440(0, 1)]
+Process 242440: I/O burst decreased to 0
+Process 242434 moved to wait queue (CPU completed)
+
+Timer tick: 125
+Completed 0/10 processes
+RunQ = [P_242438(4, 3), P_242439(2, 9), P_242441(5, 4), P_242433(1, 10), P_242435(5, 3), P_242442(2, 5), P_242436(2, 1), P_242440(7, 8)]
+WaitQ = [P_242434(0, 5)]
+Process 242434: I/O burst decreased to 2
+Process 242437 moved to wait queue (CPU completed)
+
+Timer tick: 126
+Completed 0/10 processes
+RunQ = [P_242439(2, 9), P_242441(5, 4), P_242433(1, 10), P_242435(5, 3), P_242442(2, 5), P_242436(2, 1), P_242440(7, 8)]
+WaitQ = [P_242434(0, 2), P_242437(0, 7)]
+Process 242434: I/O burst decreased to 0
+Process 242437: I/O burst decreased to 4
+Process 242438 moved back to run queue
+
+Timer tick: 127
+Completed 0/10 processes
+RunQ = [P_242441(5, 4), P_242433(1, 10), P_242435(5, 3), P_242442(2, 5), P_242436(2, 1), P_242440(7, 8), P_242434(8, 1), P_242438(1, 3)]
+WaitQ = [P_242437(0, 4)]
+Process 242437: I/O burst decreased to 1
+Process 242439 moved to wait queue (CPU completed)
+
+Timer tick: 128
+Completed 0/10 processes
+RunQ = [P_242433(1, 10), P_242435(5, 3), P_242442(2, 5), P_242436(2, 1), P_242440(7, 8), P_242434(8, 1), P_242438(1, 3)]
+WaitQ = [P_242437(0, 1), P_242439(0, 9)]
+Process 242437: I/O burst decreased to 0
+Process 242439: I/O burst decreased to 6
+Process 242441 moved back to run queue
+
+Timer tick: 129
+Completed 0/10 processes
+RunQ = [P_242435(5, 3), P_242442(2, 5), P_242436(2, 1), P_242440(7, 8), P_242434(8, 1), P_242438(1, 3), P_242437(9, 3), P_242441(2, 4)]
+WaitQ = [P_242439(0, 6)]
+Process 242439: I/O burst decreased to 3
+Process 242433 moved to wait queue (CPU completed)
+
+Timer tick: 130
+Completed 0/10 processes
+RunQ = [P_242442(2, 5), P_242436(2, 1), P_242440(7, 8), P_242434(8, 1), P_242438(1, 3), P_242437(9, 3), P_242441(2, 4)]
+WaitQ = [P_242439(0, 3), P_242433(0, 10)]
+Process 242439: I/O burst decreased to 0
+Process 242433: I/O burst decreased to 7
+Process 242435 moved back to run queue
+
+Timer tick: 131
+Completed 0/10 processes
+RunQ = [P_242436(2, 1), P_242440(7, 8), P_242434(8, 1), P_242438(1, 3), P_242437(9, 3), P_242441(2, 4), P_242439(1, 5), P_242435(2, 3)]
+WaitQ = [P_242433(0, 7)]
+Process 242433: I/O burst decreased to 4
+Process 242442 moved to wait queue (CPU completed)
+
+Timer tick: 132
+Completed 0/10 processes
+RunQ = [P_242440(7, 8), P_242434(8, 1), P_242438(1, 3), P_242437(9, 3), P_242441(2, 4), P_242439(1, 5), P_242435(2, 3)]
+WaitQ = [P_242433(0, 4), P_242442(0, 5)]
+Process 242433: I/O burst decreased to 1
+Process 242442: I/O burst decreased to 2
+Process 242436 moved to wait queue (CPU completed)
+
+Timer tick: 133
+Completed 0/10 processes
+RunQ = [P_242434(8, 1), P_242438(1, 3), P_242437(9, 3), P_242441(2, 4), P_242439(1, 5), P_242435(2, 3)]
+WaitQ = [P_242433(0, 1), P_242442(0, 2), P_242436(0, 1)]
+Process 242433: I/O burst decreased to 0
+Process 242442: I/O burst decreased to 0
+Process 242436: I/O burst decreased to 0
+Process 242440 moved back to run queue
+
+Timer tick: 134
+Completed 0/10 processes
+RunQ = [P_242438(1, 3), P_242437(9, 3), P_242441(2, 4), P_242439(1, 5), P_242435(2, 3), P_242433(9, 2), P_242442(3, 5), P_242436(2, 10), P_242440(4, 8)]
+WaitQ = []
+Process 242434 moved back to run queue
+
+Timer tick: 135
+Completed 0/10 processes
+RunQ = [P_242437(9, 3), P_242441(2, 4), P_242439(1, 5), P_242435(2, 3), P_242433(9, 2), P_242442(3, 5), P_242436(2, 10), P_242440(4, 8), P_242434(5, 1)]
+WaitQ = []
+Process 242438 moved to wait queue (CPU completed)
+
+Timer tick: 136
+Completed 0/10 processes
+RunQ = [P_242441(2, 4), P_242439(1, 5), P_242435(2, 3), P_242433(9, 2), P_242442(3, 5), P_242436(2, 10), P_242440(4, 8), P_242434(5, 1)]
+WaitQ = [P_242438(0, 3)]
+Process 242438: I/O burst decreased to 0
+Process 242437 moved back to run queue
+
+Timer tick: 137
+Completed 0/10 processes
+RunQ = [P_242439(1, 5), P_242435(2, 3), P_242433(9, 2), P_242442(3, 5), P_242436(2, 10), P_242440(4, 8), P_242434(5, 1), P_242438(5, 1), P_242437(6, 3)]
+WaitQ = []
+Process 242441 moved to wait queue (CPU completed)
+
+Timer tick: 138
+Completed 0/10 processes
+RunQ = [P_242435(2, 3), P_242433(9, 2), P_242442(3, 5), P_242436(2, 10), P_242440(4, 8), P_242434(5, 1), P_242438(5, 1), P_242437(6, 3)]
+WaitQ = [P_242441(0, 4)]
+Process 242441: I/O burst decreased to 1
+Process 242439 moved to wait queue (CPU completed)
+
+Timer tick: 139
+Completed 0/10 processes
+RunQ = [P_242433(9, 2), P_242442(3, 5), P_242436(2, 10), P_242440(4, 8), P_242434(5, 1), P_242438(5, 1), P_242437(6, 3)]
+WaitQ = [P_242441(0, 1), P_242439(0, 5)]
+Process 242441: I/O burst decreased to 0
+Process 242439: I/O burst decreased to 2
+Process 242435 moved to wait queue (CPU completed)
+
+Timer tick: 140
+Completed 0/10 processes
+RunQ = [P_242442(3, 5), P_242436(2, 10), P_242440(4, 8), P_242434(5, 1), P_242438(5, 1), P_242437(6, 3), P_242441(5, 2)]
+WaitQ = [P_242439(0, 2), P_242435(0, 3)]
+Process 242439: I/O burst decreased to 0
+Process 242435: I/O burst decreased to 0
+Process 242433 moved back to run queue
+
+Timer tick: 141
+Completed 0/10 processes
+RunQ = [P_242436(2, 10), P_242440(4, 8), P_242434(5, 1), P_242438(5, 1), P_242437(6, 3), P_242441(5, 2), P_242439(1, 10), P_242435(1, 9), P_242433(6, 2)]
+WaitQ = []
+Process 242442 moved to wait queue (CPU completed)
+
+Timer tick: 142
+Completed 0/10 processes
+RunQ = [P_242440(4, 8), P_242434(5, 1), P_242438(5, 1), P_242437(6, 3), P_242441(5, 2), P_242439(1, 10), P_242435(1, 9), P_242433(6, 2)]
+WaitQ = [P_242442(0, 5)]
+Process 242442: I/O burst decreased to 2
+Process 242436 moved to wait queue (CPU completed)
+
+Timer tick: 143
+Completed 0/10 processes
+RunQ = [P_242434(5, 1), P_242438(5, 1), P_242437(6, 3), P_242441(5, 2), P_242439(1, 10), P_242435(1, 9), P_242433(6, 2)]
+WaitQ = [P_242442(0, 2), P_242436(0, 10)]
+Process 242442: I/O burst decreased to 0
+Process 242436: I/O burst decreased to 7
+Process 242440 moved back to run queue
+
+Timer tick: 144
+Completed 0/10 processes
+RunQ = [P_242438(5, 1), P_242437(6, 3), P_242441(5, 2), P_242439(1, 10), P_242435(1, 9), P_242433(6, 2), P_242442(2, 4), P_242440(1, 8)]
+WaitQ = [P_242436(0, 7)]
+Process 242436: I/O burst decreased to 4
+Process 242434 moved back to run queue
+
+Timer tick: 145
+Completed 0/10 processes
+RunQ = [P_242437(6, 3), P_242441(5, 2), P_242439(1, 10), P_242435(1, 9), P_242433(6, 2), P_242442(2, 4), P_242440(1, 8), P_242434(2, 1)]
+WaitQ = [P_242436(0, 4)]
+Process 242436: I/O burst decreased to 1
+Process 242438 moved back to run queue
+
+Timer tick: 146
+Completed 0/10 processes
+RunQ = [P_242441(5, 2), P_242439(1, 10), P_242435(1, 9), P_242433(6, 2), P_242442(2, 4), P_242440(1, 8), P_242434(2, 1), P_242438(2, 1)]
+WaitQ = [P_242436(0, 1)]
+Process 242436: I/O burst decreased to 0
+Process 242437 moved back to run queue
+
+Timer tick: 147
+Completed 0/10 processes
+RunQ = [P_242439(1, 10), P_242435(1, 9), P_242433(6, 2), P_242442(2, 4), P_242440(1, 8), P_242434(2, 1), P_242438(2, 1), P_242436(9, 6), P_242437(3, 3)]
+WaitQ = []
+Process 242441 moved back to run queue
+
+Timer tick: 148
+Completed 0/10 processes
+RunQ = [P_242435(1, 9), P_242433(6, 2), P_242442(2, 4), P_242440(1, 8), P_242434(2, 1), P_242438(2, 1), P_242436(9, 6), P_242437(3, 3), P_242441(2, 2)]
+WaitQ = []
+Process 242439 moved to wait queue (CPU completed)
+
+Timer tick: 149
+Completed 0/10 processes
+RunQ = [P_242433(6, 2), P_242442(2, 4), P_242440(1, 8), P_242434(2, 1), P_242438(2, 1), P_242436(9, 6), P_242437(3, 3), P_242441(2, 2)]
+WaitQ = [P_242439(0, 10)]
+Process 242439: I/O burst decreased to 7
+Process 242435 moved to wait queue (CPU completed)
+
+Timer tick: 150
+Completed 0/10 processes
+RunQ = [P_242442(2, 4), P_242440(1, 8), P_242434(2, 1), P_242438(2, 1), P_242436(9, 6), P_242437(3, 3), P_242441(2, 2)]
+WaitQ = [P_242439(0, 7), P_242435(0, 9)]
+Process 242439: I/O burst decreased to 4
+Process 242435: I/O burst decreased to 6
+Process 242433 moved back to run queue
+
+Timer tick: 151
+Completed 0/10 processes
+RunQ = [P_242440(1, 8), P_242434(2, 1), P_242438(2, 1), P_242436(9, 6), P_242437(3, 3), P_242441(2, 2), P_242433(3, 2)]
+WaitQ = [P_242439(0, 4), P_242435(0, 6)]
+Process 242439: I/O burst decreased to 1
+Process 242435: I/O burst decreased to 3
+Process 242442 moved to wait queue (CPU completed)
+
+Timer tick: 152
+Completed 0/10 processes
+RunQ = [P_242434(2, 1), P_242438(2, 1), P_242436(9, 6), P_242437(3, 3), P_242441(2, 2), P_242433(3, 2)]
+WaitQ = [P_242439(0, 1), P_242435(0, 3), P_242442(0, 4)]
+Process 242439: I/O burst decreased to 0
+Process 242435: I/O burst decreased to 0
+Process 242442: I/O burst decreased to 1
+Process 242440 moved to wait queue (CPU completed)
+
+Timer tick: 153
+Completed 0/10 processes
+RunQ = [P_242438(2, 1), P_242436(9, 6), P_242437(3, 3), P_242441(2, 2), P_242433(3, 2), P_242439(6, 5), P_242435(10, 2)]
+WaitQ = [P_242442(0, 1), P_242440(0, 8)]
+Process 242442: I/O burst decreased to 0
+Process 242440: I/O burst decreased to 5
+Process 242434 moved to wait queue (CPU completed)
+
+Timer tick: 154
+Completed 0/10 processes
+RunQ = [P_242436(9, 6), P_242437(3, 3), P_242441(2, 2), P_242433(3, 2), P_242439(6, 5), P_242435(10, 2), P_242442(7, 8)]
+WaitQ = [P_242440(0, 5), P_242434(0, 1)]
+Process 242440: I/O burst decreased to 2
+Process 242434: I/O burst decreased to 0
+Process 242438 moved to wait queue (CPU completed)
+
+Timer tick: 155
+Completed 0/10 processes
+RunQ = [P_242437(3, 3), P_242441(2, 2), P_242433(3, 2), P_242439(6, 5), P_242435(10, 2), P_242442(7, 8)]
+WaitQ = [P_242440(0, 2), P_242434(0, 0), P_242438(0, 1)]
+Process 242440: I/O burst decreased to 0
+Process 242438: I/O burst decreased to 0
+Process 242436 moved back to run queue
+
+Timer tick: 156
+Completed 0/10 processes
+RunQ = [P_242441(2, 2), P_242433(3, 2), P_242439(6, 5), P_242435(10, 2), P_242442(7, 8), P_242440(9, 5), P_242434(10, 9), P_242438(9, 3), P_242436(6, 6)]
+WaitQ = []
+Process 242437 moved to wait queue (CPU completed)
+
+Timer tick: 157
+Completed 0/10 processes
+RunQ = [P_242433(3, 2), P_242439(6, 5), P_242435(10, 2), P_242442(7, 8), P_242440(9, 5), P_242434(10, 9), P_242438(9, 3), P_242436(6, 6)]
+WaitQ = [P_242437(0, 3)]
+Process 242437: I/O burst decreased to 0
+Process 242441 moved to wait queue (CPU completed)
+
+Timer tick: 158
+Completed 0/10 processes
+RunQ = [P_242439(6, 5), P_242435(10, 2), P_242442(7, 8), P_242440(9, 5), P_242434(10, 9), P_242438(9, 3), P_242436(6, 6), P_242437(6, 7)]
+WaitQ = [P_242441(0, 2)]
+Process 242441: I/O burst decreased to 0
+Process 242433 moved to wait queue (CPU completed)
+
+Timer tick: 159
+Completed 0/10 processes
+RunQ = [P_242435(10, 2), P_242442(7, 8), P_242440(9, 5), P_242434(10, 9), P_242438(9, 3), P_242436(6, 6), P_242437(6, 7), P_242441(6, 8)]
+WaitQ = [P_242433(0, 2)]
+Process 242433: I/O burst decreased to 0
+Process 242439 moved back to run queue
+
+Timer tick: 160
+Completed 0/10 processes
+RunQ = [P_242442(7, 8), P_242440(9, 5), P_242434(10, 9), P_242438(9, 3), P_242436(6, 6), P_242437(6, 7), P_242441(6, 8), P_242433(3, 7), P_242439(3, 5)]
+WaitQ = []
+Process 242435 moved back to run queue
+
+Timer tick: 161
+Completed 0/10 processes
+RunQ = [P_242440(9, 5), P_242434(10, 9), P_242438(9, 3), P_242436(6, 6), P_242437(6, 7), P_242441(6, 8), P_242433(3, 7), P_242439(3, 5), P_242435(7, 2)]
+WaitQ = []
+Process 242442 moved back to run queue
+
+Timer tick: 162
+Completed 0/10 processes
+RunQ = [P_242434(10, 9), P_242438(9, 3), P_242436(6, 6), P_242437(6, 7), P_242441(6, 8), P_242433(3, 7), P_242439(3, 5), P_242435(7, 2), P_242442(4, 8)]
+WaitQ = []
+Process 242440 moved back to run queue
+
+Timer tick: 163
+Completed 0/10 processes
+RunQ = [P_242438(9, 3), P_242436(6, 6), P_242437(6, 7), P_242441(6, 8), P_242433(3, 7), P_242439(3, 5), P_242435(7, 2), P_242442(4, 8), P_242440(6, 5)]
+WaitQ = []
+Process 242434 moved back to run queue
+
+Timer tick: 164
+Completed 0/10 processes
+RunQ = [P_242436(6, 6), P_242437(6, 7), P_242441(6, 8), P_242433(3, 7), P_242439(3, 5), P_242435(7, 2), P_242442(4, 8), P_242440(6, 5), P_242434(7, 9)]
+WaitQ = []
+Process 242438 moved back to run queue
+
+Timer tick: 165
+Completed 0/10 processes
+RunQ = [P_242437(6, 7), P_242441(6, 8), P_242433(3, 7), P_242439(3, 5), P_242435(7, 2), P_242442(4, 8), P_242440(6, 5), P_242434(7, 9), P_242438(6, 3)]
+WaitQ = []
+Process 242436 moved back to run queue
+
+Timer tick: 166
+Completed 0/10 processes
+RunQ = [P_242441(6, 8), P_242433(3, 7), P_242439(3, 5), P_242435(7, 2), P_242442(4, 8), P_242440(6, 5), P_242434(7, 9), P_242438(6, 3), P_242436(3, 6)]
+WaitQ = []
+Process 242437 moved back to run queue
+
+Timer tick: 167
+Completed 0/10 processes
+RunQ = [P_242433(3, 7), P_242439(3, 5), P_242435(7, 2), P_242442(4, 8), P_242440(6, 5), P_242434(7, 9), P_242438(6, 3), P_242436(3, 6), P_242437(3, 7)]
+WaitQ = []
+Process 242441 moved back to run queue
+
+Timer tick: 168
+Completed 0/10 processes
+RunQ = [P_242439(3, 5), P_242435(7, 2), P_242442(4, 8), P_242440(6, 5), P_242434(7, 9), P_242438(6, 3), P_242436(3, 6), P_242437(3, 7), P_242441(3, 8)]
+WaitQ = []
+Process 242433 moved to wait queue (CPU completed)
+
+Timer tick: 169
+Completed 0/10 processes
+RunQ = [P_242435(7, 2), P_242442(4, 8), P_242440(6, 5), P_242434(7, 9), P_242438(6, 3), P_242436(3, 6), P_242437(3, 7), P_242441(3, 8)]
+WaitQ = [P_242433(0, 7)]
+Process 242433: I/O burst decreased to 4
+Process 242439 moved to wait queue (CPU completed)
+
+Timer tick: 170
+Completed 0/10 processes
+RunQ = [P_242442(4, 8), P_242440(6, 5), P_242434(7, 9), P_242438(6, 3), P_242436(3, 6), P_242437(3, 7), P_242441(3, 8)]
+WaitQ = [P_242433(0, 4), P_242439(0, 5)]
+Process 242433: I/O burst decreased to 1
+Process 242439: I/O burst decreased to 2
+Process 242435 moved back to run queue
+
+Timer tick: 171
+Completed 0/10 processes
+RunQ = [P_242440(6, 5), P_242434(7, 9), P_242438(6, 3), P_242436(3, 6), P_242437(3, 7), P_242441(3, 8), P_242435(4, 2)]
+WaitQ = [P_242433(0, 1), P_242439(0, 2)]
+Process 242433: I/O burst decreased to 0
+Process 242439: I/O burst decreased to 0
+Process 242442 moved back to run queue
+
+Timer tick: 172
+Completed 0/10 processes
+RunQ = [P_242434(7, 9), P_242438(6, 3), P_242436(3, 6), P_242437(3, 7), P_242441(3, 8), P_242435(4, 2), P_242433(10, 8), P_242439(8, 6), P_242442(1, 8)]
+WaitQ = []
+Process 242440 moved back to run queue
+
+Timer tick: 173
+Completed 0/10 processes
+RunQ = [P_242438(6, 3), P_242436(3, 6), P_242437(3, 7), P_242441(3, 8), P_242435(4, 2), P_242433(10, 8), P_242439(8, 6), P_242442(1, 8), P_242440(3, 5)]
+WaitQ = []
+Process 242434 moved back to run queue
+
+Timer tick: 174
+Completed 0/10 processes
+RunQ = [P_242436(3, 6), P_242437(3, 7), P_242441(3, 8), P_242435(4, 2), P_242433(10, 8), P_242439(8, 6), P_242442(1, 8), P_242440(3, 5), P_242434(4, 9)]
+WaitQ = []
+Process 242438 moved back to run queue
+
+Timer tick: 175
+Completed 0/10 processes
+RunQ = [P_242437(3, 7), P_242441(3, 8), P_242435(4, 2), P_242433(10, 8), P_242439(8, 6), P_242442(1, 8), P_242440(3, 5), P_242434(4, 9), P_242438(3, 3)]
+WaitQ = []
+Process 242436 moved to wait queue (CPU completed)
+
+Timer tick: 176
+Completed 0/10 processes
+RunQ = [P_242441(3, 8), P_242435(4, 2), P_242433(10, 8), P_242439(8, 6), P_242442(1, 8), P_242440(3, 5), P_242434(4, 9), P_242438(3, 3)]
+WaitQ = [P_242436(0, 6)]
+Process 242436: I/O burst decreased to 3
+Process 242437 moved to wait queue (CPU completed)
+
+Timer tick: 177
+Completed 0/10 processes
+RunQ = [P_242435(4, 2), P_242433(10, 8), P_242439(8, 6), P_242442(1, 8), P_242440(3, 5), P_242434(4, 9), P_242438(3, 3)]
+WaitQ = [P_242436(0, 3), P_242437(0, 7)]
+Process 242436: I/O burst decreased to 0
+Process 242437: I/O burst decreased to 4
+Process 242441 moved to wait queue (CPU completed)
+
+Timer tick: 178
+Completed 0/10 processes
+RunQ = [P_242433(10, 8), P_242439(8, 6), P_242442(1, 8), P_242440(3, 5), P_242434(4, 9), P_242438(3, 3), P_242436(9, 10)]
+WaitQ = [P_242437(0, 4), P_242441(0, 8)]
+Process 242437: I/O burst decreased to 1
+Process 242441: I/O burst decreased to 5
+Process 242435 moved back to run queue
+
+Timer tick: 179
+Completed 0/10 processes
+RunQ = [P_242439(8, 6), P_242442(1, 8), P_242440(3, 5), P_242434(4, 9), P_242438(3, 3), P_242436(9, 10), P_242435(1, 2)]
+WaitQ = [P_242437(0, 1), P_242441(0, 5)]
+Process 242437: I/O burst decreased to 0
+Process 242441: I/O burst decreased to 2
+Process 242433 moved back to run queue
+
+Timer tick: 180
+Completed 0/10 processes
+RunQ = [P_242442(1, 8), P_242440(3, 5), P_242434(4, 9), P_242438(3, 3), P_242436(9, 10), P_242435(1, 2), P_242437(5, 1), P_242433(7, 8)]
+WaitQ = [P_242441(0, 2)]
+Process 242441: I/O burst decreased to 0
+Process 242439 moved back to run queue
+
+Timer tick: 181
+Completed 0/10 processes
+RunQ = [P_242440(3, 5), P_242434(4, 9), P_242438(3, 3), P_242436(9, 10), P_242435(1, 2), P_242437(5, 1), P_242433(7, 8), P_242441(1, 8), P_242439(5, 6)]
+WaitQ = []
+Process 242442 moved to wait queue (CPU completed)
+
+Timer tick: 182
+Completed 0/10 processes
+RunQ = [P_242434(4, 9), P_242438(3, 3), P_242436(9, 10), P_242435(1, 2), P_242437(5, 1), P_242433(7, 8), P_242441(1, 8), P_242439(5, 6)]
+WaitQ = [P_242442(0, 8)]
+Process 242442: I/O burst decreased to 5
+Process 242440 moved to wait queue (CPU completed)
+
+Timer tick: 183
+Completed 0/10 processes
+RunQ = [P_242438(3, 3), P_242436(9, 10), P_242435(1, 2), P_242437(5, 1), P_242433(7, 8), P_242441(1, 8), P_242439(5, 6)]
+WaitQ = [P_242442(0, 5), P_242440(0, 5)]
+Process 242442: I/O burst decreased to 2
+Process 242440: I/O burst decreased to 2
+Process 242434 moved back to run queue
+
+Timer tick: 184
+Completed 0/10 processes
+RunQ = [P_242436(9, 10), P_242435(1, 2), P_242437(5, 1), P_242433(7, 8), P_242441(1, 8), P_242439(5, 6), P_242434(1, 9)]
+WaitQ = [P_242442(0, 2), P_242440(0, 2)]
+Process 242442: I/O burst decreased to 0
+Process 242440: I/O burst decreased to 0
+Process 242438 moved to wait queue (CPU completed)
+
+Timer tick: 185
+Completed 0/10 processes
+RunQ = [P_242435(1, 2), P_242437(5, 1), P_242433(7, 8), P_242441(1, 8), P_242439(5, 6), P_242434(1, 9), P_242442(7, 9), P_242440(3, 4)]
+WaitQ = [P_242438(0, 3)]
+Process 242438: I/O burst decreased to 0
+Process 242436 moved back to run queue
+
+Timer tick: 186
+Completed 0/10 processes
+RunQ = [P_242437(5, 1), P_242433(7, 8), P_242441(1, 8), P_242439(5, 6), P_242434(1, 9), P_242442(7, 9), P_242440(3, 4), P_242438(5, 4), P_242436(6, 10)]
+WaitQ = []
+Process 242435 moved to wait queue (CPU completed)
+
+Timer tick: 187
+Completed 0/10 processes
+RunQ = [P_242433(7, 8), P_242441(1, 8), P_242439(5, 6), P_242434(1, 9), P_242442(7, 9), P_242440(3, 4), P_242438(5, 4), P_242436(6, 10)]
+WaitQ = [P_242435(0, 2)]
+Process 242435: I/O burst decreased to 0
+Process 242437 moved back to run queue
+
+Timer tick: 188
+Completed 0/10 processes
+RunQ = [P_242441(1, 8), P_242439(5, 6), P_242434(1, 9), P_242442(7, 9), P_242440(3, 4), P_242438(5, 4), P_242436(6, 10), P_242435(5, 2), P_242437(2, 1)]
+WaitQ = []
+Process 242433 moved back to run queue
+
+Timer tick: 189
+Completed 0/10 processes
+RunQ = [P_242439(5, 6), P_242434(1, 9), P_242442(7, 9), P_242440(3, 4), P_242438(5, 4), P_242436(6, 10), P_242435(5, 2), P_242437(2, 1), P_242433(4, 8)]
+WaitQ = []
+Process 242441 moved to wait queue (CPU completed)
+
+Timer tick: 190
+Completed 0/10 processes
+RunQ = [P_242434(1, 9), P_242442(7, 9), P_242440(3, 4), P_242438(5, 4), P_242436(6, 10), P_242435(5, 2), P_242437(2, 1), P_242433(4, 8)]
+WaitQ = [P_242441(0, 8)]
+Process 242441: I/O burst decreased to 5
+Process 242439 moved back to run queue
+
+Timer tick: 191
+Completed 0/10 processes
+RunQ = [P_242442(7, 9), P_242440(3, 4), P_242438(5, 4), P_242436(6, 10), P_242435(5, 2), P_242437(2, 1), P_242433(4, 8), P_242439(2, 6)]
+WaitQ = [P_242441(0, 5)]
+Process 242441: I/O burst decreased to 2
+Process 242434 moved to wait queue (CPU completed)
+
+Timer tick: 192
+Completed 0/10 processes
+RunQ = [P_242440(3, 4), P_242438(5, 4), P_242436(6, 10), P_242435(5, 2), P_242437(2, 1), P_242433(4, 8), P_242439(2, 6)]
+WaitQ = [P_242441(0, 2), P_242434(0, 9)]
+Process 242441: I/O burst decreased to 0
+Process 242434: I/O burst decreased to 6
+Process 242442 moved back to run queue
+
+Timer tick: 193
+Completed 0/10 processes
+RunQ = [P_242438(5, 4), P_242436(6, 10), P_242435(5, 2), P_242437(2, 1), P_242433(4, 8), P_242439(2, 6), P_242441(2, 6), P_242442(4, 9)]
+WaitQ = [P_242434(0, 6)]
+Process 242434: I/O burst decreased to 3
+Process 242440 moved to wait queue (CPU completed)
+
+Timer tick: 194
+Completed 0/10 processes
+RunQ = [P_242436(6, 10), P_242435(5, 2), P_242437(2, 1), P_242433(4, 8), P_242439(2, 6), P_242441(2, 6), P_242442(4, 9)]
+WaitQ = [P_242434(0, 3), P_242440(0, 4)]
+Process 242434: I/O burst decreased to 0
+Process 242440: I/O burst decreased to 1
+Process 242438 moved back to run queue
+
+Timer tick: 195
+Completed 0/10 processes
+RunQ = [P_242435(5, 2), P_242437(2, 1), P_242433(4, 8), P_242439(2, 6), P_242441(2, 6), P_242442(4, 9), P_242434(8, 3), P_242438(2, 4)]
+WaitQ = [P_242440(0, 1)]
+Process 242440: I/O burst decreased to 0
+Process 242436 moved back to run queue
+
+Timer tick: 196
+Completed 0/10 processes
+RunQ = [P_242437(2, 1), P_242433(4, 8), P_242439(2, 6), P_242441(2, 6), P_242442(4, 9), P_242434(8, 3), P_242438(2, 4), P_242440(4, 8), P_242436(3, 10)]
+WaitQ = []
+Process 242435 moved back to run queue
+
+Timer tick: 197
+Completed 0/10 processes
+RunQ = [P_242433(4, 8), P_242439(2, 6), P_242441(2, 6), P_242442(4, 9), P_242434(8, 3), P_242438(2, 4), P_242440(4, 8), P_242436(3, 10), P_242435(2, 2)]
+WaitQ = []
+Process 242437 moved to wait queue (CPU completed)
+
+Timer tick: 198
+Completed 0/10 processes
+RunQ = [P_242439(2, 6), P_242441(2, 6), P_242442(4, 9), P_242434(8, 3), P_242438(2, 4), P_242440(4, 8), P_242436(3, 10), P_242435(2, 2)]
+WaitQ = [P_242437(0, 1)]
+Process 242437: I/O burst decreased to 0
+Process 242433 moved back to run queue
+
+Timer tick: 199
+Completed 0/10 processes
+RunQ = [P_242441(2, 6), P_242442(4, 9), P_242434(8, 3), P_242438(2, 4), P_242440(4, 8), P_242436(3, 10), P_242435(2, 2), P_242437(5, 9), P_242433(1, 8)]
+WaitQ = []
+Process 242439 moved to wait queue (CPU completed)
+
+Timer tick: 200
+Completed 0/10 processes
+RunQ = [P_242442(4, 9), P_242434(8, 3), P_242438(2, 4), P_242440(4, 8), P_242436(3, 10), P_242435(2, 2), P_242437(5, 9), P_242433(1, 8)]
+WaitQ = [P_242439(0, 6)]
+Process 242439: I/O burst decreased to 3
+Process 242441 moved to wait queue (CPU completed)
+
+Timer tick: 201
+Completed 0/10 processes
+RunQ = [P_242434(8, 3), P_242438(2, 4), P_242440(4, 8), P_242436(3, 10), P_242435(2, 2), P_242437(5, 9), P_242433(1, 8)]
+WaitQ = [P_242439(0, 3), P_242441(0, 6)]
+Process 242439: I/O burst decreased to 0
+Process 242441: I/O burst decreased to 3
+Process 242439 completed (total completed: 1)
+Process 242442 moved back to run queue
+
+Timer tick: 202
+Completed 1/10 processes
+RunQ = [P_242438(2, 4), P_242440(4, 8), P_242436(3, 10), P_242435(2, 2), P_242437(5, 9), P_242433(1, 8), P_242442(1, 9)]
+WaitQ = [P_242441(0, 3)]
+Process 242441: I/O burst decreased to 0
+Process 242441 completed (total completed: 2)
+Process 242434 moved back to run queue
+
+Timer tick: 203
+Completed 2/10 processes
+RunQ = [P_242440(4, 8), P_242436(3, 10), P_242435(2, 2), P_242437(5, 9), P_242433(1, 8), P_242442(1, 9), P_242434(5, 3)]
+WaitQ = []
+Process 242438 moved to wait queue (CPU completed)
+
+Timer tick: 204
+Completed 2/10 processes
+RunQ = [P_242436(3, 10), P_242435(2, 2), P_242437(5, 9), P_242433(1, 8), P_242442(1, 9), P_242434(5, 3)]
+WaitQ = [P_242438(0, 4)]
+Process 242438: I/O burst decreased to 1
+Process 242440 moved back to run queue
+
+Timer tick: 205
+Completed 2/10 processes
+RunQ = [P_242435(2, 2), P_242437(5, 9), P_242433(1, 8), P_242442(1, 9), P_242434(5, 3), P_242440(1, 8)]
+WaitQ = [P_242438(0, 1)]
+Process 242438: I/O burst decreased to 0
+Process 242438 completed (total completed: 3)
+Process 242436 moved to wait queue (CPU completed)
+
+Timer tick: 206
+Completed 3/10 processes
+RunQ = [P_242437(5, 9), P_242433(1, 8), P_242442(1, 9), P_242434(5, 3), P_242440(1, 8)]
+WaitQ = [P_242436(0, 10)]
+Process 242436: I/O burst decreased to 7
+Process 242435 moved to wait queue (CPU completed)
+
+Timer tick: 207
+Completed 3/10 processes
+RunQ = [P_242433(1, 8), P_242442(1, 9), P_242434(5, 3), P_242440(1, 8)]
+WaitQ = [P_242436(0, 7), P_242435(0, 2)]
+Process 242436: I/O burst decreased to 4
+Process 242435: I/O burst decreased to 0
+Process 242437 moved back to run queue
+
+Timer tick: 208
+Completed 3/10 processes
+RunQ = [P_242442(1, 9), P_242434(5, 3), P_242440(1, 8), P_242437(2, 9)]
+WaitQ = [P_242436(0, 4), P_242435(0, 0)]
+Process 242436: I/O burst decreased to 1
+Process 242433 moved to wait queue (CPU completed)
+
+Timer tick: 209
+Completed 3/10 processes
+RunQ = [P_242434(5, 3), P_242440(1, 8), P_242437(2, 9)]
+WaitQ = [P_242436(0, 1), P_242435(0, 0), P_242433(0, 8)]
+Process 242436: I/O burst decreased to 0
+Process 242433: I/O burst decreased to 5
+Process 242436 completed (total completed: 4)
+Process 242435 completed (total completed: 5)
+Process 242442 moved to wait queue (CPU completed)
+
+Timer tick: 210
+Completed 5/10 processes
+RunQ = [P_242440(1, 8), P_242437(2, 9)]
+WaitQ = [P_242433(0, 5), P_242442(0, 9)]
+Process 242433: I/O burst decreased to 2
+Process 242442: I/O burst decreased to 6
+Process 242434 moved back to run queue
+
+Timer tick: 211
+Completed 5/10 processes
+RunQ = [P_242437(2, 9), P_242434(2, 3)]
+WaitQ = [P_242433(0, 2), P_242442(0, 6)]
+Process 242433: I/O burst decreased to 0
+Process 242442: I/O burst decreased to 3
+Process 242433 completed (total completed: 6)
+Process 242440 moved to wait queue (CPU completed)
+
+Timer tick: 212
+Completed 6/10 processes
+RunQ = [P_242434(2, 3)]
+WaitQ = [P_242442(0, 3), P_242440(0, 8)]
+Process 242442: I/O burst decreased to 0
+Process 242440: I/O burst decreased to 5
+Process 242442 completed (total completed: 7)
+Process 242437 moved to wait queue (CPU completed)
+
+Timer tick: 213
+Completed 7/10 processes
+RunQ = []
+WaitQ = [P_242440(0, 5), P_242437(0, 9)]
+Process 242440: I/O burst decreased to 2
+Process 242437: I/O burst decreased to 6
+Process 242434 moved to wait queue (CPU completed)
+
+Timer tick: 214
+Completed 7/10 processes
+RunQ = []
+WaitQ = [P_242440(0, 2), P_242437(0, 6), P_242434(0, 3)]
+Process 242440: I/O burst decreased to 0
+Process 242437: I/O burst decreased to 3
+Process 242434: I/O burst decreased to 0
+Process 242440 completed (total completed: 8)
+
+Timer tick: 215
+Completed 8/10 processes
+RunQ = []
+WaitQ = [P_242437(0, 3), P_242434(0, 0)]
+Process 242437: I/O burst decreased to 0
+Process 242437 completed (total completed: 9)
+Process 242434 completed (total completed: 10)
+
+Timer tick: 216
+Completed 10/10 processes
+RunQ = []
+WaitQ = []
+
+
+-------------------------
+Final running time result
+Child[242433] : 63.600000s
+Child[242434] : 64.800000s
+Child[242435] : 63.000000s
+Child[242436] : 63.000000s
+Child[242437] : 64.800000s
+Child[242438] : 61.800000s
+Child[242439] : 60.600000s
+Child[242440] : 64.500000s
+Child[242441] : 60.900000s
+Child[242442] : 63.900000s
+-------------------------
+
+
+
+-------------------------
+Final waiting time result
+Child[242433] : 50.100000s
+Child[242434] : 51.600000s
+Child[242435] : 50.100000s
+Child[242436] : 49.800000s
+Child[242437] : 50.100000s
+Child[242438] : 50.100000s
+Child[242439] : 45.600000s
+Child[242440] : 51.900000s
+Child[242441] : 47.400000s
+Child[242442] : 50.400000s
+-------------------------
+
+
+
+-------------------------
+Final cpu use time result
+Child[242433] : 5.800000s
+Child[242434] : 5.900000s
+Child[242435] : 5.300000s
+Child[242436] : 5.500000s
+Child[242437] : 5.700000s
+Child[242438] : 5.300000s
+Child[242439] : 4.900000s
+Child[242440] : 5.500000s
+Child[242441] : 5.100000s
+Child[242442] : 5.500000s
+-------------------------
+

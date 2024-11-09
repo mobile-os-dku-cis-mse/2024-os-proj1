@@ -36,15 +36,3 @@ void signal_handler(int signo)
 
 	if (count == 3) exit(0);
 }
-
-
-
-
-
-
-
-
-
-
-
-
