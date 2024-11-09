@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
 #include <string.h>
 #include <signal.h>
@@ -12,6 +11,7 @@
 
 #include "msg.h"
 #include "wrap.h"
+#include "proc.h"
 #include "pidq.h"
 #include "iopq.h"
 
@@ -22,36 +22,6 @@ int ticks;
 int time_slot = TIME_QUANTUM;
 pidq running_q;
 iopq waiting_q;
-
-void child_handler(int) {}
-
-void run()
-{
-	// each process needs to be seeded differently; we use a pid here.
-	srand(getpid());
-	my_sigaction(SIGUSR1, child_handler);
-
-	int cpu_burst, io_burst;
-
-	while (1)
-	{
-		cpu_burst = rand() % 100 + 1;
-		io_burst = rand() % 100 + 1;
-
-		while (cpu_burst)
-		{
-			pause();
-			cpu_burst--;
-			printf("process[%d]: %d left\n", getpid(), cpu_burst);
-		}
-		
-		// send the io-burst value to parent.
-		my_msgsnd(msqid, getppid(), io_burst);
-
-		printf("process[%d]: finished cpu job\n", getpid());
-		pause();
-	}
-}
 
 void alarm_handler(int)
 {
@@ -77,7 +47,7 @@ void schedule_running()
 
 	status = my_msgrcv(msqid, &io_rq);
 
-	// child process has finished its cpu job. push to waiting queue.
+	// process has finished its job. push to waiting queue.
 	if (status != -1)
 	{
 		iopq_pair io_entry = (iopq_pair) {io_rq, pidq_pop(&running_q)};
@@ -85,10 +55,10 @@ void schedule_running()
 		time_slot = TIME_QUANTUM;
 	}
 
-	// decrease the remaining time and signal the child.
+	// decrease the remaining time and signal the process.
 	else
 	{
-		// child process hasn't finished yet, but its time slot is exhausted.
+		// process hasn't finished yet, but its time slot is exhausted.
 		if (!time_slot)
 		{
 			pidq_push(&running_q, pidq_pop(&running_q));
@@ -108,7 +78,7 @@ void schedule_waiting()
 	for (int i = 0; i < waiting_q.sz; i++)
 		waiting_q.mem[i].burst--;
 
-	// if there are finished io jobs, push the child back into the running queue.
+	// if there are finished io jobs, push the process back into the running queue.
 	while (!iopq_empty(&waiting_q) && iopq_peek(&waiting_q).burst == 0)
 	{
 		pid_t done = iopq_pop(&waiting_q).pid;
@@ -131,7 +101,7 @@ int main()
 	pidq_init(&running_q, 10);
 	iopq_init(&waiting_q, 10);
 
-	// spawn 10 child processes.
+	// spawn 10 processes.
 	for (int i = 0; i < 10; i++)
 	{
 		pid_t pid = fork();
@@ -147,7 +117,7 @@ int main()
 
 	my_sigaction(SIGALRM, alarm_handler);
 	enable_ticks();
-	while (ticks < 1000)
+	while (ticks < 10000)
 	{
 		pause();
 		schedule();
