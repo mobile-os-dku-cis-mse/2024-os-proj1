@@ -1,3 +1,6 @@
+#ifndef _SCHEDULING_H_
+#define _SCHEDULING_H_
+
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/ipc.h>
@@ -71,3 +74,5 @@ extern int current_time;
 extern int completed_processes;
 extern pid_t child_pids[NUM_PROCESSES];
 extern Process* processes[NUM_PROCESSES];
+
+#endif
