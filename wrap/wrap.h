@@ -1,7 +1,13 @@
-#ifndef __SIG_H
-#define __SIG_H
+#ifndef __WRAP_H
+#define __WRAP_H
 
 #include <sys/types.h>
+
+struct msgbuf
+{
+	long mtype;
+	int data;
+};
 
 int my_sigaction(int, void(*)(int));
 int my_msgsnd(int, pid_t, int);

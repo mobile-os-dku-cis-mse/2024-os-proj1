@@ -5,7 +5,6 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 
-#include "msg.h"
 #include "wrap.h"
 
 int my_sigaction(int signum, void (*handler)(int))

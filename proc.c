@@ -4,7 +4,7 @@
 #include <signal.h>
 #include <sys/types.h>
 
-#include "wrap.h"
+#include "wrap/wrap.h"
 
 extern int msqid;
 

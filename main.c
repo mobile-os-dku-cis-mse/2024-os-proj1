@@ -9,11 +9,10 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 
-#include "msg.h"
-#include "wrap.h"
 #include "proc.h"
-#include "pidq.h"
-#include "iopq.h"
+#include "wrap/wrap.h"
+#include "ds/pidq.h"
+#include "ds/iopq.h"
 
 #define TIME_QUANTUM 10
 
