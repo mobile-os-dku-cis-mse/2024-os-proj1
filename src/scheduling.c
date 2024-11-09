@@ -13,7 +13,7 @@ int current_time = 0;      // 모든 타임틱을 1씩 증가하며 출력용으
 int completed_processes = 0;
 pid_t child_pids[NUM_PROCESSES]; // 프로세스 정보를 담을 배열과 자식 PID 배열
 Process* processes[NUM_PROCESSES];
-int minute = 100; // 1분
+int minute = 2000; // 10분
 
 Queue* init_queue() {
     Queue* queue = (Queue*)malloc(sizeof(Queue));
@@ -91,9 +91,9 @@ void alrm_handler(int signum){
 
 void signal_handler() {
     struct sigaction sa;
-    memset(&sa, 0, sizeof(sa));          // 구조체를 0으로 초기화
+    memset(&sa, 0, sizeof(sa));         // 구조체를 0으로 초기화
     sa.sa_handler = alrm_handler;       // 핸들러 함수 설정
-    sigaction(SIGALRM, &sa, NULL);       // SIGALRM 시그널에 대한 핸들러 설정
+    sigaction(SIGALRM, &sa, NULL);      // SIGALRM 시그널에 대한 핸들러 설정
 }
 
 void setup_timer() {
@@ -131,10 +131,18 @@ void execute_parent_task() {
             }
 
             front_process = dequeue(wait_queue);
-            front_process->running_time = current_time;
-            kill(front_process->pid, SIGTERM);
-            completed_processes++;
-            fprintf(fp, "Process %d completed (total completed: %d)\n", front_process->pid, completed_processes);
+            // 실행 시간을 길게 시뮬레이팅 하기 위해서 다시 큐 혹은 종료
+            if (current_time < minute) {
+                front_process->cpu_burst = front_process->remaining_cpu = rand() % 10 + 1;
+                front_process->io_burst = front_process->remaining_io = rand() % 10 + 1;
+                front_process->cpu_use_time += front_process->cpu_burst;
+                enqueue(run_queue, front_process);
+            } else {
+                front_process->running_time = current_time;
+                kill(front_process->pid, SIGTERM);
+                completed_processes++;
+                fprintf(fp, "Process %d completed (total completed: %d)\n", front_process->pid, completed_processes);
+            }
         }
     }
 
@@ -177,6 +185,7 @@ void execute_parent_task() {
         }
     }
 
+    // 런 큐 웨이팅 타임 계산
     int i = run_queue->front;
     while (i != run_queue->rear) {
         Process* process = run_queue->processes[i];
@@ -284,7 +293,7 @@ int main() {
         fprintf(fp, "Child[%d] : %fs\n", processes[i]->pid, processes[i]->running_time * TIME_QUANTUM * TIME_TICK / 1000.0);
     }
     fprintf(fp, "-------------------------\n\n");
-    
+
     fprintf(fp, "\n\n-------------------------");
     fprintf(fp, "\nFinal waiting time result\n");
     for (int i=0; i<NUM_PROCESSES; i++) {

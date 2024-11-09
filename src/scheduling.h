@@ -12,11 +12,6 @@
 #define TIME_TICK 100 // ms
 #define KEY 12345
 
-// Process State 상수 정의
-#define PROCESS_READY 0
-#define PROCESS_RUNNING 1
-#define PROCESS_WAITING 2
-
 // 프로세스 구조체 정의
 typedef struct {
     int pid;
@@ -63,7 +58,6 @@ void execute_parent_task();
 void execute_child_task(int pid); // 자식 프로세스
 Process* initialize_process(int pid);
 void initialize_all_processes(int child_pids[]);
-void update_process_state(int pid, int remaining_cpu, int remaining_io);
 void handle_sigterm(int signum);
 void handle_sigusr1(int signum);
 void signal_handler();
