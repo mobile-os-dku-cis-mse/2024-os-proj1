@@ -10,32 +10,28 @@
 #include <sys/ipc.h>
 #include <sys/msg.h>
 
+#include "msg.h"
+#include "wrap.h"
 #include "pidq.h"
 #include "iopq.h"
 
 #define TIME_QUANTUM 10
 
-int ticks;
 int msqid;
+int ticks;
+int time_slot = TIME_QUANTUM;
 pidq running_q;
 iopq waiting_q;
-
-struct msgbuf
-{
-	long mtype;
-	int value;
-};
 
 void child_handler(int) {}
 
 void run()
 {
-	int cpu_burst, io_burst;
+	// each process needs to be seeded differently; we use a pid here.
+	srand(getpid());
+	my_sigaction(SIGUSR1, child_handler);
 
-	struct sigaction sa;
-	memset(&sa, 0, sizeof(sa));
-	sa.sa_handler = child_handler;
-	sigaction(SIGUSR1, &sa, NULL);
+	int cpu_burst, io_burst;
 
 	while (1)
 	{
@@ -50,11 +46,7 @@ void run()
 		}
 		
 		// send the io-burst value to parent.
-		struct msgbuf msg;
-		memset(&msg, 0, sizeof(msg));
-		msg.mtype = getppid();
-		msg.value = io_burst;
-		msgsnd(msqid, &msg, sizeof(msg)-sizeof(long), 0);
+		my_msgsnd(msqid, getppid(), io_burst);
 
 		printf("process[%d]: finished cpu job\n", getpid());
 		pause();
@@ -68,13 +60,8 @@ void alarm_handler(int)
 
 static void enable_ticks()
 {
-	struct itimerval timer = {{1, 0}, {1, 0}};
+	struct itimerval timer = {{0, 10000}, {1, 0}};
 	setitimer(ITIMER_REAL, &timer, NULL);
-
-	struct sigaction sa;
-	memset(&sa, 0, sizeof(sa));
-	sa.sa_handler = alarm_handler;
-	sigaction(SIGALRM, &sa, NULL);
 }
 
 static void disable_ticks()
@@ -83,44 +70,40 @@ static void disable_ticks()
 	setitimer(ITIMER_REAL, &ntimer, NULL);
 }
 
-int remaining = TIME_QUANTUM;
-
-void schedule()
+void schedule_running()
 {
 	int status;
-	struct msgbuf msg;
+	int io_rq; // io request value.
 
-	if (pidq_empty(&running_q))
-		goto io_handling;
-
-cpu_handling:
-	memset(&msg, 0, sizeof(msg));
-	status = msgrcv(msqid, &msg, sizeof(msg)-sizeof(long), getpid(), IPC_NOWAIT);
+	status = my_msgrcv(msqid, &io_rq);
 
 	// child process has finished its cpu job. push to waiting queue.
 	if (status != -1)
 	{
-		iopq_pair io_entry = (iopq_pair) {msg.value, pidq_pop(&running_q)};
+		iopq_pair io_entry = (iopq_pair) {io_rq, pidq_pop(&running_q)};
 		iopq_push(&waiting_q, io_entry);
-		remaining = TIME_QUANTUM;
+		time_slot = TIME_QUANTUM;
 	}
 
 	// decrease the remaining time and signal the child.
 	else
 	{
 		// child process hasn't finished yet, but its time slot is exhausted.
-		if (!remaining)
+		if (!time_slot)
 		{
 			pidq_push(&running_q, pidq_pop(&running_q));
 			printf("scheduled out! time for process[%d]\n", pidq_peek(&running_q));
-			remaining = TIME_QUANTUM;
+			time_slot = TIME_QUANTUM;
 		}
 
-		remaining--;
+		time_slot--;
 		kill(pidq_peek(&running_q), SIGUSR1);
 	}
 		
-io_handling:
+}
+
+void schedule_waiting()
+{
 	// decrease every burst value in the waiting queue.
 	for (int i = 0; i < waiting_q.sz; i++)
 		waiting_q.mem[i].burst--;
@@ -128,17 +111,22 @@ io_handling:
 	// if there are finished io jobs, push the child back into the running queue.
 	while (!iopq_empty(&waiting_q) && iopq_peek(&waiting_q).burst == 0)
 	{
-		pid_t fin = iopq_pop(&waiting_q).pid;
-		pidq_push(&running_q, fin);
-		kill(fin, SIGUSR1);
+		pid_t done = iopq_pop(&waiting_q).pid;
+		pidq_push(&running_q, done);
+		kill(done, SIGUSR1);
 	}
+}
+
+void schedule()
+{
+	if (!pidq_empty(&running_q))
+		schedule_running();
+
+	schedule_waiting();
 }
 
 int main()
 {
-	// seed the random generator.
-	srand(time(0));
-
 	msqid = msgget(IPC_PRIVATE, IPC_CREAT | 0666);
 	pidq_init(&running_q, 10);
 	iopq_init(&waiting_q, 10);
@@ -157,15 +145,15 @@ int main()
 		}
 	}
 
+	my_sigaction(SIGALRM, alarm_handler);
 	enable_ticks();
-
-	while (ticks < 100)
+	while (ticks < 1000)
 	{
 		pause();
 		schedule();
 	}
-
 	disable_ticks();
+
 	pidq_destroy(&running_q);
 	iopq_destroy(&waiting_q);
 	kill(0, SIGTERM);
