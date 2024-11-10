@@ -40,3 +40,8 @@ pid_t pidq_pop(pidq *q)
 	
 	return pid;
 }
+
+pid_t pidq_at(pidq *q, int off)
+{
+	return q->mem[(q->front + off) % q->cap];
+}
