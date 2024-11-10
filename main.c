@@ -18,14 +18,12 @@
 
 #define TIME_QUANTUM 10
 
+int dump_fd;
 int msqid;
 int ticks;
 int time_slot = TIME_QUANTUM;
 pidq running_q;
 iopq waiting_q;
-
-char buf[1024];
-int dump_fd;
 
 void alarm_handler(int)
 {
@@ -56,8 +54,7 @@ void schedule_running()
 	time_slot--;
 
 	// log active process.
-	sprintf(buf, "process[%d] gets cpu time, %d remaining\n", pidq_peek(&running_q), rq_val);
-	write(dump_fd, buf, strlen(buf));
+	dprintf(dump_fd, "process[%d] gets cpu time, %d remaining\n", pidq_peek(&running_q), rq_val);
 
 	// check if the process has finished its job.
 	if (!rq_val)
@@ -91,47 +88,37 @@ void schedule_waiting()
 		pidq_push(&running_q, done);
 		kill(done, SIGALRM);
 
-		sprintf(buf, "process[%d] resumes to running queue\n", done);
-		write(dump_fd, buf, strlen(buf));
+		dprintf(dump_fd, "process[%d] resumes to running queue\n", done);
 	}
 }
 
 void dump_running()
 {
-	sprintf(buf, "running queue dump\n");
-	write(dump_fd, buf, strlen(buf));
+	dprintf(dump_fd, "running queue dump\n");
 
 	for (int i = 0; i < running_q.sz; i++)
-	{
-		sprintf(buf, "\tprocess[%d]\n", pidq_at(&running_q, i));
-		write(dump_fd, buf, strlen(buf));
-	}
+		dprintf(dump_fd, "\tprocess[%d]\n", pidq_at(&running_q, i));
 }
 
 void dump_waiting()
 {
-	sprintf(buf, "waiting queue dump\n");
-	write(dump_fd, buf, strlen(buf));
+	dprintf(dump_fd, "waiting queue dump\n");
 
 	for (int i = 0; i < waiting_q.sz; i++)
-	{
-		sprintf(buf, "\tprocess[%d]:%d\n", waiting_q.mem[i].pid, waiting_q.mem[i].burst);
-		write(dump_fd, buf, strlen(buf));
-	}
+		dprintf(dump_fd, "\tprocess[%d]:%d\n", waiting_q.mem[i].pid, waiting_q.mem[i].burst);
 }
 
 void schedule()
 {
-	sprintf(buf, "log from tick %d\n", ticks);
-	write(dump_fd, buf, strlen(buf));
+	printf("scheduler invoked, tick %d\n", ticks);
+	dprintf(dump_fd, "log message at tick %d\n", ticks);
 
 	schedule_running();
 	schedule_waiting();
 	dump_running();
 	dump_waiting();
 
-	sprintf(buf, "\n\n");
-	write(dump_fd, buf, strlen(buf));
+	dprintf(dump_fd, "\n\n");
 }
 
 int main()
@@ -157,7 +144,7 @@ int main()
 
 	my_sigaction(SIGALRM, alarm_handler);
 	enable_ticks();
-	while (ticks < 1000)
+	while (ticks < 10000)
 	{
 		pause();
 		schedule();
@@ -167,6 +154,8 @@ int main()
 	pidq_destroy(&running_q);
 	iopq_destroy(&waiting_q);
 	close(dump_fd);
+
+	puts("log messages dumped to schedule_dump.txt");
 	kill(0, SIGTERM);
 	exit(0);
 }
