@@ -4,10 +4,12 @@
 #include <signal.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/stat.h>
 #include <sys/time.h>
 #include <sys/wait.h>
 #include <sys/ipc.h>
 #include <sys/msg.h>
+#include <fcntl.h>
 
 #include "proc.h"
 #include "wrap/wrap.h"
@@ -21,6 +23,9 @@ int ticks;
 int time_slot = TIME_QUANTUM;
 pidq running_q;
 iopq waiting_q;
+
+char buf[1024];
+int dump_fd;
 
 void alarm_handler(int)
 {
@@ -41,34 +46,36 @@ static void disable_ticks()
 
 void schedule_running()
 {
-	int status;
-	int io_rq; // io request value.
+	int rq_val; // request value.
 
-	status = my_msgrcv(msqid, &io_rq);
+	if (pidq_empty(&running_q))
+		return;
 
-	// process has finished its job. push to waiting queue.
-	if (status != -1)
+	my_msgsnd(msqid, pidq_peek(&running_q), 1);
+	my_msgrcv(msqid, &rq_val, 0);
+	time_slot--;
+
+	// log active process.
+	sprintf(buf, "process[%d] gets cpu time, %d remaining\n", pidq_peek(&running_q), rq_val);
+	write(dump_fd, buf, strlen(buf));
+
+	// check if the process has finished its job.
+	if (!rq_val)
 	{
-		iopq_pair io_entry = (iopq_pair) {io_rq, pidq_pop(&running_q)};
-		iopq_push(&waiting_q, io_entry);
+		my_msgrcv(msqid, &rq_val, 0);
+		iopq_push(&waiting_q, (iopq_pair) {rq_val, pidq_pop(&running_q)});
+		time_slot = TIME_QUANTUM;
+
+		if (pidq_empty(&running_q))
+			return;
+	}
+
+	// process hasn't finished yet, but its time slot is exhausted.
+	if (!time_slot)
+	{
+		pidq_push(&running_q, pidq_pop(&running_q));
 		time_slot = TIME_QUANTUM;
 	}
-
-	// decrease the remaining time and signal the process.
-	else
-	{
-		// process hasn't finished yet, but its time slot is exhausted.
-		if (!time_slot)
-		{
-			pidq_push(&running_q, pidq_pop(&running_q));
-			printf("scheduled out! time for process[%d]\n", pidq_peek(&running_q));
-			time_slot = TIME_QUANTUM;
-		}
-
-		time_slot--;
-		kill(pidq_peek(&running_q), SIGUSR1);
-	}
-		
 }
 
 void schedule_waiting()
@@ -82,20 +89,54 @@ void schedule_waiting()
 	{
 		pid_t done = iopq_pop(&waiting_q).pid;
 		pidq_push(&running_q, done);
-		kill(done, SIGUSR1);
+		kill(done, SIGALRM);
+
+		sprintf(buf, "process[%d] resumes to running queue\n", done);
+		write(dump_fd, buf, strlen(buf));
+	}
+}
+
+void dump_running()
+{
+	sprintf(buf, "running queue dump\n");
+	write(dump_fd, buf, strlen(buf));
+
+	for (int i = 0; i < running_q.sz; i++)
+	{
+		sprintf(buf, "\tprocess[%d]\n", pidq_at(&running_q, i));
+		write(dump_fd, buf, strlen(buf));
+	}
+}
+
+void dump_waiting()
+{
+	sprintf(buf, "waiting queue dump\n");
+	write(dump_fd, buf, strlen(buf));
+
+	for (int i = 0; i < waiting_q.sz; i++)
+	{
+		sprintf(buf, "\tprocess[%d]:%d\n", waiting_q.mem[i].pid, waiting_q.mem[i].burst);
+		write(dump_fd, buf, strlen(buf));
 	}
 }
 
 void schedule()
 {
-	if (!pidq_empty(&running_q))
-		schedule_running();
+	sprintf(buf, "log from tick %d\n", ticks);
+	write(dump_fd, buf, strlen(buf));
 
+	schedule_running();
 	schedule_waiting();
+	dump_running();
+	dump_waiting();
+
+	sprintf(buf, "\n\n");
+	write(dump_fd, buf, strlen(buf));
 }
 
 int main()
 {
+	dump_fd = creat("schedule_dump.txt", 0664);
 	msqid = msgget(IPC_PRIVATE, IPC_CREAT | 0666);
 	pidq_init(&running_q, 10);
 	iopq_init(&waiting_q, 10);
@@ -116,7 +157,7 @@ int main()
 
 	my_sigaction(SIGALRM, alarm_handler);
 	enable_ticks();
-	while (ticks < 10000)
+	while (ticks < 1000)
 	{
 		pause();
 		schedule();
@@ -125,6 +166,7 @@ int main()
 
 	pidq_destroy(&running_q);
 	iopq_destroy(&waiting_q);
+	close(dump_fd);
 	kill(0, SIGTERM);
 	exit(0);
 }
