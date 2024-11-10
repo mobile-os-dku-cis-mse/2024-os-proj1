@@ -2,7 +2,7 @@
 // Created by hochacha on 24. 11. 7.
 //
 
-#include "messge_queue.h"
+#include "message_queue.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -20,4 +20,8 @@ int init_msg_queue() {
     return 0;
 }
 
-
+void close_msg_queue() {
+    if(msgctl(msg_queue_id, IPC_RMID, 0) == -1) {
+        perror("msgctl");
+    }
+}

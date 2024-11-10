@@ -16,7 +16,7 @@ typedef struct _PCB {
     pid_t pid;              // 프로세스 ID
     int cpu_burst_time;     // CPU 실행 시간
     int io_burst_time;      // I/O 작업 시간
-    int remain_time;   // 남은 타임 퀀텀
+    int remaining_time;   // 남은 타임 퀀텀
     int priority;           // 우선순위
     int state;             // 프로세스 상태
     time_t arrival_time;    // 도착 시간

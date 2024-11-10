@@ -6,6 +6,9 @@
 #define MESSGE_QUEUE_H
 #include "pid_queue.h"
 
+#define MESSAGE_TYPE_IO_FIN 0
+#define MESSAGE_TYPE_IO_REQ 1
+
 extern int msg_queue_id;
 
 typedef struct{
@@ -13,5 +16,6 @@ typedef struct{
     pid_t pid;
     int io_time;
 }io_msg;
+
 int init_msg_queue();
 #endif //MESSGE_QUEUE_H

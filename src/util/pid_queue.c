@@ -15,7 +15,7 @@ pcb_t* create_pcb(pid_t pid, int cpu_burst, int priority) {
     new_pcb->pid = pid;
     new_pcb->cpu_burst_time = cpu_burst;
     new_pcb->io_burst_time = 0;
-    new_pcb->remain_time = 0;
+    new_pcb->remaining_time = 0;
     new_pcb->priority = priority;
     new_pcb->state = PROCESS_READY;
     new_pcb->arrival_time = time(NULL);

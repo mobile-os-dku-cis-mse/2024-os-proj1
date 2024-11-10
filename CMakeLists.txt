@@ -16,7 +16,7 @@ add_executable(scheduler
         src/util/pid_queue.h
         src/util/timer.c
         src/util/timer.h
-        src/util/messge_queue.c
-        src/util/messge_queue.h
+        src/util/message_queue.c
+        src/util/message_queue.h
         src/entity/child.c
 )

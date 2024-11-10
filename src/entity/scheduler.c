@@ -11,10 +11,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <sys/msg.h>
 #include <sys/wait.h>
 #include "src/util/pid_queue.h"
 #include "../util/timer.h"
-#include "../util/messge_queue.h"
+#include "../util/message_queue.h"
 
 #define DEBUG
 
@@ -47,17 +48,17 @@ void alarm_handler(int sig) {
     // currently time decrement happens only CPU scheduling,
     // it's seem to implement the I/O schedule
     if(current_process != NULL && current_process->state == PROCESS_RUNNING \
-        && current_process->remain_time > 0) {
+        && current_process->remaining_time > 0) {
         // Time tick pass
         kill(current_process->pid, SIGALRM);
-        current_process->remain_time--;
+        current_process->remaining_time--;
 
 #ifdef DEBUG
         printf("[Tick :: %d] Process %d: remain time = %d\n",
-            current_time, current_process->pid, current_process->remain_time);
+            current_time, current_process->pid, current_process->remaining_time);
 #endif
         // if time out -> schedule out
-        if(current_process->remain_time == 0) {
+        if(current_process->remaining_time == 0) {
             // schedule out
             kill(current_process->pid, SIGUSR2);
             current_process->state = PROCESS_READY;
@@ -94,6 +95,12 @@ void alarm_handler(int sig) {
 // when the child request for IO job
 void io_schedule_handler(int sig) {
 
+    // get io scheduling message
+    io_msg msg = {0};
+    if(msgrcv(msg_queue_id, &msg, sizeof(io_msg),1,0) == -1) {
+        perror("msgrcv");
+        exit(1);
+    }
 
 }
 
@@ -144,5 +151,7 @@ void scheduler_run(pcb_queue* ready_queue, int n_process) {
     scheduler_init(ready_queue);
 
     // just work with handler function
-    while(1);
+    while(1) {
+        printf("[scheduler_run] Waiting for process to schedule\n");
+    };
 }
