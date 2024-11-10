@@ -24,11 +24,11 @@ int my_msgsnd(int msqid, pid_t target, int data)
 	return msgsnd(msqid, &msg, sizeof(msg)-sizeof(long), 0);
 }
 
-ssize_t my_msgrcv(int msqid, int *data)
+ssize_t my_msgrcv(int msqid, int *data, int msgflg)
 {
 	struct msgbuf msg;
 	memset(&msg, 0, sizeof(msg));
-	ssize_t bytes = msgrcv(msqid, &msg, sizeof(msg)-sizeof(long), getpid(), IPC_NOWAIT);
+	ssize_t bytes = msgrcv(msqid, &msg, sizeof(msg)-sizeof(long), getpid(), msgflg);
 	*data = msg.data;
 	return bytes;
 }
