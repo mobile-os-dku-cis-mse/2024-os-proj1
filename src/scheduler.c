@@ -43,9 +43,7 @@ void alarm_handler(int sig) {
         msg.pid = current_proc->pid;
         msg.io_time = current_proc->io_burst;
 
-        if (msgsnd(scheduler->msgid, &msg, sizeof(msg), IPC_NOWAIT) == -1) {
-            perror("msgsnd failed");
-        }
+        msgsnd(scheduler->msgid, &msg, sizeof(msg), IPC_NOWAIT);
 
         char buffer[128];
         sprintf(buffer, "At time %d, process %d gets CPU time, remaining CPU burst %d\n",
