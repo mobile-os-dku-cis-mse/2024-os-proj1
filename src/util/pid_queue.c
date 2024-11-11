@@ -129,3 +129,10 @@ void destroy_pcb_queue(pcb_queue* queue) {
 int is_queue_empty(pcb_queue* queue) {
     return queue->size == 0;
 }
+
+int get_queue_size(pcb_queue* queue) {
+    if (queue == NULL) {
+        return 0;
+    }
+    return queue->size;
+}

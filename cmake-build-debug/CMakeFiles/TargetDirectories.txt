@@ -1,3 +1,4 @@
-/home/hochacha/repo/2024-os-proj1/cmake-build-debug/CMakeFiles/scheduler.dir
-/home/hochacha/repo/2024-os-proj1/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/hochacha/repo/2024-os-proj1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/hochacha/repos/2024-os-proj1/cmake-build-debug/CMakeFiles/scheduler.dir
+/home/hochacha/repos/2024-os-proj1/cmake-build-debug/CMakeFiles/new_scheduler.dir
+/home/hochacha/repos/2024-os-proj1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/hochacha/repos/2024-os-proj1/cmake-build-debug/CMakeFiles/rebuild_cache.dir

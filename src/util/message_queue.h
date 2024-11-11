@@ -8,6 +8,7 @@
 
 #define MESSAGE_TYPE_IO_FIN 0
 #define MESSAGE_TYPE_IO_REQ 1
+#define MESSAGE_TYPE_SCHD_TIME 2
 
 extern int msg_queue_id;
 
@@ -16,6 +17,11 @@ typedef struct{
     pid_t pid;
     int io_time;
 }io_msg;
+
+typedef struct {
+    long mtype;
+    int time_alloc;
+}time_alloc_msg;
 
 int init_msg_queue();
 #endif //MESSGE_QUEUE_H

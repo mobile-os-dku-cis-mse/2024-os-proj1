@@ -20,3 +20,19 @@ add_executable(scheduler
         src/util/message_queue.h
         src/entity/child.c
 )
+
+add_executable(new_scheduler
+        src/main.c
+        src/entity/new_scheduler.c
+        src/util/process.c
+        src/util/process.h
+        src/entity/new_child.c
+        src/entity/new_child.h
+        src/util/pid_queue.c
+        src/util/pid_queue.h
+        src/util/timer.c
+        src/util/timer.h
+        src/util/message_queue.c
+        src/util/message_queue.h
+        src/entity/child.c
+)
