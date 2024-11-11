@@ -25,43 +25,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9657c78d-eccb-4686-babf-50c026cfea8f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/entity/new_child.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entity/new_child.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entity/new_scheduler.c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entity/new_scheduler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CURRENT_STATE.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cache-v2-81f31969bd0d061cba4d.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/cmakeFiles-v1-398b4976b470554d5982.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-12415541374e3059f6af.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2024-11-10T11-43-32-0485.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-scheduler-Debug-4a114fd7c36c25e7b1e6.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.29.6/CMakeSystem.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/3.29.6/CMakeSystem.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/rules.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/entity/child.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/entity/child.c.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/entity/scheduler.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/entity/scheduler.c.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/main.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/main.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/util/messge_queue.c.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/util/pid_queue.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/util/pid_queue.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/util/process.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/util/process.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/util/timer.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/util/timer.c.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/cmake_install.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cmake-build-debug/scheduler" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/scheduler" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/child.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/child.c" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entity/scheduler.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/scheduler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/message_queue.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/message_queue.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/pid_queue.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/pid_queue.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/pid_queue.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/pid_queue.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/util/timer.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/timer.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,7 +158,7 @@
       <workItem from="1731299522052" duration="303000" />
       <workItem from="1731300077206" duration="5000" />
       <workItem from="1731300445148" duration="1651000" />
-      <workItem from="1731309885863" duration="18605000" />
+      <workItem from="1731309885863" duration="21117000" />
     </task>
     <servers />
   </component>
@@ -203,16 +177,6 @@
           <url>file://$PROJECT_DIR$/src/main.c</url>
           <line>11</line>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/entity/scheduler.c</url>
-          <line>150</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/entity/scheduler.c</url>
-          <line>52</line>
-          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

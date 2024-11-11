@@ -23,6 +23,7 @@ pcb_queue* waiting_queue_schd = NULL;
 pcb_t* current_process = NULL;
 
 volatile sig_atomic_t io_request_received = 0;
+extern FILE* IO_result;
 
 void sigint_handler(int sig) {
     if (sig == SIGINT) {
@@ -45,34 +46,48 @@ void sigint_handler(int sig) {
 }
 
 void alarm_handler(int sig) {
-    current_time++;  // global time increment
+    current_time++;  // 전역 시간 증가
 
-    // case: currently time decrement happens only CPU scheduling,
-    // it's seem to implement the I/O schedule
-    if(current_process != NULL && current_process->state == PROCESS_RUNNING \
-        && current_process->remaining_time > 0) {
-        // Time tick pass
+    // 현재 실행 중인 프로세스의 남은 시간 감소
+    if(current_process != NULL && current_process->state == PROCESS_RUNNING && current_process->remaining_time > 0) {
         kill(current_process->pid, SIGALRM);
         current_process->remaining_time--;
 
-#ifdef DEBUG
+    #ifdef DEBUG
         printf("[Tick :: %d] Process %d: remain time = %d\n",
             current_time, current_process->pid, current_process->remaining_time);
-#endif
-        // if time out -> schedule out
+    #endif
+        // 타임 퀀텀 소진 시 스케줄 아웃
         if(current_process->remaining_time <= 0) {
-            // schedule out
             kill(current_process->pid, SIGUSR2);
-
-            // get back to the queue
             current_process->state = PROCESS_READY;
             enqueue_pcb(ready_queue_schd, current_process);
             current_process = NULL;
         }
-    }else {
-        // case: if there is no running process
-        if(is_queue_empty(ready_queue_schd) != 1) {
-            // schedule in the child process
+    }
+
+    // **종료 조건 확인 전에 대기 큐를 먼저 처리**
+    int waiting_queue_size = get_queue_size(waiting_queue_schd);
+    for(int i = 0; i < waiting_queue_size; i++) {
+        pcb_t * process = dequeue_pcb(waiting_queue_schd);
+        process->io_time--;
+
+        if(process->io_time <= 0) {
+            process->state = PROCESS_READY;
+            enqueue_pcb(ready_queue_schd, process);
+            kill(process->pid, SIGUSR2);  // 자식 프로세스에 IO 완료 알림
+    #ifdef DEBUG
+            fprintf(IO_result,"[Tick:: %d] Process %d IO completed, moved to ready queue\n", current_time, process->pid);
+    #endif
+        } else {
+            enqueue_pcb(waiting_queue_schd, process);
+        }
+    }
+
+    // **대기 큐를 처리한 후에 종료 조건 확인**
+    if(current_process == NULL) {
+        if(!is_queue_empty(ready_queue_schd)) {
+            // 다음 프로세스 스케줄링
             current_process = dequeue_pcb(ready_queue_schd);
             current_process->state = PROCESS_RUNNING;
             current_process->remaining_time = TIME_QUANTUAM;
@@ -83,54 +98,24 @@ void alarm_handler(int sig) {
             if(msgsnd(msg_queue_id, &t_msg, sizeof(time_alloc_msg) - sizeof(long), 0) == -1) {
                 perror("msgsnd");
             }
-#ifdef DEBUG
+    #ifdef DEBUG
             printf("=======================================\n");
-            printf("[Tick :: %d] Child %d scheduled in\n", current_time,current_process->pid);
+            printf("[Tick :: %d] Child %d scheduled in\n", current_time, current_process->pid);
             printf("=======================================\n");
-#endif
-
-            // SIGUSR1 just change the state of the process
+    #endif
             kill(current_process->pid, SIGUSR1);
             kill(current_process->pid, SIGALRM);
+        } else if(!is_queue_empty(waiting_queue_schd)) {
+            // 대기 큐에 프로세스가 있으므로 계속 진행
         } else {
-            // ready queue empty
-            // in this situation, I/O queue full or child process have done for work
-            if(is_queue_empty(waiting_queue_schd) != 1) {
-                // wait for IO Queue done
-
-
-            } else {
-                // child processes have done
-#ifdef DEBUG
-                printf("\n======================================================\n");
-                printf("[:::TERMINATION::::] The scheduler program has been terminated");
-                printf("\n======================================================\n");
-#endif
-                sigint_handler(SIGINT);
-                exit(0);
-            }
-        }
-    }
-
-    // check I/O schedule (FIFO) request
-    // just polling the message
-    /* IO burst */
-    int waiting_queue_size = get_queue_size(waiting_queue_schd);
-    for(int i = 0; i < waiting_queue_size; i++) {
-        pcb_t * process = dequeue_pcb(waiting_queue_schd);
-        process->io_time--;
-
-        // IO 처리가 끝난 프로세스
-        if(process->io_time <= 0) {
-            // IO 완료 처리
-            process->state = PROCESS_READY;
-            enqueue_pcb(ready_queue_schd, process);
-            kill(process->pid, SIGUSR2);
-#ifdef DEBUG
-            printf("[Tick:: %d] process %d IO completed, move to ready queue\n", current_time, process->pid);
-#endif
-        }else {
-            enqueue_pcb(waiting_queue_schd, process);
+            // 두 큐가 모두 비어있으므로 스케줄러 종료
+    #ifdef DEBUG
+            printf("\n======================================================\n");
+            printf("[:::TERMINATION::::] The scheduler program has been terminated");
+            printf("\n======================================================\n");
+    #endif
+            sigint_handler(SIGINT);
+            exit(0);
         }
     }
 }
@@ -198,12 +183,16 @@ void scheduler_run(pcb_queue* ready_queue, int n_process) {
                     enqueue_pcb(waiting_queue_schd, current_process);
                     current_process = NULL;
 #ifdef DEBUG
-                    printf("[Tick :: %d] Process %d moved to waiting queue for IO of %d ticks\n",
+                    fprintf(IO_result,"[Tick :: %d] Process %d moved to waiting queue for IO of %d ticks\n",
                                             current_time, t_msg.pid, t_msg.io_time);
 #endif
                 }
             }
 
         }
+        if(current_time > 10000) {
+            break;
+        }
     };
+    signal(SIGINT, sigint_handler);
 }

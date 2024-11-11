@@ -135,6 +135,7 @@ int child_main(int argc, char **argv) {
             if (sigusr2_received) {
                 sigusr2_received = 0;
 
+                // IO 완료 처리
                 if (process_state == PROCESS_BLOCKED) {
                     cpu_burst = rand() % 10 + 1;
                     io_burst = rand() % 10 + 1;
@@ -144,6 +145,7 @@ int child_main(int argc, char **argv) {
 
                     process_state = PROCESS_READY;
                 }
+                // 스케줄 아웃
                 if(process_state == PROCESS_RUNNING) {
                     process_state = PROCESS_READY;
 #ifdef DEBUG
