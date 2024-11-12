@@ -16,15 +16,19 @@ int main()
 	struct sigaction new_sa;
 	memset(&new_sa, 0, sizeof(new_sa));
 	new_sa.sa_handler = &signal_handler;
-	sigaction(SIGALRM, &new_sa, &old_sa);
+	sigaction(SIGALRM, &new_sa, &old_sa);//
 
 	struct itimerval new_itimer, old_itimer;
+	//간격 1초
 	new_itimer.it_interval.tv_sec = 1;
 	new_itimer.it_interval.tv_usec = 0;
+	//1초 뒤부터 시작
 	new_itimer.it_value.tv_sec = 1;
 	new_itimer.it_value.tv_usec = 0;
-	setitimer(ITIMER_REAL, &new_itimer, &old_itimer);
 
+	setitimer(ITIMER_REAL, &new_itimer, &old_itimer);
+	//ITIMER_REAL : 타이머 유형 : 특정 시간 경과 시 SIGARLM 신호 발생
+	//기준 : new_itimer
 	while (1);
 	return 0;
 }
@@ -34,17 +38,5 @@ void signal_handler(int signo)
 	printf("signaled! %d \n", signo);
 	count++;
 
-	if (count == 3) exit(0);
+	if (count == 3) exit(0); //exit함수는 존재 위치에 상관없이 프로그램을 종료시킴
 }
-
-
-
-
-
-
-
-
-
-
-
-
