@@ -13,7 +13,6 @@ int setup_timer() {
 
     timer_value.it_interval.tv_sec = TIMER_INTERVAL;
     timer_value.it_interval.tv_usec = TIMER_INTERVAL_USEC;
-
     timer_value.it_value.tv_sec = TIMER_INTERVAL;
     timer_value.it_value.tv_usec = TIMER_INTERVAL_USEC;
 

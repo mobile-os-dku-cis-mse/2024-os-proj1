@@ -21,7 +21,7 @@ typedef struct _PCB {
     int remaining_time;   // 남은 타임 퀀텀
     int priority;           // 우선순위
     int state;             // 프로세스 상태
-    int io_time;           // 입출력 요청 시간
+    unsigned int io_time;           // 입출력 요청 시간
     time_t arrival_time;    // 도착 시간
     time_t start_time;      // 첫 실행 시작 시간
     time_t completion_time; // 완료 시간

@@ -13,9 +13,10 @@
 extern int msg_queue_id;
 
 typedef struct{
-    long msg_t;
+    int msg_t;
     pid_t pid;
-    int io_time;
+    unsigned int io_time;
+    int is_finished;
 }io_msg;
 
 typedef struct {

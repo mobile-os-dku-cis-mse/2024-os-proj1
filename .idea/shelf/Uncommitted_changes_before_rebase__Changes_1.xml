@@ -1,0 +1,44 @@
+<changelist name="Uncommitted_changes_before_rebase_[Changes]1" date="1731393964444" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before rebase [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug/CMakeFiles/scheduler.dir/src/util/pid_queue.c.o" />
+    <option name="AFTER_PATH" value="cmake-build-debug/CMakeFiles/scheduler.dir/src/util/pid_queue.c.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/pid_queue.c.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug/CMakeFiles/scheduler.dir/src/util/timer.c.o" />
+    <option name="AFTER_PATH" value="cmake-build-debug/CMakeFiles/scheduler.dir/src/util/timer.c.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/timer.c.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug/.ninja_log" />
+    <option name="AFTER_PATH" value="cmake-build-debug/.ninja_log" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/.ninja_log" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug/CMakeFiles/scheduler.dir/src/main.c.o" />
+    <option name="AFTER_PATH" value="cmake-build-debug/CMakeFiles/scheduler.dir/src/main.c.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/main.c.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug/.ninja_deps" />
+    <option name="AFTER_PATH" value="cmake-build-debug/.ninja_deps" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/.ninja_deps" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug/CMakeFiles/scheduler.dir/src/entity/child.c.o" />
+    <option name="AFTER_PATH" value="cmake-build-debug/CMakeFiles/scheduler.dir/src/entity/child.c.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/child.c.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug/CMakeFiles/scheduler.dir/src/entity/scheduler.c.o" />
+    <option name="AFTER_PATH" value="cmake-build-debug/CMakeFiles/scheduler.dir/src/entity/scheduler.c.o" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/scheduler.c.o" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="cmake-build-debug/scheduler" />
+    <option name="AFTER_PATH" value="cmake-build-debug/scheduler" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]1/scheduler" />
+  </binary>
+</changelist>

@@ -114,87 +114,6 @@ build scheduler: C_EXECUTABLE_LINKER__scheduler_Debug CMakeFiles/scheduler.dir/s
   TARGET_FILE = scheduler
   TARGET_PDB = scheduler.dbg
 
-# =============================================================================
-# Object build statements for EXECUTABLE target new_scheduler
-
-
-#############################################
-# Order-only phony target for new_scheduler
-
-build cmake_object_order_depends_target_new_scheduler: phony || .
-
-build CMakeFiles/new_scheduler.dir/src/main.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/main.c || cmake_object_order_depends_target_new_scheduler
-  DEP_FILE = CMakeFiles/new_scheduler.dir/src/main.c.o.d
-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
-  OBJECT_DIR = CMakeFiles/new_scheduler.dir
-  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src
-
-build CMakeFiles/new_scheduler.dir/src/entity/new_scheduler.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/entity/new_scheduler.c || cmake_object_order_depends_target_new_scheduler
-  DEP_FILE = CMakeFiles/new_scheduler.dir/src/entity/new_scheduler.c.o.d
-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
-  OBJECT_DIR = CMakeFiles/new_scheduler.dir
-  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/entity
-
-build CMakeFiles/new_scheduler.dir/src/util/process.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/process.c || cmake_object_order_depends_target_new_scheduler
-  DEP_FILE = CMakeFiles/new_scheduler.dir/src/util/process.c.o.d
-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
-  OBJECT_DIR = CMakeFiles/new_scheduler.dir
-  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/util
-
-build CMakeFiles/new_scheduler.dir/src/entity/new_child.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/entity/new_child.c || cmake_object_order_depends_target_new_scheduler
-  DEP_FILE = CMakeFiles/new_scheduler.dir/src/entity/new_child.c.o.d
-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
-  OBJECT_DIR = CMakeFiles/new_scheduler.dir
-  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/entity
-
-build CMakeFiles/new_scheduler.dir/src/util/pid_queue.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/pid_queue.c || cmake_object_order_depends_target_new_scheduler
-  DEP_FILE = CMakeFiles/new_scheduler.dir/src/util/pid_queue.c.o.d
-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
-  OBJECT_DIR = CMakeFiles/new_scheduler.dir
-  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/util
-
-build CMakeFiles/new_scheduler.dir/src/util/timer.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/timer.c || cmake_object_order_depends_target_new_scheduler
-  DEP_FILE = CMakeFiles/new_scheduler.dir/src/util/timer.c.o.d
-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
-  OBJECT_DIR = CMakeFiles/new_scheduler.dir
-  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/util
-
-build CMakeFiles/new_scheduler.dir/src/util/message_queue.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/message_queue.c || cmake_object_order_depends_target_new_scheduler
-  DEP_FILE = CMakeFiles/new_scheduler.dir/src/util/message_queue.c.o.d
-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
-  OBJECT_DIR = CMakeFiles/new_scheduler.dir
-  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/util
-
-build CMakeFiles/new_scheduler.dir/src/entity/child.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/entity/child.c || cmake_object_order_depends_target_new_scheduler
-  DEP_FILE = CMakeFiles/new_scheduler.dir/src/entity/child.c.o.d
-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
-  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
-  OBJECT_DIR = CMakeFiles/new_scheduler.dir
-  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/entity
-
-
-# =============================================================================
-# Link build statements for EXECUTABLE target new_scheduler
-
-
-#############################################
-# Link the executable new_scheduler
-
-build new_scheduler: C_EXECUTABLE_LINKER__new_scheduler_Debug CMakeFiles/new_scheduler.dir/src/main.c.o CMakeFiles/new_scheduler.dir/src/entity/new_scheduler.c.o CMakeFiles/new_scheduler.dir/src/util/process.c.o CMakeFiles/new_scheduler.dir/src/entity/new_child.c.o CMakeFiles/new_scheduler.dir/src/util/pid_queue.c.o CMakeFiles/new_scheduler.dir/src/util/timer.c.o CMakeFiles/new_scheduler.dir/src/util/message_queue.c.o CMakeFiles/new_scheduler.dir/src/entity/child.c.o
-  FLAGS = -g
-  OBJECT_DIR = CMakeFiles/new_scheduler.dir
-  POST_BUILD = :
-  PRE_LINK = :
-  TARGET_FILE = new_scheduler
-  TARGET_PDB = new_scheduler.dbg
-
 
 #############################################
 # Utility command for edit_cache
@@ -229,7 +148,7 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 #############################################
 # Folder: /home/hochacha/repos/2024-os-proj1/cmake-build-debug
 
-build all: phony scheduler new_scheduler
+build all: phony scheduler
 
 # =============================================================================
 # Built-in targets

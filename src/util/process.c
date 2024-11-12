@@ -1,7 +1,6 @@
 //
 // Created by hochacha on 24. 11. 6.
 //
-
 #include "process.h"
 
 #include <stdio.h>
@@ -38,7 +37,4 @@ void launch_scheduler_and_worker(pcb_queue* ready_queue, int n_process) {
             enqueue_pcb(ready_queue, child_pcb);
         }
     }
-
-    // start schedule
-    scheduler_run(ready_queue, n_process);
 }

@@ -1,0 +1,2044 @@
+Index: cmake-build-debug/.cmake/api/v1/reply/index-2024-11-11T09-34-07-0040.json
+===================================================================
+diff --git a/cmake-build-debug/.cmake/api/v1/reply/index-2024-11-11T09-34-07-0040.json b/cmake-build-debug/.cmake/api/v1/reply/index-2024-11-11T09-34-07-0040.json
+deleted file mode 100644
+--- a/cmake-build-debug/.cmake/api/v1/reply/index-2024-11-11T09-34-07-0040.json	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ /dev/null	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
+@@ -1,108 +0,0 @@
+-{
+-	"cmake" : 
+-	{
+-		"generator" : 
+-		{
+-			"multiConfig" : false,
+-			"name" : "Ninja"
+-		},
+-		"paths" : 
+-		{
+-			"cmake" : "/home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake",
+-			"cpack" : "/home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cpack",
+-			"ctest" : "/home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/ctest",
+-			"root" : "/home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29"
+-		},
+-		"version" : 
+-		{
+-			"isDirty" : false,
+-			"major" : 3,
+-			"minor" : 29,
+-			"patch" : 6,
+-			"string" : "3.29.6",
+-			"suffix" : ""
+-		}
+-	},
+-	"objects" : 
+-	[
+-		{
+-			"jsonFile" : "codemodel-v2-5759dca6696ba9a95b1c.json",
+-			"kind" : "codemodel",
+-			"version" : 
+-			{
+-				"major" : 2,
+-				"minor" : 7
+-			}
+-		},
+-		{
+-			"jsonFile" : "cache-v2-af6956125565046e2df6.json",
+-			"kind" : "cache",
+-			"version" : 
+-			{
+-				"major" : 2,
+-				"minor" : 0
+-			}
+-		},
+-		{
+-			"jsonFile" : "cmakeFiles-v1-2640dd7e33074a44411b.json",
+-			"kind" : "cmakeFiles",
+-			"version" : 
+-			{
+-				"major" : 1,
+-				"minor" : 0
+-			}
+-		},
+-		{
+-			"jsonFile" : "toolchains-v1-ab6bc179ddbddbdb0d31.json",
+-			"kind" : "toolchains",
+-			"version" : 
+-			{
+-				"major" : 1,
+-				"minor" : 0
+-			}
+-		}
+-	],
+-	"reply" : 
+-	{
+-		"cache-v2" : 
+-		{
+-			"jsonFile" : "cache-v2-af6956125565046e2df6.json",
+-			"kind" : "cache",
+-			"version" : 
+-			{
+-				"major" : 2,
+-				"minor" : 0
+-			}
+-		},
+-		"cmakeFiles-v1" : 
+-		{
+-			"jsonFile" : "cmakeFiles-v1-2640dd7e33074a44411b.json",
+-			"kind" : "cmakeFiles",
+-			"version" : 
+-			{
+-				"major" : 1,
+-				"minor" : 0
+-			}
+-		},
+-		"codemodel-v2" : 
+-		{
+-			"jsonFile" : "codemodel-v2-5759dca6696ba9a95b1c.json",
+-			"kind" : "codemodel",
+-			"version" : 
+-			{
+-				"major" : 2,
+-				"minor" : 7
+-			}
+-		},
+-		"toolchains-v1" : 
+-		{
+-			"jsonFile" : "toolchains-v1-ab6bc179ddbddbdb0d31.json",
+-			"kind" : "toolchains",
+-			"version" : 
+-			{
+-				"major" : 1,
+-				"minor" : 0
+-			}
+-		}
+-	}
+-}
+Index: src/entity/new_child.h
+===================================================================
+diff --git a/src/entity/new_child.h b/src/entity/new_child.h
+deleted file mode 100644
+--- a/src/entity/new_child.h	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ /dev/null	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
+@@ -1,8 +0,0 @@
+-//
+-// Created by hochacha on 24. 11. 11.
+-//
+-
+-#ifndef NEW_CHILD_H
+-#define NEW_CHILD_H
+-
+-#endif //NEW_CHILD_H
+Index: src/entity/new_scheduler.c
+===================================================================
+diff --git a/src/entity/new_scheduler.c b/src/entity/new_scheduler.c
+deleted file mode 100644
+--- a/src/entity/new_scheduler.c	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ /dev/null	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
+@@ -1,108 +0,0 @@
+-//
+-// Created by hochacha on 24. 11. 11.
+-//
+-
+-#include "new_scheduler.h"
+-
+-#include <signal.h>
+-#include <stdio.h>
+-#include <stdlib.h>
+-#include <bits/ipc.h>
+-#include <sys/msg.h>
+-#include <sys/wait.h>
+-
+-#include "src/util/message_queue.h"
+-#include "src/util/pid_queue.h"
+-#include "src/util/timer.h"
+-
+-unsigned int current_time = 0;
+-pcb_queue* ready_queue_schd = NULL;
+-pcb_queue* waiting_queue_schd = NULL;
+-pcb_t* current_process = NULL;
+-
+-void sigint_handler(int sig) {
+-  if (sig == SIGINT) {
+-    pcb_t* process;
+-    while ((process = dequeue_pcb(ready_queue_schd)) != NULL) {
+-      kill(process->pid, SIGTERM);
+-      waitpid(process->pid, NULL, 0);
+-    }
+-    while ((process = dequeue_pcb(waiting_queue_schd)) != NULL) {
+-      kill(process->pid, SIGTERM);
+-      waitpid(process->pid, NULL, 0);
+-    }
+-    if (current_process != NULL) {
+-      kill(current_process->pid, SIGTERM);
+-      waitpid(current_process->pid, NULL, 0);
+-    }
+-    msgctl(msg_queue_id, IPC_RMID, NULL);  // 메시지 큐 삭제
+-    exit(0);
+-  }
+-}
+-
+-
+-void alarm_handler(int sig) {
+-  current_time++;
+-  if(current_process->remaining_time > 0) {
+-    // 이미 실행 중인 프로세스가 존재할 때
+-
+-  }else {
+-    // 실행 중인 프로세스가 없을 때
+-    if (is_queue_empty(ready_queue_schd) != 1) {
+-      // 준비 큐에서 프로세스 팝
+-
+-    }else {
+-      // 준비 큐도 비어서
+-      if (is_queue_empty(waiting_queue_schd) != 1) {
+-        // 대기 큐에 프로세스들이 있으면 대기
+-      }else {
+-        // 대기 큐에도 없으면 자식 프로세스 전부 죽었으므로 종료
+-      }
+-    }
+-  }
+-
+-  // io 처리 (다같이 1 감소)
+-}
+-
+-
+-
+-
+-void io_schedule_handler(int sig) {
+-
+-}
+-
+-void scheduler_init(pcb_queue* ready_queue) {
+-  // wait! for scheduler, SIGUSR2 is work for I/O scheduler
+-  if(signal(SIGUSR2, io_schedule_handler) == SIG_ERR) {
+-    perror("signal");
+-    sigint_handler(SIGINT);
+-    exit(1);
+-  }
+-
+-  if(signal(SIGUSR1, sigint_handler) == SIG_ERR) {
+-    perror("signal");
+-    sigint_handler(SIGINT);
+-    exit(1);
+-  }
+-
+-  if(init_msg_queue() == -1) {
+-    perror("init_msg_queue");
+-    sigint_handler(SIGINT);
+-    exit(1);
+-  }
+-
+-  if(signal(SIGALRM, alarm_handler) == SIG_ERR) {
+-    perror("signal");
+-    sigint_handler(SIGINT);
+-    exit(1);
+-  }
+-
+-  ready_queue_schd = ready_queue;
+-  waiting_queue_schd = create_pcb_queue();
+-  setup_timer();
+-}
+-
+-void scheduler_run(pcb_queue* ready_queue, int n_process) {
+-  scheduler_init(ready_queue);
+-  while(1);
+-}
+\ No newline at end of file
+Index: cmake-build-debug/.cmake/api/v1/reply/target-new_scheduler-Debug-4cc7a33307092f309203.json
+===================================================================
+diff --git a/cmake-build-debug/.cmake/api/v1/reply/target-new_scheduler-Debug-4cc7a33307092f309203.json b/cmake-build-debug/.cmake/api/v1/reply/target-new_scheduler-Debug-4cc7a33307092f309203.json
+deleted file mode 100644
+--- a/cmake-build-debug/.cmake/api/v1/reply/target-new_scheduler-Debug-4cc7a33307092f309203.json	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ /dev/null	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
+@@ -1,205 +0,0 @@
+-{
+-	"artifacts" : 
+-	[
+-		{
+-			"path" : "new_scheduler"
+-		}
+-	],
+-	"backtrace" : 1,
+-	"backtraceGraph" : 
+-	{
+-		"commands" : 
+-		[
+-			"add_executable",
+-			"include_directories"
+-		],
+-		"files" : 
+-		[
+-			"CMakeLists.txt"
+-		],
+-		"nodes" : 
+-		[
+-			{
+-				"file" : 0
+-			},
+-			{
+-				"command" : 0,
+-				"file" : 0,
+-				"line" : 24,
+-				"parent" : 0
+-			},
+-			{
+-				"command" : 1,
+-				"file" : 0,
+-				"line" : 6,
+-				"parent" : 0
+-			}
+-		]
+-	},
+-	"compileGroups" : 
+-	[
+-		{
+-			"compileCommandFragments" : 
+-			[
+-				{
+-					"fragment" : "-g -std=gnu11 -fdiagnostics-color=always"
+-				}
+-			],
+-			"includes" : 
+-			[
+-				{
+-					"backtrace" : 2,
+-					"path" : "/home/hochacha/repos/2024-os-proj1/."
+-				}
+-			],
+-			"language" : "C",
+-			"languageStandard" : 
+-			{
+-				"backtraces" : 
+-				[
+-					1
+-				],
+-				"standard" : "11"
+-			},
+-			"sourceIndexes" : 
+-			[
+-				0,
+-				1,
+-				2,
+-				4,
+-				6,
+-				8,
+-				10,
+-				12
+-			]
+-		}
+-	],
+-	"id" : "new_scheduler::@6890427a1f51a3e7e1df",
+-	"link" : 
+-	{
+-		"commandFragments" : 
+-		[
+-			{
+-				"fragment" : "-g",
+-				"role" : "flags"
+-			},
+-			{
+-				"fragment" : "",
+-				"role" : "flags"
+-			}
+-		],
+-		"language" : "C"
+-	},
+-	"name" : "new_scheduler",
+-	"nameOnDisk" : "new_scheduler",
+-	"paths" : 
+-	{
+-		"build" : ".",
+-		"source" : "."
+-	},
+-	"sourceGroups" : 
+-	[
+-		{
+-			"name" : "Source Files",
+-			"sourceIndexes" : 
+-			[
+-				0,
+-				1,
+-				2,
+-				4,
+-				6,
+-				8,
+-				10,
+-				12
+-			]
+-		},
+-		{
+-			"name" : "Header Files",
+-			"sourceIndexes" : 
+-			[
+-				3,
+-				5,
+-				7,
+-				9,
+-				11
+-			]
+-		}
+-	],
+-	"sources" : 
+-	[
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/main.c",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/entity/new_scheduler.c",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/util/process.c",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "src/util/process.h",
+-			"sourceGroupIndex" : 1
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/entity/new_child.c",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "src/entity/new_child.h",
+-			"sourceGroupIndex" : 1
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/util/pid_queue.c",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "src/util/pid_queue.h",
+-			"sourceGroupIndex" : 1
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/util/timer.c",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "src/util/timer.h",
+-			"sourceGroupIndex" : 1
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/util/message_queue.c",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "src/util/message_queue.h",
+-			"sourceGroupIndex" : 1
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/entity/child.c",
+-			"sourceGroupIndex" : 0
+-		}
+-	],
+-	"type" : "EXECUTABLE"
+-}
+Index: src/entity/scheduler.c
+===================================================================
+diff --git a/src/entity/scheduler.c b/src/entity/scheduler.c
+deleted file mode 100644
+--- a/src/entity/scheduler.c	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ /dev/null	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
+@@ -1,198 +0,0 @@
+-//
+-// Created by hochacha on 24. 11. 6.
+-//
+-
+-#include "scheduler.h"
+-
+-#include <signal.h>
+-#include <stdio.h>
+-#include <stdlib.h>
+-#include <time.h>
+-#include <unistd.h>
+-#include <sys/msg.h>
+-#include <sys/wait.h>
+-#include "src/util/pid_queue.h"
+-#include "../util/timer.h"
+-#include "../util/message_queue.h"
+-
+-#define DEBUG
+-
+-unsigned int current_time = 0;
+-pcb_queue* ready_queue_schd = NULL;
+-pcb_queue* waiting_queue_schd = NULL;
+-pcb_t* current_process = NULL;
+-
+-volatile sig_atomic_t io_request_received = 0;
+-extern FILE* IO_result;
+-
+-void sigint_handler(int sig) {
+-    if (sig == SIGINT) {
+-        pcb_t* process;
+-        while ((process = dequeue_pcb(ready_queue_schd)) != NULL) {
+-            kill(process->pid, SIGTERM);
+-            waitpid(process->pid, NULL, 0);
+-        }
+-        while ((process = dequeue_pcb(waiting_queue_schd)) != NULL) {
+-            kill(process->pid, SIGTERM);
+-            waitpid(process->pid, NULL, 0);
+-        }
+-        if (current_process != NULL) {
+-            kill(current_process->pid, SIGTERM);
+-            waitpid(current_process->pid, NULL, 0);
+-        }
+-        msgctl(msg_queue_id, IPC_RMID, NULL);  // 메시지 큐 삭제
+-        exit(0);
+-    }
+-}
+-
+-void alarm_handler(int sig) {
+-    current_time++;  // 전역 시간 증가
+-
+-    // 현재 실행 중인 프로세스의 남은 시간 감소
+-    if(current_process != NULL && current_process->state == PROCESS_RUNNING && current_process->remaining_time > 0) {
+-        kill(current_process->pid, SIGALRM);
+-        current_process->remaining_time--;
+-
+-    #ifdef DEBUG
+-        printf("[Tick :: %d] Process %d: remain time = %d\n",
+-            current_time, current_process->pid, current_process->remaining_time);
+-    #endif
+-        // 타임 퀀텀 소진 시 스케줄 아웃
+-        if(current_process->remaining_time <= 0) {
+-            kill(current_process->pid, SIGUSR2);
+-            current_process->state = PROCESS_READY;
+-            enqueue_pcb(ready_queue_schd, current_process);
+-            current_process = NULL;
+-        }
+-    }
+-
+-    // **종료 조건 확인 전에 대기 큐를 먼저 처리**
+-    int waiting_queue_size = get_queue_size(waiting_queue_schd);
+-    for(int i = 0; i < waiting_queue_size; i++) {
+-        pcb_t * process = dequeue_pcb(waiting_queue_schd);
+-        process->io_time--;
+-
+-        if(process->io_time <= 0) {
+-            process->state = PROCESS_READY;
+-            enqueue_pcb(ready_queue_schd, process);
+-            kill(process->pid, SIGUSR2);  // 자식 프로세스에 IO 완료 알림
+-    #ifdef DEBUG
+-            fprintf(IO_result,"[Tick:: %d] Process %d IO completed, moved to ready queue\n", current_time, process->pid);
+-    #endif
+-        } else {
+-            enqueue_pcb(waiting_queue_schd, process);
+-        }
+-    }
+-
+-    // **대기 큐를 처리한 후에 종료 조건 확인**
+-    if(current_process == NULL) {
+-        if(!is_queue_empty(ready_queue_schd)) {
+-            // 다음 프로세스 스케줄링
+-            current_process = dequeue_pcb(ready_queue_schd);
+-            current_process->state = PROCESS_RUNNING;
+-            current_process->remaining_time = TIME_QUANTUAM;
+-
+-            time_alloc_msg t_msg;
+-            t_msg.mtype = current_process->pid;
+-            t_msg.time_alloc = TIME_QUANTUAM;
+-            if(msgsnd(msg_queue_id, &t_msg, sizeof(time_alloc_msg) - sizeof(long), 0) == -1) {
+-                perror("msgsnd");
+-            }
+-    #ifdef DEBUG
+-            printf("=======================================\n");
+-            printf("[Tick :: %d] Child %d scheduled in\n", current_time, current_process->pid);
+-            printf("=======================================\n");
+-    #endif
+-            kill(current_process->pid, SIGUSR1);
+-            kill(current_process->pid, SIGALRM);
+-        } else if(!is_queue_empty(waiting_queue_schd)) {
+-            // 대기 큐에 프로세스가 있으므로 계속 진행
+-        } else {
+-            // 두 큐가 모두 비어있으므로 스케줄러 종료
+-    #ifdef DEBUG
+-            printf("\n======================================================\n");
+-            printf("[:::TERMINATION::::] The scheduler program has been terminated");
+-            printf("\n======================================================\n");
+-    #endif
+-            sigint_handler(SIGINT);
+-            exit(0);
+-        }
+-    }
+-}
+-
+-// when the child request for IO job
+-void io_schedule_handler(int sig) {
+-    printf("SIGUSR2 RECEVIED !!!!!!!!!!!!!!!!!\n");
+-    // get io scheduling message
+-    io_request_received = 1;
+-    current_process->state = PROCESS_BLOCKED;
+-}
+-
+-void scheduler_init(pcb_queue* ready_queue) {
+-#ifdef DEBUG
+-    printf("[Tick :: %d] child process starts being scheduled\n", current_time);
+-#endif
+-
+-    // wait! for scheduler, SIGUSR2 is work for I/O scheduler
+-    if(signal(SIGUSR2, io_schedule_handler) == SIG_ERR) {
+-        perror("signal");
+-        sigint_handler(SIGINT);
+-        exit(1);
+-    }
+-
+-    if(signal(SIGUSR1, sigint_handler) == SIG_ERR) {
+-        perror("signal");
+-        sigint_handler(SIGINT);
+-        exit(1);
+-    }
+-
+-    if(init_msg_queue() == -1) {
+-        perror("init_msg_queue");
+-        sigint_handler(SIGINT);
+-        exit(1);
+-    }
+-
+-    if(signal(SIGALRM, alarm_handler) == SIG_ERR) {
+-        perror("signal");
+-        sigint_handler(SIGINT);
+-        exit(1);
+-    }
+-    ready_queue_schd = ready_queue;
+-    waiting_queue_schd = create_pcb_queue();
+-    setup_timer();
+-
+-#ifdef DEBUG
+-    printf("[Tick :: %d] scheduler lunch\n", current_time);
+-#endif
+-}
+-
+-void scheduler_run(pcb_queue* ready_queue, int n_process) {
+-    scheduler_init(ready_queue);
+-
+-    // just work with handler function
+-    while(1) {
+-        if(io_request_received) {
+-            io_request_received = 0;
+-            io_msg t_msg = {0, };
+-            if(msgrcv(msg_queue_id, &t_msg, sizeof(io_msg) - sizeof(long),
+-                                            MESSAGE_TYPE_IO_REQ, IPC_NOWAIT) == -1) {
+-                perror("[Sched :: IO] msgrcv");
+-            }else {
+-                if(current_process != NULL && current_process->pid == t_msg.pid) {
+-                    current_process->io_time = t_msg.io_time;
+-                    enqueue_pcb(waiting_queue_schd, current_process);
+-                    current_process = NULL;
+-#ifdef DEBUG
+-                    fprintf(IO_result,"[Tick :: %d] Process %d moved to waiting queue for IO of %d ticks\n",
+-                                            current_time, t_msg.pid, t_msg.io_time);
+-#endif
+-                }
+-            }
+-
+-        }
+-        if(current_time > 10000) {
+-            break;
+-        }
+-    };
+-    signal(SIGINT, sigint_handler);
+-}
+\ No newline at end of file
+Index: src/entity/child.h
+===================================================================
+diff --git a/src/entity/child.h b/src/entity/child.h
+deleted file mode 100644
+--- a/src/entity/child.h	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ /dev/null	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
+@@ -1,10 +0,0 @@
+-//
+-// Created by hochacha on 24. 11. 6.
+-//
+-
+-#ifndef CHILD_H
+-#define CHILD_H
+-
+-void do_work_child();
+-int child_main(int argc, char **argv);
+-#endif //CHILD_H
+Index: src/entity/new_scheduler.h
+===================================================================
+diff --git a/src/entity/new_scheduler.h b/src/entity/new_scheduler.h
+deleted file mode 100644
+--- a/src/entity/new_scheduler.h	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ /dev/null	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
+@@ -1,8 +0,0 @@
+-//
+-// Created by hochacha on 24. 11. 11.
+-//
+-
+-#ifndef NEW_SCHEDULER_H
+-#define NEW_SCHEDULER_H
+-
+-#endif //NEW_SCHEDULER_H
+Index: cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-5759dca6696ba9a95b1c.json
+===================================================================
+diff --git a/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-5759dca6696ba9a95b1c.json b/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-5759dca6696ba9a95b1c.json
+deleted file mode 100644
+--- a/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-5759dca6696ba9a95b1c.json	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ /dev/null	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
+@@ -1,69 +0,0 @@
+-{
+-	"configurations" : 
+-	[
+-		{
+-			"directories" : 
+-			[
+-				{
+-					"build" : ".",
+-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+-					"minimumCMakeVersion" : 
+-					{
+-						"string" : "3.29"
+-					},
+-					"projectIndex" : 0,
+-					"source" : ".",
+-					"targetIndexes" : 
+-					[
+-						0,
+-						1
+-					]
+-				}
+-			],
+-			"name" : "Debug",
+-			"projects" : 
+-			[
+-				{
+-					"directoryIndexes" : 
+-					[
+-						0
+-					],
+-					"name" : "2024_os_proj1",
+-					"targetIndexes" : 
+-					[
+-						0,
+-						1
+-					]
+-				}
+-			],
+-			"targets" : 
+-			[
+-				{
+-					"directoryIndex" : 0,
+-					"id" : "new_scheduler::@6890427a1f51a3e7e1df",
+-					"jsonFile" : "target-new_scheduler-Debug-4cc7a33307092f309203.json",
+-					"name" : "new_scheduler",
+-					"projectIndex" : 0
+-				},
+-				{
+-					"directoryIndex" : 0,
+-					"id" : "scheduler::@6890427a1f51a3e7e1df",
+-					"jsonFile" : "target-scheduler-Debug-e3e96423b883f007519b.json",
+-					"name" : "scheduler",
+-					"projectIndex" : 0
+-				}
+-			]
+-		}
+-	],
+-	"kind" : "codemodel",
+-	"paths" : 
+-	{
+-		"build" : "/home/hochacha/repos/2024-os-proj1/cmake-build-debug",
+-		"source" : "/home/hochacha/repos/2024-os-proj1"
+-	},
+-	"version" : 
+-	{
+-		"major" : 2,
+-		"minor" : 7
+-	}
+-}
+Index: src/entity/new_child.c
+===================================================================
+diff --git a/src/entity/new_child.c b/src/entity/new_child.c
+deleted file mode 100644
+--- a/src/entity/new_child.c	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ /dev/null	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
+@@ -1,5 +0,0 @@
+-//
+-// Created by hochacha on 24. 11. 11.
+-//
+-
+-#include "new_child.h"
+Index: cmake-build-debug/.cmake/api/v1/reply/target-scheduler-Debug-e3e96423b883f007519b.json
+===================================================================
+diff --git a/cmake-build-debug/.cmake/api/v1/reply/target-scheduler-Debug-e3e96423b883f007519b.json b/cmake-build-debug/.cmake/api/v1/reply/target-scheduler-Debug-e3e96423b883f007519b.json
+deleted file mode 100644
+--- a/cmake-build-debug/.cmake/api/v1/reply/target-scheduler-Debug-e3e96423b883f007519b.json	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ /dev/null	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
+@@ -1,197 +0,0 @@
+-{
+-	"artifacts" : 
+-	[
+-		{
+-			"path" : "scheduler"
+-		}
+-	],
+-	"backtrace" : 1,
+-	"backtraceGraph" : 
+-	{
+-		"commands" : 
+-		[
+-			"add_executable",
+-			"include_directories"
+-		],
+-		"files" : 
+-		[
+-			"CMakeLists.txt"
+-		],
+-		"nodes" : 
+-		[
+-			{
+-				"file" : 0
+-			},
+-			{
+-				"command" : 0,
+-				"file" : 0,
+-				"line" : 8,
+-				"parent" : 0
+-			},
+-			{
+-				"command" : 1,
+-				"file" : 0,
+-				"line" : 6,
+-				"parent" : 0
+-			}
+-		]
+-	},
+-	"compileGroups" : 
+-	[
+-		{
+-			"compileCommandFragments" : 
+-			[
+-				{
+-					"fragment" : "-g -std=gnu11 -fdiagnostics-color=always"
+-				}
+-			],
+-			"includes" : 
+-			[
+-				{
+-					"backtrace" : 2,
+-					"path" : "/home/hochacha/repos/2024-os-proj1/."
+-				}
+-			],
+-			"language" : "C",
+-			"languageStandard" : 
+-			{
+-				"backtraces" : 
+-				[
+-					1
+-				],
+-				"standard" : "11"
+-			},
+-			"sourceIndexes" : 
+-			[
+-				0,
+-				1,
+-				2,
+-				4,
+-				6,
+-				8,
+-				10
+-			]
+-		}
+-	],
+-	"id" : "scheduler::@6890427a1f51a3e7e1df",
+-	"link" : 
+-	{
+-		"commandFragments" : 
+-		[
+-			{
+-				"fragment" : "-g",
+-				"role" : "flags"
+-			},
+-			{
+-				"fragment" : "",
+-				"role" : "flags"
+-			}
+-		],
+-		"language" : "C"
+-	},
+-	"name" : "scheduler",
+-	"nameOnDisk" : "scheduler",
+-	"paths" : 
+-	{
+-		"build" : ".",
+-		"source" : "."
+-	},
+-	"sourceGroups" : 
+-	[
+-		{
+-			"name" : "Source Files",
+-			"sourceIndexes" : 
+-			[
+-				0,
+-				1,
+-				2,
+-				4,
+-				6,
+-				8,
+-				10
+-			]
+-		},
+-		{
+-			"name" : "Header Files",
+-			"sourceIndexes" : 
+-			[
+-				3,
+-				5,
+-				7,
+-				9,
+-				11
+-			]
+-		}
+-	],
+-	"sources" : 
+-	[
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/main.c",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/entity/scheduler.c",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/util/process.c",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "src/util/process.h",
+-			"sourceGroupIndex" : 1
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/entity/child.c",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "src/entity/child.h",
+-			"sourceGroupIndex" : 1
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/util/pid_queue.c",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "src/util/pid_queue.h",
+-			"sourceGroupIndex" : 1
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/util/timer.c",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "src/util/timer.h",
+-			"sourceGroupIndex" : 1
+-		},
+-		{
+-			"backtrace" : 1,
+-			"compileGroupIndex" : 0,
+-			"path" : "src/util/message_queue.c",
+-			"sourceGroupIndex" : 0
+-		},
+-		{
+-			"backtrace" : 1,
+-			"path" : "src/util/message_queue.h",
+-			"sourceGroupIndex" : 1
+-		}
+-	],
+-	"type" : "EXECUTABLE"
+-}
+Index: src/entity/child.c
+===================================================================
+diff --git a/src/entity/child.c b/src/entity/child.c
+deleted file mode 100644
+--- a/src/entity/child.c	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ /dev/null	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
+@@ -1,161 +0,0 @@
+-//
+-// Created by hochacha on 24. 11. 6.
+-//
+-
+-#include "child.h"
+-
+-#include <errno.h>
+-#include <signal.h>
+-#include <stdio.h>
+-#include <stdlib.h>
+-#include <time.h>
+-#include <unistd.h>
+-#include <asm-generic/errno-base.h>
+-#include <sys/msg.h>
+-
+-#include "src/util/message_queue.h"
+-
+-#define DEBUG
+-int cpu_burst = 0;  // 한 프로그램이 실행되는데 필요한 CPU 시간
+-int io_burst = 0;   // 한 프로그램이 요청하는 IO 작업의 시간
+-int cpu_time = 0;   // 스케줄로 부여 받는 시간
+-int io_time = 0;    // IO로 요청하는 시간
+-int total_exec_time = 0;
+-// 따라서, CPU Time 전부 소진하면, IO Time 만큼 IO 수행 요청
+-
+-int process_state = 0;
+-int EOP = 0; // End of Process
+-
+-volatile sig_atomic_t sigusr1_received = 0;
+-volatile sig_atomic_t sigusr2_received = 0;
+-
+-void request_io_msgsnd(int io_time) {
+-    io_msg msg = {MESSAGE_TYPE_IO_REQ, getpid(), io_time};
+-    if(msgsnd(msg_queue_id, &msg, sizeof(int), IPC_NOWAIT) == -1) {
+-        perror("child_msgsnd");
+-        exit(EXIT_FAILURE);
+-    }
+-}
+-
+-// SIGALRM 핸들러: 타이머 틱마다 호출되어 CPU 버스트를 감소시킴
+-void child_SIGALRM(int sig) {
+-    if (process_state == PROCESS_RUNNING && !EOP) {
+-        cpu_time--;
+-        cpu_burst--;
+-        total_exec_time++;
+-#ifdef DEBUG
+-        printf("[Child::%d] CPU burst remaining: %d\n", getpid(), cpu_burst);
+-#endif
+-    }
+-
+-    // CPU 버스트가 종료되면 IO 버스트 요청
+-    if (cpu_burst <= 0 && process_state == PROCESS_RUNNING) {
+-        process_state = PROCESS_BLOCKED;
+-#ifdef DEBUG
+-        printf("[Child::%d] CPU burst completed. Requesting IO.\n", getpid());
+-#endif
+-        request_io_msgsnd(io_burst);            // IO 요청 메시지 전송
+-        kill(getppid(), SIGUSR2);          // 부모 프로세스에 신호 전송
+-    }
+-}
+-
+-// 스케줄 알림
+-void child_SIGUSR1(int sig) {
+-    sigusr1_received = 1;
+-}
+-
+-// 스케줄 아웃 처리
+-void child_SIGUSR2(int sig) {
+-    sigusr2_received = 1;
+-}
+-
+-void init_child() {
+-    // enroll the SIGNAL Handler
+-    if(signal(SIGALRM, child_SIGALRM) == SIG_ERR) {
+-        perror("signal");
+-        exit(1);
+-    }
+-    if(signal(SIGUSR1, child_SIGUSR1) == SIG_ERR) {
+-        perror("signal");
+-        exit(1);
+-    }
+-    if(signal(SIGUSR2, child_SIGUSR2) == SIG_ERR) {
+-        perror("signal");
+-        exit(1);
+-    }
+-
+-    srand(time(NULL));
+-    cpu_burst = rand() % 10 + 1;
+-    io_burst = rand() % 10 + 1;
+-
+-#ifdef DEBUG
+-    printf("[Child::%d] cpu_burst = %d, io_burst = %d\n", getpid(),cpu_burst, io_burst);
+-#endif
+-
+-    if(init_msg_queue() == -1) {
+-        perror("init_msg_queue");
+-        exit(1);
+-    }
+-
+-    printf("[do_work_child] init child process\n");
+-}
+-
+-int child_main(int argc, char **argv) {
+-    init_child();
+-#ifdef DEBUG
+-    printf("[Child::%d] ready to run\n", getpid());
+-#endif
+-    while(1) {
+-        while (!EOP) {
+-
+-            /* 스케줄 인 처리*/
+-
+-            if (sigusr1_received) {
+-                sigusr1_received = 0;
+-                // 메시지 수신 및 처리
+-                time_alloc_msg t_msg = {0,};
+-                if (msgrcv(msg_queue_id, &t_msg, sizeof(time_alloc_msg) - sizeof(long), getpid(), 0) == -1) {
+-                    if (errno != EINTR) {
+-                        perror("[child_msgrcv in child]");
+-                        exit(1);
+-                    }
+-                    // EINTR인 경우에는 시스템 호출을 재시도하거나 적절히 처리
+-                }
+-                cpu_time = t_msg.time_alloc;
+-                process_state = PROCESS_RUNNING;
+-#ifdef DEBUG
+-                printf("[Child::%d]msg rcv: message type = %ld, allocate time = %d\n",
+-                        getpid(), t_msg.mtype, t_msg.time_alloc);
+-                printf("CPU burst: %d\nCPU Time: %d\n", cpu_burst, cpu_time);
+-#endif
+-            }
+-
+-            /* 스케줄 아웃 또는 IO 완료 처리 */
+-
+-            if (sigusr2_received) {
+-                sigusr2_received = 0;
+-
+-                // IO 완료 처리
+-                if (process_state == PROCESS_BLOCKED) {
+-                    cpu_burst = rand() % 10 + 1;
+-                    io_burst = rand() % 10 + 1;
+-
+-                    printf("[Child::%d] IO completed. New CPU burst: %d, IO Burst: %d\n",
+-                        getpid(), cpu_burst, io_burst);
+-
+-                    process_state = PROCESS_READY;
+-                }
+-                // 스케줄 아웃
+-                if(process_state == PROCESS_RUNNING) {
+-                    process_state = PROCESS_READY;
+-#ifdef DEBUG
+-                    printf("[Child::%d] Scheduled out\n", getpid());
+-#endif
+-                }
+-            }
+-            // CPU 사용을 줄이기 위해 잠시 대기
+-            usleep(1000); // 1밀리초 대기
+-        }
+-    }
+-    exit(0);
+-}
+\ No newline at end of file
+Index: src/entity/scheduler.h
+===================================================================
+diff --git a/src/entity/scheduler.h b/src/entity/scheduler.h
+deleted file mode 100644
+--- a/src/entity/scheduler.h	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ /dev/null	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
+@@ -1,9 +0,0 @@
+-//
+-// Created by hochacha on 24. 11. 6.
+-//
+-
+-#ifndef SCHEDULER_H
+-#define SCHEDULER_H
+-void scheduler_run();
+-void start_scheduler();
+-#endif //SCHEDULER_H
+Index: log.dump
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/log.dump b/log.dump
+new file mode 100644
+--- /dev/null	(date 1731377611698)
++++ b/log.dump	(date 1731377611698)
+@@ -0,0 +1,5 @@
++음 내가 생각하는 건 이러한 방향이야. 
++
++스케줄러는 기존처럼 스케줄링을 진행하지만, Child가 스케줄인하고 스케줄아웃된 것을 확인하는거지 
++
++가령, Scheduler에서 Schedule out을 하거나, Child에서 CPU Burst를 전부 사용해서 IO요청을 보내서 신호를 받을 때까지 대기를 하는거지
+\ No newline at end of file
+Index: src/util/timer.c
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n// Created by hochacha on 24. 11. 7.\n//\n\n#include \"timer.h\"\n#include <stdio.h>\n#include <sys/time.h>\n#define TIMER_INTERVAL 0\n#define TIMER_INTERVAL_USEC 10000\n\nint setup_timer() {\n    struct itimerval timer_value;\n\n    timer_value.it_interval.tv_sec = TIMER_INTERVAL;\n    timer_value.it_interval.tv_usec = TIMER_INTERVAL_USEC;\n\n    timer_value.it_value.tv_sec = TIMER_INTERVAL;\n    timer_value.it_value.tv_usec = TIMER_INTERVAL_USEC;\n\n    if(setitimer(ITIMER_REAL, &timer_value, NULL) == -1) {\n        perror(\"setitimer\");\n        return -1;\n    }\n}\n\nint stop_timer() {\n    struct itimerval timer_value;\n\n    // 모든 값을 0으로 설정하여 타이머 중지\n    timer_value.it_interval.tv_sec = 0;\n    timer_value.it_interval.tv_usec = 0;\n    timer_value.it_value.tv_sec = 0;\n    timer_value.it_value.tv_usec = 0;\n\n    if (setitimer(ITIMER_REAL, &timer_value, NULL) == -1) {\n        perror(\"setitimer\");\n        return -1;\n    }\n\n    return 0;\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/util/timer.c b/src/util/timer.c
+--- a/src/util/timer.c	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ b/src/util/timer.c	(date 1731393227996)
+@@ -6,7 +6,7 @@
+ #include <stdio.h>
+ #include <sys/time.h>
+ #define TIMER_INTERVAL 0
+-#define TIMER_INTERVAL_USEC 10000
++#define TIMER_INTERVAL_USEC 100000
+ 
+ int setup_timer() {
+     struct itimerval timer_value;
+Index: src/util/process.c
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n// Created by hochacha on 24. 11. 6.\n//\n\n#include \"process.h\"\n\n#include <stdio.h>\n#include <stdlib.h>\n#include <unistd.h>\n\n#include \"pid_queue.h\"\n#include \"../entity/child.h\"\n#include \"../entity/scheduler.h\"\n\n// process.c concern about launching the scheduler (parent) and\n// worker (child) process.\n\n\n// launching process\nvoid launch_scheduler_and_worker(pcb_queue* ready_queue, int n_process) {\n    for(int i = 0; i < n_process; i++) {\n        pid_t pid = fork();\n\n        if(pid == -1) {\n            perror(\"fork\");\n            exit(EXIT_FAILURE);\n        }\n\n        if (pid == 0) {  // Child process\n            child_main(0, NULL);\n            exit(EXIT_SUCCESS);  // Ensure child exits after work is done\n        } else {\n            // create pcb\n            pcb_t* child_pcb = (pcb_t*)calloc(1, sizeof(pcb_t));\n            child_pcb->pid = pid;\n            child_pcb->state = PROCESS_READY;\n\n            enqueue_pcb(ready_queue, child_pcb);\n        }\n    }\n\n    // start schedule\n    scheduler_run(ready_queue, n_process);\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/util/process.c b/src/util/process.c
+--- a/src/util/process.c	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ b/src/util/process.c	(date 1731393866275)
+@@ -9,8 +9,6 @@
+ #include <unistd.h>
+ 
+ #include "pid_queue.h"
+-#include "../entity/child.h"
+-#include "../entity/scheduler.h"
+ 
+ // process.c concern about launching the scheduler (parent) and
+ // worker (child) process.
+@@ -38,7 +36,4 @@
+             enqueue_pcb(ready_queue, child_pcb);
+         }
+     }
+-
+-    // start schedule
+-    scheduler_run(ready_queue, n_process);
+ }
+\ No newline at end of file
+Index: cmake-build-debug/build.ninja
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># CMAKE generated file: DO NOT EDIT!\n# Generated by \"Ninja\" Generator, CMake Version 3.29\n\n# This file contains all the build statements describing the\n# compilation DAG.\n\n# =============================================================================\n# Write statements declared in CMakeLists.txt:\n# \n# Which is the root file.\n# =============================================================================\n\n# =============================================================================\n# Project: 2024_os_proj1\n# Configurations: Debug\n# =============================================================================\n\n#############################################\n# Minimal version of Ninja required by this file\n\nninja_required_version = 1.5\n\n\n#############################################\n# Set configuration variable for custom commands.\n\nCONFIGURATION = Debug\n# =============================================================================\n# Include auxiliary files.\n\n\n#############################################\n# Include rules file.\n\ninclude CMakeFiles/rules.ninja\n\n# =============================================================================\n\n#############################################\n# Logical path to working directory; prefix for absolute paths.\n\ncmake_ninja_workdir = /home/hochacha/repos/2024-os-proj1/cmake-build-debug/\n# =============================================================================\n# Object build statements for EXECUTABLE target scheduler\n\n\n#############################################\n# Order-only phony target for scheduler\n\nbuild cmake_object_order_depends_target_scheduler: phony || .\n\nbuild CMakeFiles/scheduler.dir/src/main.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/main.c || cmake_object_order_depends_target_scheduler\n  DEP_FILE = CMakeFiles/scheduler.dir/src/main.c.o.d\n  FLAGS = -g -std=gnu11 -fdiagnostics-color=always\n  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.\n  OBJECT_DIR = CMakeFiles/scheduler.dir\n  OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src\n\nbuild CMakeFiles/scheduler.dir/src/entity/scheduler.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/entity/scheduler.c || cmake_object_order_depends_target_scheduler\n  DEP_FILE = CMakeFiles/scheduler.dir/src/entity/scheduler.c.o.d\n  FLAGS = -g -std=gnu11 -fdiagnostics-color=always\n  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.\n  OBJECT_DIR = CMakeFiles/scheduler.dir\n  OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src/entity\n\nbuild CMakeFiles/scheduler.dir/src/util/process.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/process.c || cmake_object_order_depends_target_scheduler\n  DEP_FILE = CMakeFiles/scheduler.dir/src/util/process.c.o.d\n  FLAGS = -g -std=gnu11 -fdiagnostics-color=always\n  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.\n  OBJECT_DIR = CMakeFiles/scheduler.dir\n  OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src/util\n\nbuild CMakeFiles/scheduler.dir/src/entity/child.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/entity/child.c || cmake_object_order_depends_target_scheduler\n  DEP_FILE = CMakeFiles/scheduler.dir/src/entity/child.c.o.d\n  FLAGS = -g -std=gnu11 -fdiagnostics-color=always\n  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.\n  OBJECT_DIR = CMakeFiles/scheduler.dir\n  OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src/entity\n\nbuild CMakeFiles/scheduler.dir/src/util/pid_queue.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/pid_queue.c || cmake_object_order_depends_target_scheduler\n  DEP_FILE = CMakeFiles/scheduler.dir/src/util/pid_queue.c.o.d\n  FLAGS = -g -std=gnu11 -fdiagnostics-color=always\n  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.\n  OBJECT_DIR = CMakeFiles/scheduler.dir\n  OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src/util\n\nbuild CMakeFiles/scheduler.dir/src/util/timer.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/timer.c || cmake_object_order_depends_target_scheduler\n  DEP_FILE = CMakeFiles/scheduler.dir/src/util/timer.c.o.d\n  FLAGS = -g -std=gnu11 -fdiagnostics-color=always\n  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.\n  OBJECT_DIR = CMakeFiles/scheduler.dir\n  OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src/util\n\nbuild CMakeFiles/scheduler.dir/src/util/message_queue.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/message_queue.c || cmake_object_order_depends_target_scheduler\n  DEP_FILE = CMakeFiles/scheduler.dir/src/util/message_queue.c.o.d\n  FLAGS = -g -std=gnu11 -fdiagnostics-color=always\n  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.\n  OBJECT_DIR = CMakeFiles/scheduler.dir\n  OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src/util\n\n\n# =============================================================================\n# Link build statements for EXECUTABLE target scheduler\n\n\n#############################################\n# Link the executable scheduler\n\nbuild scheduler: C_EXECUTABLE_LINKER__scheduler_Debug CMakeFiles/scheduler.dir/src/main.c.o CMakeFiles/scheduler.dir/src/entity/scheduler.c.o CMakeFiles/scheduler.dir/src/util/process.c.o CMakeFiles/scheduler.dir/src/entity/child.c.o CMakeFiles/scheduler.dir/src/util/pid_queue.c.o CMakeFiles/scheduler.dir/src/util/timer.c.o CMakeFiles/scheduler.dir/src/util/message_queue.c.o\n  FLAGS = -g\n  OBJECT_DIR = CMakeFiles/scheduler.dir\n  POST_BUILD = :\n  PRE_LINK = :\n  TARGET_FILE = scheduler\n  TARGET_PDB = scheduler.dbg\n\n# =============================================================================\n# Object build statements for EXECUTABLE target new_scheduler\n\n\n#############################################\n# Order-only phony target for new_scheduler\n\nbuild cmake_object_order_depends_target_new_scheduler: phony || .\n\nbuild CMakeFiles/new_scheduler.dir/src/main.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/main.c || cmake_object_order_depends_target_new_scheduler\n  DEP_FILE = CMakeFiles/new_scheduler.dir/src/main.c.o.d\n  FLAGS = -g -std=gnu11 -fdiagnostics-color=always\n  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.\n  OBJECT_DIR = CMakeFiles/new_scheduler.dir\n  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src\n\nbuild CMakeFiles/new_scheduler.dir/src/entity/new_scheduler.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/entity/new_scheduler.c || cmake_object_order_depends_target_new_scheduler\n  DEP_FILE = CMakeFiles/new_scheduler.dir/src/entity/new_scheduler.c.o.d\n  FLAGS = -g -std=gnu11 -fdiagnostics-color=always\n  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.\n  OBJECT_DIR = CMakeFiles/new_scheduler.dir\n  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/entity\n\nbuild CMakeFiles/new_scheduler.dir/src/util/process.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/process.c || cmake_object_order_depends_target_new_scheduler\n  DEP_FILE = CMakeFiles/new_scheduler.dir/src/util/process.c.o.d\n  FLAGS = -g -std=gnu11 -fdiagnostics-color=always\n  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.\n  OBJECT_DIR = CMakeFiles/new_scheduler.dir\n  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/util\n\nbuild CMakeFiles/new_scheduler.dir/src/entity/new_child.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/entity/new_child.c || cmake_object_order_depends_target_new_scheduler\n  DEP_FILE = CMakeFiles/new_scheduler.dir/src/entity/new_child.c.o.d\n  FLAGS = -g -std=gnu11 -fdiagnostics-color=always\n  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.\n  OBJECT_DIR = CMakeFiles/new_scheduler.dir\n  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/entity\n\nbuild CMakeFiles/new_scheduler.dir/src/util/pid_queue.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/pid_queue.c || cmake_object_order_depends_target_new_scheduler\n  DEP_FILE = CMakeFiles/new_scheduler.dir/src/util/pid_queue.c.o.d\n  FLAGS = -g -std=gnu11 -fdiagnostics-color=always\n  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.\n  OBJECT_DIR = CMakeFiles/new_scheduler.dir\n  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/util\n\nbuild CMakeFiles/new_scheduler.dir/src/util/timer.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/timer.c || cmake_object_order_depends_target_new_scheduler\n  DEP_FILE = CMakeFiles/new_scheduler.dir/src/util/timer.c.o.d\n  FLAGS = -g -std=gnu11 -fdiagnostics-color=always\n  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.\n  OBJECT_DIR = CMakeFiles/new_scheduler.dir\n  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/util\n\nbuild CMakeFiles/new_scheduler.dir/src/util/message_queue.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/message_queue.c || cmake_object_order_depends_target_new_scheduler\n  DEP_FILE = CMakeFiles/new_scheduler.dir/src/util/message_queue.c.o.d\n  FLAGS = -g -std=gnu11 -fdiagnostics-color=always\n  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.\n  OBJECT_DIR = CMakeFiles/new_scheduler.dir\n  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/util\n\nbuild CMakeFiles/new_scheduler.dir/src/entity/child.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/entity/child.c || cmake_object_order_depends_target_new_scheduler\n  DEP_FILE = CMakeFiles/new_scheduler.dir/src/entity/child.c.o.d\n  FLAGS = -g -std=gnu11 -fdiagnostics-color=always\n  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.\n  OBJECT_DIR = CMakeFiles/new_scheduler.dir\n  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/entity\n\n\n# =============================================================================\n# Link build statements for EXECUTABLE target new_scheduler\n\n\n#############################################\n# Link the executable new_scheduler\n\nbuild new_scheduler: C_EXECUTABLE_LINKER__new_scheduler_Debug CMakeFiles/new_scheduler.dir/src/main.c.o CMakeFiles/new_scheduler.dir/src/entity/new_scheduler.c.o CMakeFiles/new_scheduler.dir/src/util/process.c.o CMakeFiles/new_scheduler.dir/src/entity/new_child.c.o CMakeFiles/new_scheduler.dir/src/util/pid_queue.c.o CMakeFiles/new_scheduler.dir/src/util/timer.c.o CMakeFiles/new_scheduler.dir/src/util/message_queue.c.o CMakeFiles/new_scheduler.dir/src/entity/child.c.o\n  FLAGS = -g\n  OBJECT_DIR = CMakeFiles/new_scheduler.dir\n  POST_BUILD = :\n  PRE_LINK = :\n  TARGET_FILE = new_scheduler\n  TARGET_PDB = new_scheduler.dbg\n\n\n#############################################\n# Utility command for edit_cache\n\nbuild CMakeFiles/edit_cache.util: CUSTOM_COMMAND\n  COMMAND = cd /home/hochacha/repos/2024-os-proj1/cmake-build-debug && /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -E echo No\\ interactive\\ CMake\\ dialog\\ available.\n  DESC = No interactive CMake dialog available...\n  restat = 1\n\nbuild edit_cache: phony CMakeFiles/edit_cache.util\n\n\n#############################################\n# Utility command for rebuild_cache\n\nbuild CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND\n  COMMAND = cd /home/hochacha/repos/2024-os-proj1/cmake-build-debug && /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/hochacha/repos/2024-os-proj1 -B/home/hochacha/repos/2024-os-proj1/cmake-build-debug\n  DESC = Running CMake to regenerate build system...\n  pool = console\n  restat = 1\n\nbuild rebuild_cache: phony CMakeFiles/rebuild_cache.util\n\n# =============================================================================\n# Target aliases.\n\n# =============================================================================\n# Folder targets.\n\n# =============================================================================\n\n#############################################\n# Folder: /home/hochacha/repos/2024-os-proj1/cmake-build-debug\n\nbuild all: phony scheduler new_scheduler\n\n# =============================================================================\n# Built-in targets\n\n\n#############################################\n# Re-run CMake if any of its inputs changed.\n\nbuild build.ninja: RERUN_CMAKE | /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/GNU-C.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/GNU.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-GNU-C.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-GNU.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-Initialize.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/UnixPaths.cmake /home/hochacha/repos/2024-os-proj1/CMakeLists.txt CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake\n  pool = console\n\n\n#############################################\n# A missing CMake input file is not an error.\n\nbuild /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeCInformation.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeCommonLanguageInclude.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeGenericSystem.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeInitializeConfigs.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeLanguageInformation.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInformation.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/CMakeSystemSpecificInitialize.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/GNU-C.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Compiler/GNU.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-GNU-C.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-GNU.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux-Initialize.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/Linux.cmake /home/hochacha/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-3.29/Modules/Platform/UnixPaths.cmake /home/hochacha/repos/2024-os-proj1/CMakeLists.txt CMakeCache.txt CMakeFiles/3.29.6/CMakeCCompiler.cmake CMakeFiles/3.29.6/CMakeSystem.cmake: phony\n\n\n#############################################\n# Clean all the built files.\n\nbuild clean: CLEAN\n\n\n#############################################\n# Print all primary targets available.\n\nbuild help: HELP\n\n\n#############################################\n# Make the all target the default.\n\ndefault all\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cmake-build-debug/build.ninja b/cmake-build-debug/build.ninja
+--- a/cmake-build-debug/build.ninja	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ b/cmake-build-debug/build.ninja	(date 1731393418261)
+@@ -56,13 +56,6 @@
+   OBJECT_DIR = CMakeFiles/scheduler.dir
+   OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src
+ 
+-build CMakeFiles/scheduler.dir/src/entity/scheduler.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/entity/scheduler.c || cmake_object_order_depends_target_scheduler
+-  DEP_FILE = CMakeFiles/scheduler.dir/src/entity/scheduler.c.o.d
+-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+-  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
+-  OBJECT_DIR = CMakeFiles/scheduler.dir
+-  OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src/entity
+-
+ build CMakeFiles/scheduler.dir/src/util/process.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/process.c || cmake_object_order_depends_target_scheduler
+   DEP_FILE = CMakeFiles/scheduler.dir/src/util/process.c.o.d
+   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+@@ -70,13 +63,6 @@
+   OBJECT_DIR = CMakeFiles/scheduler.dir
+   OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src/util
+ 
+-build CMakeFiles/scheduler.dir/src/entity/child.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/entity/child.c || cmake_object_order_depends_target_scheduler
+-  DEP_FILE = CMakeFiles/scheduler.dir/src/entity/child.c.o.d
+-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+-  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
+-  OBJECT_DIR = CMakeFiles/scheduler.dir
+-  OBJECT_FILE_DIR = CMakeFiles/scheduler.dir/src/entity
+-
+ build CMakeFiles/scheduler.dir/src/util/pid_queue.c.o: C_COMPILER__scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/pid_queue.c || cmake_object_order_depends_target_scheduler
+   DEP_FILE = CMakeFiles/scheduler.dir/src/util/pid_queue.c.o.d
+   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+@@ -106,7 +92,7 @@
+ #############################################
+ # Link the executable scheduler
+ 
+-build scheduler: C_EXECUTABLE_LINKER__scheduler_Debug CMakeFiles/scheduler.dir/src/main.c.o CMakeFiles/scheduler.dir/src/entity/scheduler.c.o CMakeFiles/scheduler.dir/src/util/process.c.o CMakeFiles/scheduler.dir/src/entity/child.c.o CMakeFiles/scheduler.dir/src/util/pid_queue.c.o CMakeFiles/scheduler.dir/src/util/timer.c.o CMakeFiles/scheduler.dir/src/util/message_queue.c.o
++build scheduler: C_EXECUTABLE_LINKER__scheduler_Debug CMakeFiles/scheduler.dir/src/main.c.o CMakeFiles/scheduler.dir/src/util/process.c.o CMakeFiles/scheduler.dir/src/util/pid_queue.c.o CMakeFiles/scheduler.dir/src/util/timer.c.o CMakeFiles/scheduler.dir/src/util/message_queue.c.o
+   FLAGS = -g
+   OBJECT_DIR = CMakeFiles/scheduler.dir
+   POST_BUILD = :
+@@ -114,87 +100,6 @@
+   TARGET_FILE = scheduler
+   TARGET_PDB = scheduler.dbg
+ 
+-# =============================================================================
+-# Object build statements for EXECUTABLE target new_scheduler
+-
+-
+-#############################################
+-# Order-only phony target for new_scheduler
+-
+-build cmake_object_order_depends_target_new_scheduler: phony || .
+-
+-build CMakeFiles/new_scheduler.dir/src/main.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/main.c || cmake_object_order_depends_target_new_scheduler
+-  DEP_FILE = CMakeFiles/new_scheduler.dir/src/main.c.o.d
+-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+-  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
+-  OBJECT_DIR = CMakeFiles/new_scheduler.dir
+-  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src
+-
+-build CMakeFiles/new_scheduler.dir/src/entity/new_scheduler.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/entity/new_scheduler.c || cmake_object_order_depends_target_new_scheduler
+-  DEP_FILE = CMakeFiles/new_scheduler.dir/src/entity/new_scheduler.c.o.d
+-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+-  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
+-  OBJECT_DIR = CMakeFiles/new_scheduler.dir
+-  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/entity
+-
+-build CMakeFiles/new_scheduler.dir/src/util/process.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/process.c || cmake_object_order_depends_target_new_scheduler
+-  DEP_FILE = CMakeFiles/new_scheduler.dir/src/util/process.c.o.d
+-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+-  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
+-  OBJECT_DIR = CMakeFiles/new_scheduler.dir
+-  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/util
+-
+-build CMakeFiles/new_scheduler.dir/src/entity/new_child.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/entity/new_child.c || cmake_object_order_depends_target_new_scheduler
+-  DEP_FILE = CMakeFiles/new_scheduler.dir/src/entity/new_child.c.o.d
+-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+-  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
+-  OBJECT_DIR = CMakeFiles/new_scheduler.dir
+-  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/entity
+-
+-build CMakeFiles/new_scheduler.dir/src/util/pid_queue.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/pid_queue.c || cmake_object_order_depends_target_new_scheduler
+-  DEP_FILE = CMakeFiles/new_scheduler.dir/src/util/pid_queue.c.o.d
+-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+-  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
+-  OBJECT_DIR = CMakeFiles/new_scheduler.dir
+-  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/util
+-
+-build CMakeFiles/new_scheduler.dir/src/util/timer.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/timer.c || cmake_object_order_depends_target_new_scheduler
+-  DEP_FILE = CMakeFiles/new_scheduler.dir/src/util/timer.c.o.d
+-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+-  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
+-  OBJECT_DIR = CMakeFiles/new_scheduler.dir
+-  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/util
+-
+-build CMakeFiles/new_scheduler.dir/src/util/message_queue.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/util/message_queue.c || cmake_object_order_depends_target_new_scheduler
+-  DEP_FILE = CMakeFiles/new_scheduler.dir/src/util/message_queue.c.o.d
+-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+-  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
+-  OBJECT_DIR = CMakeFiles/new_scheduler.dir
+-  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/util
+-
+-build CMakeFiles/new_scheduler.dir/src/entity/child.c.o: C_COMPILER__new_scheduler_unscanned_Debug /home/hochacha/repos/2024-os-proj1/src/entity/child.c || cmake_object_order_depends_target_new_scheduler
+-  DEP_FILE = CMakeFiles/new_scheduler.dir/src/entity/child.c.o.d
+-  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+-  INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
+-  OBJECT_DIR = CMakeFiles/new_scheduler.dir
+-  OBJECT_FILE_DIR = CMakeFiles/new_scheduler.dir/src/entity
+-
+-
+-# =============================================================================
+-# Link build statements for EXECUTABLE target new_scheduler
+-
+-
+-#############################################
+-# Link the executable new_scheduler
+-
+-build new_scheduler: C_EXECUTABLE_LINKER__new_scheduler_Debug CMakeFiles/new_scheduler.dir/src/main.c.o CMakeFiles/new_scheduler.dir/src/entity/new_scheduler.c.o CMakeFiles/new_scheduler.dir/src/util/process.c.o CMakeFiles/new_scheduler.dir/src/entity/new_child.c.o CMakeFiles/new_scheduler.dir/src/util/pid_queue.c.o CMakeFiles/new_scheduler.dir/src/util/timer.c.o CMakeFiles/new_scheduler.dir/src/util/message_queue.c.o CMakeFiles/new_scheduler.dir/src/entity/child.c.o
+-  FLAGS = -g
+-  OBJECT_DIR = CMakeFiles/new_scheduler.dir
+-  POST_BUILD = :
+-  PRE_LINK = :
+-  TARGET_FILE = new_scheduler
+-  TARGET_PDB = new_scheduler.dbg
+-
+ 
+ #############################################
+ # Utility command for edit_cache
+@@ -229,7 +134,7 @@
+ #############################################
+ # Folder: /home/hochacha/repos/2024-os-proj1/cmake-build-debug
+ 
+-build all: phony scheduler new_scheduler
++build all: phony scheduler
+ 
+ # =============================================================================
+ # Built-in targets
+Index: src/util/pid_queue.c
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\n// pcb_queue.c\n#include <stdlib.h>\n#include <stdio.h>\n#include <time.h>\n#include \"pid_queue.h\"\n\npcb_t* create_pcb(pid_t pid, int cpu_burst, int priority) {\n    pcb_t* new_pcb = (pcb_t*)malloc(sizeof(pcb_t));\n    if (!new_pcb) {\n        perror(\"Failed to allocate memory for PCB\");\n        exit(EXIT_FAILURE);\n    }\n    \n    new_pcb->pid = pid;\n    new_pcb->cpu_burst_time = cpu_burst;\n    new_pcb->io_burst_time = 0;\n    new_pcb->remaining_time = 0;\n    new_pcb->priority = priority;\n    new_pcb->state = PROCESS_READY;\n    new_pcb->arrival_time = time(NULL);\n    new_pcb->start_time = 0;\n    new_pcb->completion_time = 0;\n    new_pcb->next = NULL;\n    \n    return new_pcb;\n}\n\nvoid destroy_pcb(pcb_t* pcb) {\n    if (pcb) {\n        free(pcb);\n    }\n}\n\npcb_queue* create_pcb_queue() {\n    pcb_queue* queue = (pcb_queue*)malloc(sizeof(pcb_queue));\n    if (!queue) {\n        perror(\"Failed to allocate memory for queue\");\n        exit(EXIT_FAILURE);\n    }\n    queue->front = NULL;\n    queue->rear = NULL;\n    queue->size = 0;\n    return queue;\n}\n\nvoid enqueue_pcb(pcb_queue* queue, pcb_t* process) {\n    if (!process) return;\n    \n    process->next = NULL;\n    \n    if (is_queue_empty(queue)) {\n        queue->front = process;\n    } else {\n        queue->rear->next = process;\n    }\n    \n    queue->rear = process;\n    queue->size++;\n}\n\npcb_t* dequeue_pcb(pcb_queue* queue) {\n    if (is_queue_empty(queue)) {\n        return NULL;\n    }\n    \n    pcb_t* temp = queue->front;\n    queue->front = queue->front->next;\n    \n    if (queue->front == NULL) {\n        queue->rear = NULL;\n    }\n    \n    temp->next = NULL;  // 분리된 PCB의 next 포인터 초기화\n    queue->size--;\n    \n    return temp;\n}\n\nvoid remove_pcb(pcb_queue* queue, pid_t pid) {\n    if (is_queue_empty(queue)) {\n        return;\n    }\n    \n    pcb_t* current = queue->front;\n    pcb_t* prev = NULL;\n    \n    while (current != NULL) {\n        if (current->pid == pid) {\n            if (prev == NULL) {\n                queue->front = current->next;\n                if (queue->front == NULL) {\n                    queue->rear = NULL;\n                }\n            } else {\n                prev->next = current->next;\n                if (current->next == NULL) {\n                    queue->rear = prev;\n                }\n            }\n            destroy_pcb(current);\n            queue->size--;\n            return;\n        }\n        prev = current;\n        current = current->next;\n    }\n}\n\npcb_t* find_pcb(pcb_queue* queue, pid_t pid) {\n    pcb_t* current = queue->front;\n    while (current != NULL) {\n        if (current->pid == pid) {\n            return current;\n        }\n        current = current->next;\n    }\n    return NULL;\n}\n\nvoid destroy_pcb_queue(pcb_queue* queue) {\n    while (!is_queue_empty(queue)) {\n        pcb_t* pcb = dequeue_pcb(queue);\n        destroy_pcb(pcb);\n    }\n    free(queue);\n}\n\nint is_queue_empty(pcb_queue* queue) {\n    return queue->size == 0;\n}\n\nint get_queue_size(pcb_queue* queue) {\n    if (queue == NULL) {\n        return 0;\n    }\n    return queue->size;\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/util/pid_queue.c b/src/util/pid_queue.c
+--- a/src/util/pid_queue.c	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ b/src/util/pid_queue.c	(date 1731393228031)
+@@ -135,4 +135,43 @@
+         return 0;
+     }
+     return queue->size;
++}
++pcb_t* find_and_remove_pcb_by_pid(pcb_queue* queue, pid_t pid) {
++    if (queue == NULL || queue->front == NULL) {
++        // 큐가 비어 있거나 NULL인 경우
++        return NULL;
++    }
++
++    pcb_t* prev = NULL;
++    pcb_t* curr = queue->front;
++
++    while (curr != NULL) {
++        if (curr->pid == pid) {
++            // 해당 PID를 가진 PCB를 찾았으므로 큐에서 제거
++            if (prev == NULL) {
++                // 제거할 노드가 큐의 첫 번째 노드인 경우
++                queue->front = curr->next;
++                if (queue->front == NULL) {
++                    // 큐가 비어 있게 되었으므로 rear도 NULL로 설정
++                    queue->rear = NULL;
++                }
++            } else {
++                // 제거할 노드가 첫 번째 노드가 아닌 경우
++                prev->next = curr->next;
++                if (curr->next == NULL) {
++                    // 제거할 노드가 마지막 노드인 경우 rear 업데이트
++                    queue->rear = prev;
++                }
++            }
++
++            queue->size--;
++            curr->next = NULL; // 노드의 next 포인터를 NULL로 설정
++            return curr;       // 제거된 PCB를 반환
++        }
++        prev = curr;
++        curr = curr->next;
++    }
++
++    // 해당 PID를 가진 PCB를 찾지 못한 경우
++    return NULL;
+ }
+\ No newline at end of file
+Index: src/util/pid_queue.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Ai Generated Code Acknowledgement\n// pcb_queue.h\n#ifndef PCB_QUEUE_H\n#define PCB_QUEUE_H\n\n#include <sys/types.h>\n\n// 프로세스 상태 정의\n#define PROCESS_READY    0\n#define PROCESS_RUNNING  1\n#define PROCESS_BLOCKED  2\n#define PROCESS_TERMINATED 3\n#ifndef TIME_QUANTUAM\n#define TIME_QUANTUAM 5\n#endif\n// PCB(Process Control Block) 구조체\ntypedef struct _PCB {\n    pid_t pid;              // 프로세스 ID\n    int cpu_burst_time;     // CPU 실행 시간\n    int io_burst_time;      // I/O 작업 시간\n    int remaining_time;   // 남은 타임 퀀텀\n    int priority;           // 우선순위\n    int state;             // 프로세스 상태\n    int io_time;           // 입출력 요청 시간\n    time_t arrival_time;    // 도착 시간\n    time_t start_time;      // 첫 실행 시작 시간\n    time_t completion_time; // 완료 시간\n    struct _PCB* next;     // 다음 PCB 포인터\n} pcb_t;\n\n// PCB 큐 구조체\ntypedef struct {\n    pcb_t* front;\n    pcb_t* rear;\n    int size;\n} pcb_queue;\n\n// Queue operations\npcb_queue* create_pcb_queue();\nvoid enqueue_pcb(pcb_queue* queue, pcb_t* process);\npcb_t* dequeue_pcb(pcb_queue* queue);\nvoid remove_pcb(pcb_queue* queue, pid_t pid);\npcb_t* find_pcb(pcb_queue* queue, pid_t pid);\nvoid destroy_pcb_queue(pcb_queue* queue);\nint is_queue_empty(pcb_queue* queue);\nint get_queue_size(pcb_queue* queue);\n\n\n// PCB 생성 및 관리 함수\npcb_t* create_pcb(pid_t pid, int cpu_burst, int priority);\nvoid destroy_pcb(pcb_t* pcb);\n\n#endif
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/util/pid_queue.h b/src/util/pid_queue.h
+--- a/src/util/pid_queue.h	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ b/src/util/pid_queue.h	(date 1731393228023)
+@@ -44,10 +44,10 @@
+ void destroy_pcb_queue(pcb_queue* queue);
+ int is_queue_empty(pcb_queue* queue);
+ int get_queue_size(pcb_queue* queue);
+-
++pcb_t* find_and_remove_pcb_by_pid(pcb_queue* queue, pid_t pid);
+ 
+ // PCB 생성 및 관리 함수
+ pcb_t* create_pcb(pid_t pid, int cpu_burst, int priority);
+ void destroy_pcb(pcb_t* pcb);
+-
++pcb_t* find_and_remove_pcb_by_pid(pcb_queue* queue, pid_t pid);
+ #endif
+\ No newline at end of file
+Index: src/util/message_queue.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n// Created by hochacha on 24. 11. 7.\n//\n\n#ifndef MESSGE_QUEUE_H\n#define MESSGE_QUEUE_H\n#include \"pid_queue.h\"\n\n#define MESSAGE_TYPE_IO_FIN 0\n#define MESSAGE_TYPE_IO_REQ 1\n#define MESSAGE_TYPE_SCHD_TIME 2\n\nextern int msg_queue_id;\n\ntypedef struct{\n    long msg_t;\n    pid_t pid;\n    int io_time;\n}io_msg;\n\ntypedef struct {\n    long mtype;\n    int time_alloc;\n}time_alloc_msg;\n\nint init_msg_queue();\n#endif //MESSGE_QUEUE_H\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/util/message_queue.h b/src/util/message_queue.h
+--- a/src/util/message_queue.h	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ b/src/util/message_queue.h	(date 1731393228041)
+@@ -13,10 +13,10 @@
+ extern int msg_queue_id;
+ 
+ typedef struct{
+-    long msg_t;
+-    pid_t pid;
+-    int io_time;
+-}io_msg;
++    long msg_t;      // 메시지 타입 (PID 사용)
++    int io_time;     // IO 작업 시간
++    // pid_t pid;    // PID는 msg_t를 통해 전달하므로 별도 필드 불필요
++} io_msg;
+ 
+ typedef struct {
+     long mtype;
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"CMakePresetLoader\">{\n  &quot;useNewFormat&quot;: true\n}</component>\n  <component name=\"CMakeProjectFlavorService\">\n    <option name=\"flavorId\" value=\"CMakePlainProjectFlavor\" />\n  </component>\n  <component name=\"CMakeReloadState\">\n    <option name=\"reloaded\" value=\"true\" />\n  </component>\n  <component name=\"CMakeRunConfigurationManager\">\n    <generated>\n      <config projectName=\"2024_os_proj1\" targetName=\"scheduler\" />\n      <config projectName=\"2024_os_proj1\" targetName=\"new_scheduler\" />\n    </generated>\n  </component>\n  <component name=\"CMakeSettings\">\n    <configurations>\n      <configuration PROFILE_NAME=\"Debug\" ENABLED=\"true\" CONFIG_NAME=\"Debug\" />\n    </configurations>\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"9657c78d-eccb-4686-babf-50c026cfea8f\" name=\"Changes\" comment=\"\">\n      <change afterPath=\"$PROJECT_DIR$/CURRENT_STATE.md\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/cmake-build-debug/.ninja_deps\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/cmake-build-debug/.ninja_deps\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/cmake-build-debug/.ninja_log\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/cmake-build-debug/.ninja_log\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/entity/scheduler.c.o\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/entity/scheduler.c.o\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/main.c.o\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/main.c.o\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/cmake-build-debug/scheduler\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/cmake-build-debug/scheduler\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/entity/child.c\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/entity/child.c\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/entity/scheduler.c\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/entity/scheduler.c\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main.c\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main.c\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"ClangdSettings\">\n    <option name=\"formatViaClangd\" value=\"false\" />\n  </component>\n  <component name=\"ExecutionTargetManager\" SELECTED_TARGET=\"CMakeBuildProfile:Debug\" />\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"HighlightingSettingsPerFile\">\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n    <setting file=\"mock:///dummy.cpp\" root0=\"SKIP_HIGHLIGHTING\" />\n  </component>\n  <component name=\"ProjectApplicationVersion\">\n    <option name=\"ide\" value=\"CLion\" />\n    <option name=\"majorVersion\" value=\"2024\" />\n    <option name=\"minorVersion\" value=\"2.2\" />\n    <option name=\"productBranch\" value=\"Classic\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 8\n}</component>\n  <component name=\"ProjectId\" id=\"2obNuCoDjaInKYEDFBaokfr99A4\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;CMake Application.scheduler.executor&quot;: &quot;Run&quot;,\n    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,\n    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,\n    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;32224560__hohyeon&quot;,\n    &quot;last_opened_file_path&quot;: &quot;/home/hochacha/repo/2024-os-proj1&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  }\n}</component>\n  <component name=\"RunManager\" selected=\"CMake Application.scheduler\">\n    <configuration default=\"true\" type=\"CLionExternalRunConfiguration\" factoryName=\"Application\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" EMULATE_TERMINAL=\"false\" PASS_PARENT_ENVS_2=\"true\">\n      <method v=\"2\">\n        <option name=\"CLION.EXTERNAL.BUILD\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"new_scheduler\" type=\"CMakeRunConfiguration\" factoryName=\"Application\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" EMULATE_TERMINAL=\"false\" PASS_PARENT_ENVS_2=\"true\" PROJECT_NAME=\"2024_os_proj1\" TARGET_NAME=\"new_scheduler\" CONFIG_NAME=\"Debug\" RUN_TARGET_PROJECT_NAME=\"2024_os_proj1\" RUN_TARGET_NAME=\"new_scheduler\">\n      <method v=\"2\">\n        <option name=\"com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"scheduler\" type=\"CMakeRunConfiguration\" factoryName=\"Application\" REDIRECT_INPUT=\"false\" ELEVATE=\"false\" USE_EXTERNAL_CONSOLE=\"false\" EMULATE_TERMINAL=\"false\" PASS_PARENT_ENVS_2=\"true\" PROJECT_NAME=\"2024_os_proj1\" TARGET_NAME=\"scheduler\" CONFIG_NAME=\"Debug\" RUN_TARGET_PROJECT_NAME=\"2024_os_proj1\" RUN_TARGET_NAME=\"scheduler\">\n      <method v=\"2\">\n        <option name=\"com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <list>\n      <item itemvalue=\"CMake Application.new_scheduler\" />\n      <item itemvalue=\"CMake Application.scheduler\" />\n    </list>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"9657c78d-eccb-4686-babf-50c026cfea8f\" name=\"Changes\" comment=\"\" />\n      <created>1731134535120</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1731134535120</updated>\n      <workItem from=\"1731134536159\" duration=\"22991000\" />\n      <workItem from=\"1731299522052\" duration=\"303000\" />\n      <workItem from=\"1731300077206\" duration=\"5000\" />\n      <workItem from=\"1731300445148\" duration=\"1651000\" />\n      <workItem from=\"1731309885863\" duration=\"21117000\" />\n    </task>\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"VCPKGProject\">\n    <isAutomaticCheckingOnLaunch value=\"false\" />\n    <isAutomaticFoundErrors value=\"true\" />\n    <isAutomaticReloadCMake value=\"true\" />\n  </component>\n  <component name=\"XDebuggerManager\">\n    <breakpoint-manager>\n      <breakpoints>\n        <line-breakpoint enabled=\"true\" type=\"com.jetbrains.cidr.execution.debugger.OCBreakpointType\">\n          <url>file://$PROJECT_DIR$/src/main.c</url>\n          <line>11</line>\n          <option name=\"timeStamp\" value=\"6\" />\n        </line-breakpoint>\n      </breakpoints>\n    </breakpoint-manager>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ b/.idea/workspace.xml	(date 1731393937470)
+@@ -15,7 +15,6 @@
+   <component name="CMakeRunConfigurationManager">
+     <generated>
+       <config projectName="2024_os_proj1" targetName="scheduler" />
+-      <config projectName="2024_os_proj1" targetName="new_scheduler" />
+     </generated>
+   </component>
+   <component name="CMakeSettings">
+@@ -25,17 +24,37 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="9657c78d-eccb-4686-babf-50c026cfea8f" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/CURRENT_STATE.md" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/log.dump" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/codemodel-v2-5759dca6696ba9a95b1c.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/index-2024-11-11T09-34-07-0040.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-new_scheduler-Debug-4cc7a33307092f309203.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/cmake-build-debug/.cmake/api/v1/reply/target-scheduler-Debug-e3e96423b883f007519b.json" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_deps" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/.ninja_log" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/entity/child.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/entity/child.c.o" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/entity/scheduler.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/entity/scheduler.c.o" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/main.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/main.c.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/util/pid_queue.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/util/pid_queue.c.o" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/util/timer.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/scheduler.dir/src/util/timer.c.o" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/Testing/Temporary/LastTest.log" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/cmake-build-debug/build.ninja" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/build.ninja" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/cmake-build-debug/scheduler" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/scheduler" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/entity/child.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/child.c" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/entity/scheduler.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/scheduler.c" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/entity/child.c" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/entity/child.h" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/entity/new_child.c" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/entity/new_child.h" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/entity/new_scheduler.c" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/entity/new_scheduler.h" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/entity/scheduler.c" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/entity/scheduler.h" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.c" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/util/message_queue.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/message_queue.h" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/util/pid_queue.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/pid_queue.c" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/util/pid_queue.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/pid_queue.h" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/util/process.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/process.c" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/util/timer.c" beforeDir="false" afterPath="$PROJECT_DIR$/src/util/timer.c" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -47,6 +66,11 @@
+   </component>
+   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="32224560_Hohyeon_Vallen" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="HighlightingSettingsPerFile">
+@@ -91,6 +115,306 @@
+     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+     <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
++    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+   </component>
+   <component name="ProjectApplicationVersion">
+     <option name="ide" value="CLion" />
+@@ -106,45 +430,36 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;CMake Application.scheduler.executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;32224560__hohyeon&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;/home/hochacha/repo/2024-os-proj1&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "CMake Application.scheduler.executor": "Run",
++    "RunOnceActivity.RadMigrateCodeStyle": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.cidr.known.project.marker": "true",
++    "RunOnceActivity.readMode.enableVisualFormatting": "true",
++    "cf.first.check.clang-format": "false",
++    "cidr.known.project.marker": "true",
++    "git-widget-placeholder": "32224560__hohyeon",
++    "last_opened_file_path": "/home/hochacha/repo/2024-os-proj1",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
+-  <component name="RunManager" selected="CMake Application.scheduler">
++}]]></component>
++  <component name="RunManager">
+     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+       <method v="2">
+         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="new_scheduler" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2024_os_proj1" TARGET_NAME="new_scheduler" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="2024_os_proj1" RUN_TARGET_NAME="new_scheduler">
+-      <method v="2">
+-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+-      </method>
+-    </configuration>
+     <configuration name="scheduler" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="2024_os_proj1" TARGET_NAME="scheduler" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="2024_os_proj1" RUN_TARGET_NAME="scheduler">
+       <method v="2">
+         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+       </method>
+     </configuration>
+-    <list>
+-      <item itemvalue="CMake Application.new_scheduler" />
+-      <item itemvalue="CMake Application.scheduler" />
+-    </list>
+   </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+@@ -158,7 +473,7 @@
+       <workItem from="1731299522052" duration="303000" />
+       <workItem from="1731300077206" duration="5000" />
+       <workItem from="1731300445148" duration="1651000" />
+-      <workItem from="1731309885863" duration="21117000" />
++      <workItem from="1731309885863" duration="39463000" />
+     </task>
+     <servers />
+   </component>
+@@ -174,11 +489,18 @@
+     <breakpoint-manager>
+       <breakpoints>
+         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+-          <url>file://$PROJECT_DIR$/src/main.c</url>
+-          <line>11</line>
+-          <option name="timeStamp" value="6" />
++          <url>file://$PROJECT_DIR$/src/entity/scheduler.c</url>
++          <line>123</line>
++          <option name="timeStamp" value="17" />
+         </line-breakpoint>
+       </breakpoints>
+     </breakpoint-manager>
++    <watches-manager>
++      <configuration name="CMakeRunConfiguration">
++        <watch expression="@ ALREADY PREPROCESSED @ready_queue_schd" />
++        <watch expression="@ ALREADY PREPROCESSED @waiting_queue_schd" />
++        <watch expression="@ ALREADY PREPROCESSED @current_process" />
++      </configuration>
++    </watches-manager>
+   </component>
+ </project>
+\ No newline at end of file
+Index: CMakeLists.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>cmake_minimum_required(VERSION 3.29)\nproject(2024_os_proj1 C)\n\nset(CMAKE_C_STANDARD 11)\n\ninclude_directories(.)\n\nadd_executable(scheduler\n        src/main.c\n        src/entity/scheduler.c\n        src/util/process.c\n        src/util/process.h\n        src/entity/child.c\n        src/entity/child.h\n        src/util/pid_queue.c\n        src/util/pid_queue.h\n        src/util/timer.c\n        src/util/timer.h\n        src/util/message_queue.c\n        src/util/message_queue.h\n        src/entity/child.c\n)\n\nadd_executable(new_scheduler\n        src/main.c\n        src/entity/new_scheduler.c\n        src/util/process.c\n        src/util/process.h\n        src/entity/new_child.c\n        src/entity/new_child.h\n        src/util/pid_queue.c\n        src/util/pid_queue.h\n        src/util/timer.c\n        src/util/timer.h\n        src/util/message_queue.c\n        src/util/message_queue.h\n        src/entity/child.c\n)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+--- a/CMakeLists.txt	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ b/CMakeLists.txt	(date 1731393418148)
+@@ -7,32 +7,12 @@
+ 
+ add_executable(scheduler
+         src/main.c
+-        src/entity/scheduler.c
+-        src/util/process.c
+-        src/util/process.h
+-        src/entity/child.c
+-        src/entity/child.h
+-        src/util/pid_queue.c
+-        src/util/pid_queue.h
+-        src/util/timer.c
+-        src/util/timer.h
+-        src/util/message_queue.c
+-        src/util/message_queue.h
+-        src/entity/child.c
+-)
+-
+-add_executable(new_scheduler
+-        src/main.c
+-        src/entity/new_scheduler.c
+         src/util/process.c
+         src/util/process.h
+-        src/entity/new_child.c
+-        src/entity/new_child.h
+         src/util/pid_queue.c
+         src/util/pid_queue.h
+         src/util/timer.c
+         src/util/timer.h
+         src/util/message_queue.c
+         src/util/message_queue.h
+-        src/entity/child.c
+ )
+\ No newline at end of file
+Index: src/main.c
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#include <pthread.h>\n#include <sched.h>\n#include <stdio.h>\n#include <stdlib.h>\n#include <unistd.h>\n\n#include \"util/process.h\"\nFILE* IO_result;\nint main(int argc, char * arg[])\n{\n\tint n_process = 10;\n\tpcb_queue* pcb_queue_o = malloc(sizeof(pcb_queue) * n_process);\n\tIO_result = fopen(\"IO_result.txt\", \"w\");\n\tlaunch_scheduler_and_worker(pcb_queue_o, n_process);\n\n\treturn 0;\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main.c b/src/main.c
+--- a/src/main.c	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ b/src/main.c	(date 1731393937412)
+@@ -5,12 +5,12 @@
+ #include <unistd.h>
+ 
+ #include "util/process.h"
+-FILE* IO_result;
++
+ int main(int argc, char * arg[])
+ {
+ 	int n_process = 10;
+ 	pcb_queue* pcb_queue_o = malloc(sizeof(pcb_queue) * n_process);
+-	IO_result = fopen("IO_result.txt", "w");
++
+ 	launch_scheduler_and_worker(pcb_queue_o, n_process);
+ 
+ 	return 0;
+Index: cmake-build-debug/Testing/Temporary/LastTest.log
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>Start testing: Nov 11 22:20 KST\n----------------------------------------------------------\nEnd testing: Nov 11 22:20 KST\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/cmake-build-debug/Testing/Temporary/LastTest.log b/cmake-build-debug/Testing/Temporary/LastTest.log
+--- a/cmake-build-debug/Testing/Temporary/LastTest.log	(revision 4fdfb5f26cfa4aca4da73676a66ae40d45235540)
++++ b/cmake-build-debug/Testing/Temporary/LastTest.log	(date 1731393418528)
+@@ -1,3 +1,3 @@
+-Start testing: Nov 11 22:20 KST
++Start testing: Nov 12 15:36 KST
+ ----------------------------------------------------------
+-End testing: Nov 11 22:20 KST
++End testing: Nov 12 15:36 KST

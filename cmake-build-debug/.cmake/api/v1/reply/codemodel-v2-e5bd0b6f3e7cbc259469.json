@@ -15,8 +15,7 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0,
-						1
+						0
 					]
 				}
 			],
@@ -31,20 +30,12 @@
 					"name" : "2024_os_proj1",
 					"targetIndexes" : 
 					[
-						0,
-						1
+						0
 					]
 				}
 			],
 			"targets" : 
 			[
-				{
-					"directoryIndex" : 0,
-					"id" : "new_scheduler::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-new_scheduler-Debug-4cc7a33307092f309203.json",
-					"name" : "new_scheduler",
-					"projectIndex" : 0
-				},
 				{
 					"directoryIndex" : 0,
 					"id" : "scheduler::@6890427a1f51a3e7e1df",
