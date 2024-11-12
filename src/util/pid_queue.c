@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <time.h>
 #include "pid_queue.h"
-
+//#define DEBUG
 pcb_t* create_pcb(pid_t pid, int cpu_burst, int priority) {
     pcb_t* new_pcb = (pcb_t*)malloc(sizeof(pcb_t));
     if (!new_pcb) {
@@ -59,7 +59,7 @@ void enqueue_pcb(pcb_queue* queue, pcb_t* process) {
     queue->size++;
 }
 
-pcb_t* dequeue_pcb(pcb_queue* queue) {
+pcb_t* dequeue_pcb(pcb_queue* queue, char* callback_name) {
     if (is_queue_empty(queue)) {
         return NULL;
     }
@@ -73,7 +73,10 @@ pcb_t* dequeue_pcb(pcb_queue* queue) {
     
     temp->next = NULL;  // 분리된 PCB의 next 포인터 초기화
     queue->size--;
-    
+#ifdef DEBUG
+    printf("[PID_QUEUE] current return pcb is %d, call by %s\n", temp->pid, callback_name);
+#endif
+
     return temp;
 }
 
@@ -118,9 +121,24 @@ pcb_t* find_pcb(pcb_queue* queue, pid_t pid) {
     return NULL;
 }
 
+void print_pcb_queue(pcb_queue* queue) {
+    if (queue == NULL || is_queue_empty(queue)) {
+        printf("Queue is empty.\n");
+        return;
+    }
+    pcb_t* current = queue->front;
+    printf("PCB Queue PIDs: ");
+    while (current != NULL) {
+        printf("[%d] ", current->pid);
+        current = current->next;
+    }
+    printf("\n");
+}
+
+
 void destroy_pcb_queue(pcb_queue* queue) {
     while (!is_queue_empty(queue)) {
-        pcb_t* pcb = dequeue_pcb(queue);
+        pcb_t* pcb = dequeue_pcb(queue, "destroy_pcb");
         destroy_pcb(pcb);
     }
     free(queue);

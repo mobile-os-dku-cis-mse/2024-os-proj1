@@ -38,9 +38,10 @@ typedef struct {
 // Queue operations
 pcb_queue* create_pcb_queue();
 void enqueue_pcb(pcb_queue* queue, pcb_t* process);
-pcb_t* dequeue_pcb(pcb_queue* queue);
+pcb_t* dequeue_pcb(pcb_queue* queue, char* callback_name);
 void remove_pcb(pcb_queue* queue, pid_t pid);
 pcb_t* find_pcb(pcb_queue* queue, pid_t pid);
+void print_pcb_queue(pcb_queue* queue);
 void destroy_pcb_queue(pcb_queue* queue);
 int is_queue_empty(pcb_queue* queue);
 int get_queue_size(pcb_queue* queue);
