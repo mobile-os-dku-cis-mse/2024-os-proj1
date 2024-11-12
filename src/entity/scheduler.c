@@ -16,7 +16,7 @@
 #include "../util/timer.h"
 #include "../util/message_queue.h"
 
-#define DEBUG
+//#define DEBUG
 //#define SIGALRM_DEBUG
 
 unsigned int current_time = 0;
@@ -101,6 +101,10 @@ void decrease_IO_time() {
 }
 
 void alarm_handler(int sig) {
+    printf("[Tick:: %d]\n", current_time);
+    print_pcb_queue(ready_queue_schd);
+    print_pcb_queue(waiting_queue_schd);
+
     current_time++;  // 전역 시간 증가
     decrease_IO_time();
     handle_io_from_child_by_checking_ipc();
@@ -134,7 +138,7 @@ void alarm_handler(int sig) {
             enqueue_pcb(ready_queue_schd, current_process);
 
             current_process = dequeue_pcb(ready_queue_schd, "Time out schedule out");
-            current_process->state = PROCESS_READY;
+            current_process->state = PROCESS_RUNNING;
             current_process->remaining_time = TIME_QUANTUAM;
             kill(current_process->pid, SIGUSR1);
         }
@@ -178,11 +182,6 @@ void alarm_handler(int sig) {
             }
         }
     }
-
-    printf("[Tick:: %d]\n", current_time);
-    print_pcb_queue(ready_queue_schd);
-    print_pcb_queue(waiting_queue_schd);
-
 }
 
 
