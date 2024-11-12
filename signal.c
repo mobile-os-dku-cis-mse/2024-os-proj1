@@ -9,6 +9,11 @@
 void signal_handler(int signo);
 int count = 0;
 
+/*
+시간 틱마다 대기Q의 모든 자식 프로세스의 io_burst값을 감소시킴
+io_busrt == 0 -> 해당 프로세스를 다시 런Q로 옮겨서 다음 스케줄링 때 CPU 받을 수 있도록 함.
+*/
+
 
 int main()
 {
@@ -24,8 +29,10 @@ int main()
 	new_itimer.it_value.tv_sec = 1;
 	new_itimer.it_value.tv_usec = 0;
 	setitimer(ITIMER_REAL, &new_itimer, &old_itimer);
-
-	while (1);
+	while (1){
+		printf("a");
+		pause();
+	}
 	return 0;
 }
 

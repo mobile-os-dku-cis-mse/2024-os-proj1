@@ -1,0 +1,838 @@
+-------------------------------------------
+            자식 프로세스 생성
+
+process[0] cpu_burst: 11, io_burst: 55
+process[1] cpu_burst: 19, io_burst: 184
+process[2] cpu_burst: 39, io_burst: 83
+process[3] cpu_burst: 9, io_burst: 195
+process[4] cpu_burst: 36, io_burst: 116
+process[5] cpu_burst: 16, io_burst: 191
+process[6] cpu_burst: 28, io_burst: 137
+process[7] cpu_burst: 16, io_burst: 66
+process[8] cpu_burst: 17, io_burst: 61
+process[9] cpu_burst: 2, io_burst: 185
+
+-------------------------------------------
+
+====== Time:   1 (Quantum Count: 4) ======
+Current Process: P0
+├── CPU Burst Remaining: 4
+└── I/O Burst Total: 7
+
+Run Queue Status:
+├── P0 (CPU: 4)
+├── P1 (CPU: 8)
+├── P2 (CPU: 4)
+├── P3 (CPU: 7)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+└── P9 (CPU: 3)
+
+Wait Queue Status:
+└── Empty
+
+
+====== Time:   2 (Quantum Count: 3) ======
+Current Process: P0
+├── CPU Burst Remaining: 3
+└── I/O Burst Total: 7
+
+Run Queue Status:
+├── P0 (CPU: 3)
+├── P1 (CPU: 8)
+├── P2 (CPU: 4)
+├── P3 (CPU: 7)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+└── P9 (CPU: 3)
+
+Wait Queue Status:
+└── Empty
+
+
+====== Time:   3 (Quantum Count: 2) ======
+Current Process: P0
+├── CPU Burst Remaining: 2
+└── I/O Burst Total: 7
+
+Run Queue Status:
+├── P0 (CPU: 2)
+├── P1 (CPU: 8)
+├── P2 (CPU: 4)
+├── P3 (CPU: 7)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+└── P9 (CPU: 3)
+
+Wait Queue Status:
+└── Empty
+
+
+====== Time:   4 (Quantum Count: 1) ======
+Current Process: P0
+├── CPU Burst Remaining: 1
+└── I/O Burst Total: 7
+
+Run Queue Status:
+├── P0 (CPU: 1)
+├── P1 (CPU: 8)
+├── P2 (CPU: 4)
+├── P3 (CPU: 7)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+└── P9 (CPU: 3)
+
+Wait Queue Status:
+└── Empty
+
+
+====== Time:   5 (Quantum Count: 0) ======
+Current Process: P0
+├── CPU Burst Remaining: 0
+└── I/O Burst Total: 7
+
+Run Queue Status:
+├── P0 (CPU: 0)
+├── P1 (CPU: 8)
+├── P2 (CPU: 4)
+├── P3 (CPU: 7)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+└── P9 (CPU: 3)
+
+Wait Queue Status:
+└── Empty
+
+
+====== Time:   6 (Quantum Count: 4) ======
+Current Process: P1
+├── CPU Burst Remaining: 7
+└── I/O Burst Total: 6
+
+Run Queue Status:
+├── P1 (CPU: 7)
+├── P2 (CPU: 4)
+├── P3 (CPU: 7)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+└── P9 (CPU: 3)
+
+Wait Queue Status:
+└── P0 (I/O: 7)
+
+
+====== Time:   7 (Quantum Count: 3) ======
+Current Process: P1
+├── CPU Burst Remaining: 6
+└── I/O Burst Total: 6
+
+Run Queue Status:
+├── P1 (CPU: 6)
+├── P2 (CPU: 4)
+├── P3 (CPU: 7)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+└── P9 (CPU: 3)
+
+Wait Queue Status:
+└── P0 (I/O: 6)
+
+
+====== Time:   8 (Quantum Count: 2) ======
+Current Process: P1
+├── CPU Burst Remaining: 5
+└── I/O Burst Total: 6
+
+Run Queue Status:
+├── P1 (CPU: 5)
+├── P2 (CPU: 4)
+├── P3 (CPU: 7)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+└── P9 (CPU: 3)
+
+Wait Queue Status:
+└── P0 (I/O: 5)
+
+
+====== Time:   9 (Quantum Count: 1) ======
+Current Process: P1
+├── CPU Burst Remaining: 4
+└── I/O Burst Total: 6
+
+Run Queue Status:
+├── P1 (CPU: 4)
+├── P2 (CPU: 4)
+├── P3 (CPU: 7)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+└── P9 (CPU: 3)
+
+Wait Queue Status:
+└── P0 (I/O: 4)
+
+
+====== Time:  10 (Quantum Count: 0) ======
+Current Process: P1
+├── CPU Burst Remaining: 3
+└── I/O Burst Total: 6
+
+Run Queue Status:
+├── P1 (CPU: 3)
+├── P2 (CPU: 4)
+├── P3 (CPU: 7)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+└── P9 (CPU: 3)
+
+Wait Queue Status:
+└── P0 (I/O: 3)
+
+
+====== Time:  11 (Quantum Count: 4) ======
+Current Process: P2
+├── CPU Burst Remaining: 3
+└── I/O Burst Total: 6
+
+Run Queue Status:
+├── P2 (CPU: 3)
+├── P3 (CPU: 7)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+└── P1 (CPU: 3)
+
+Wait Queue Status:
+└── P0 (I/O: 2)
+
+
+====== Time:  12 (Quantum Count: 3) ======
+Current Process: P2
+├── CPU Burst Remaining: 2
+└── I/O Burst Total: 6
+
+Run Queue Status:
+├── P2 (CPU: 2)
+├── P3 (CPU: 7)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+└── P1 (CPU: 3)
+
+Wait Queue Status:
+└── P0 (I/O: 1)
+
+
+====== Time:  13 (Quantum Count: 2) ======
+Current Process: P2
+├── CPU Burst Remaining: 1
+└── I/O Burst Total: 6
+
+Run Queue Status:
+├── P2 (CPU: 1)
+├── P3 (CPU: 7)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+└── P0 (CPU: 4)
+
+Wait Queue Status:
+└── Empty
+
+
+====== Time:  14 (Quantum Count: 1) ======
+Current Process: P2
+├── CPU Burst Remaining: 0
+└── I/O Burst Total: 6
+
+Run Queue Status:
+├── P2 (CPU: 0)
+├── P3 (CPU: 7)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+└── P0 (CPU: 4)
+
+Wait Queue Status:
+└── Empty
+
+
+====== Time:  15 (Quantum Count: 4) ======
+Current Process: P3
+├── CPU Burst Remaining: 6
+└── I/O Burst Total: 3
+
+Run Queue Status:
+├── P3 (CPU: 6)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+└── P0 (CPU: 4)
+
+Wait Queue Status:
+└── P2 (I/O: 6)
+
+
+====== Time:  16 (Quantum Count: 3) ======
+Current Process: P3
+├── CPU Burst Remaining: 5
+└── I/O Burst Total: 3
+
+Run Queue Status:
+├── P3 (CPU: 5)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+└── P0 (CPU: 4)
+
+Wait Queue Status:
+└── P2 (I/O: 5)
+
+
+====== Time:  17 (Quantum Count: 2) ======
+Current Process: P3
+├── CPU Burst Remaining: 4
+└── I/O Burst Total: 3
+
+Run Queue Status:
+├── P3 (CPU: 4)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+└── P0 (CPU: 4)
+
+Wait Queue Status:
+└── P2 (I/O: 4)
+
+
+====== Time:  18 (Quantum Count: 1) ======
+Current Process: P3
+├── CPU Burst Remaining: 3
+└── I/O Burst Total: 3
+
+Run Queue Status:
+├── P3 (CPU: 3)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+└── P0 (CPU: 4)
+
+Wait Queue Status:
+└── P2 (I/O: 3)
+
+
+====== Time:  19 (Quantum Count: 0) ======
+Current Process: P3
+├── CPU Burst Remaining: 2
+└── I/O Burst Total: 3
+
+Run Queue Status:
+├── P3 (CPU: 2)
+├── P4 (CPU: 10)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+└── P0 (CPU: 4)
+
+Wait Queue Status:
+└── P2 (I/O: 2)
+
+
+====== Time:  20 (Quantum Count: 4) ======
+Current Process: P4
+├── CPU Burst Remaining: 9
+└── I/O Burst Total: 2
+
+Run Queue Status:
+├── P4 (CPU: 9)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+├── P0 (CPU: 4)
+└── P3 (CPU: 2)
+
+Wait Queue Status:
+└── P2 (I/O: 1)
+
+
+====== Time:  21 (Quantum Count: 3) ======
+Current Process: P4
+├── CPU Burst Remaining: 8
+└── I/O Burst Total: 2
+
+Run Queue Status:
+├── P4 (CPU: 8)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+└── P2 (CPU: 4)
+
+Wait Queue Status:
+└── Empty
+
+
+====== Time:  22 (Quantum Count: 2) ======
+Current Process: P4
+├── CPU Burst Remaining: 7
+└── I/O Burst Total: 2
+
+Run Queue Status:
+├── P4 (CPU: 7)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+└── P2 (CPU: 4)
+
+Wait Queue Status:
+└── Empty
+
+
+====== Time:  23 (Quantum Count: 1) ======
+Current Process: P4
+├── CPU Burst Remaining: 6
+└── I/O Burst Total: 2
+
+Run Queue Status:
+├── P4 (CPU: 6)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+└── P2 (CPU: 4)
+
+Wait Queue Status:
+└── Empty
+
+
+====== Time:  24 (Quantum Count: 0) ======
+Current Process: P4
+├── CPU Burst Remaining: 5
+└── I/O Burst Total: 2
+
+Run Queue Status:
+├── P4 (CPU: 5)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+└── P2 (CPU: 4)
+
+Wait Queue Status:
+└── Empty
+
+
+====== Time:  25 (Quantum Count: 4) ======
+Current Process: P5
+├── CPU Burst Remaining: 2
+└── I/O Burst Total: 8
+
+Run Queue Status:
+├── P5 (CPU: 2)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+├── P2 (CPU: 4)
+└── P4 (CPU: 5)
+
+Wait Queue Status:
+└── Empty
+
+
+====== Time:  26 (Quantum Count: 3) ======
+Current Process: P5
+├── CPU Burst Remaining: 1
+└── I/O Burst Total: 8
+
+Run Queue Status:
+├── P5 (CPU: 1)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+├── P2 (CPU: 4)
+└── P4 (CPU: 5)
+
+Wait Queue Status:
+└── Empty
+
+
+====== Time:  27 (Quantum Count: 2) ======
+Current Process: P5
+├── CPU Burst Remaining: 0
+└── I/O Burst Total: 8
+
+Run Queue Status:
+├── P5 (CPU: 0)
+├── P6 (CPU: 1)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+├── P2 (CPU: 4)
+└── P4 (CPU: 5)
+
+Wait Queue Status:
+└── Empty
+
+
+====== Time:  28 (Quantum Count: 4) ======
+Current Process: P6
+├── CPU Burst Remaining: 0
+└── I/O Burst Total: 10
+
+Run Queue Status:
+├── P6 (CPU: 0)
+├── P7 (CPU: 4)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+├── P2 (CPU: 4)
+└── P4 (CPU: 5)
+
+Wait Queue Status:
+└── P5 (I/O: 8)
+
+
+====== Time:  29 (Quantum Count: 4) ======
+Current Process: P7
+├── CPU Burst Remaining: 3
+└── I/O Burst Total: 7
+
+Run Queue Status:
+├── P7 (CPU: 3)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+├── P2 (CPU: 4)
+└── P4 (CPU: 5)
+
+Wait Queue Status:
+├── P5 (I/O: 7)
+└── P6 (I/O: 10)
+
+
+====== Time:  30 (Quantum Count: 3) ======
+Current Process: P7
+├── CPU Burst Remaining: 2
+└── I/O Burst Total: 7
+
+Run Queue Status:
+├── P7 (CPU: 2)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+├── P2 (CPU: 4)
+└── P4 (CPU: 5)
+
+Wait Queue Status:
+├── P5 (I/O: 6)
+└── P6 (I/O: 9)
+
+
+====== Time:  31 (Quantum Count: 2) ======
+Current Process: P7
+├── CPU Burst Remaining: 1
+└── I/O Burst Total: 7
+
+Run Queue Status:
+├── P7 (CPU: 1)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+├── P2 (CPU: 4)
+└── P4 (CPU: 5)
+
+Wait Queue Status:
+├── P5 (I/O: 5)
+└── P6 (I/O: 8)
+
+
+====== Time:  32 (Quantum Count: 1) ======
+Current Process: P7
+├── CPU Burst Remaining: 0
+└── I/O Burst Total: 7
+
+Run Queue Status:
+├── P7 (CPU: 0)
+├── P8 (CPU: 1)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+├── P2 (CPU: 4)
+└── P4 (CPU: 5)
+
+Wait Queue Status:
+├── P5 (I/O: 4)
+└── P6 (I/O: 7)
+
+
+====== Time:  33 (Quantum Count: 4) ======
+Current Process: P8
+├── CPU Burst Remaining: 0
+└── I/O Burst Total: 7
+
+Run Queue Status:
+├── P8 (CPU: 0)
+├── P9 (CPU: 3)
+├── P1 (CPU: 3)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+├── P2 (CPU: 4)
+└── P4 (CPU: 5)
+
+Wait Queue Status:
+├── P5 (I/O: 3)
+├── P6 (I/O: 6)
+└── P7 (I/O: 7)
+
+
+====== Time:  34 (Quantum Count: 4) ======
+Current Process: P9
+├── CPU Burst Remaining: 2
+└── I/O Burst Total: 7
+
+Run Queue Status:
+├── P9 (CPU: 2)
+├── P1 (CPU: 3)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+├── P2 (CPU: 4)
+└── P4 (CPU: 5)
+
+Wait Queue Status:
+├── P5 (I/O: 2)
+├── P6 (I/O: 5)
+├── P7 (I/O: 6)
+└── P8 (I/O: 7)
+
+
+====== Time:  35 (Quantum Count: 3) ======
+Current Process: P9
+├── CPU Burst Remaining: 1
+└── I/O Burst Total: 7
+
+Run Queue Status:
+├── P9 (CPU: 1)
+├── P1 (CPU: 3)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+├── P2 (CPU: 4)
+└── P4 (CPU: 5)
+
+Wait Queue Status:
+├── P5 (I/O: 1)
+├── P6 (I/O: 4)
+├── P7 (I/O: 5)
+└── P8 (I/O: 6)
+
+
+====== Time:  36 (Quantum Count: 2) ======
+Current Process: P9
+├── CPU Burst Remaining: 0
+└── I/O Burst Total: 7
+
+Run Queue Status:
+├── P9 (CPU: 0)
+├── P1 (CPU: 3)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+├── P2 (CPU: 4)
+├── P4 (CPU: 5)
+└── P5 (CPU: 3)
+
+Wait Queue Status:
+├── P6 (I/O: 3)
+├── P7 (I/O: 4)
+└── P8 (I/O: 5)
+
+
+====== Time:  37 (Quantum Count: 4) ======
+Current Process: P1
+├── CPU Burst Remaining: 2
+└── I/O Burst Total: 6
+
+Run Queue Status:
+├── P1 (CPU: 2)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+├── P2 (CPU: 4)
+├── P4 (CPU: 5)
+└── P5 (CPU: 3)
+
+Wait Queue Status:
+├── P6 (I/O: 2)
+├── P7 (I/O: 3)
+├── P8 (I/O: 4)
+└── P9 (I/O: 7)
+
+
+====== Time:  38 (Quantum Count: 3) ======
+Current Process: P1
+├── CPU Burst Remaining: 1
+└── I/O Burst Total: 6
+
+Run Queue Status:
+├── P1 (CPU: 1)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+├── P2 (CPU: 4)
+├── P4 (CPU: 5)
+└── P5 (CPU: 3)
+
+Wait Queue Status:
+├── P6 (I/O: 1)
+├── P7 (I/O: 2)
+├── P8 (I/O: 3)
+└── P9 (I/O: 6)
+
+
+====== Time:  39 (Quantum Count: 2) ======
+Current Process: P1
+├── CPU Burst Remaining: 0
+└── I/O Burst Total: 6
+
+Run Queue Status:
+├── P1 (CPU: 0)
+├── P0 (CPU: 4)
+├── P3 (CPU: 2)
+├── P2 (CPU: 4)
+├── P4 (CPU: 5)
+├── P5 (CPU: 3)
+└── P6 (CPU: 1)
+
+Wait Queue Status:
+├── P7 (I/O: 1)
+├── P8 (I/O: 2)
+└── P9 (I/O: 5)
+
+
+====== Time:  40 (Quantum Count: 4) ======
+Current Process: P0
+├── CPU Burst Remaining: 3
+└── I/O Burst Total: 7
+
+Run Queue Status:
+├── P0 (CPU: 3)
+├── P3 (CPU: 2)
+├── P2 (CPU: 4)
+├── P4 (CPU: 5)
+├── P5 (CPU: 3)
+├── P6 (CPU: 1)
+└── P7 (CPU: 4)
+
+Wait Queue Status:
+├── P8 (I/O: 1)
+├── P9 (I/O: 4)
+└── P1 (I/O: 6)
+
+
+====== Time:  41 (Quantum Count: 3) ======
+Current Process: P0
+├── CPU Burst Remaining: 2
+└── I/O Burst Total: 7
+
+Run Queue Status:
+├── P0 (CPU: 2)
+├──

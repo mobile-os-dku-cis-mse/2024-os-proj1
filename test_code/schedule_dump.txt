@@ -1,0 +1,48 @@
+--------------------------------
+시간 t|프로세스 pid가 CPU 사용|남은 cpu-burst
+process[0] cpu_burst: 4, io_burst: 7
+process[1] cpu_burst: 8, io_burst: 6
+process[2] cpu_burst: 4, io_burst: 6
+process[3] cpu_burst: 7, io_burst: 3
+process[4] cpu_burst: 10, io_burst: 2
+process[5] cpu_burst: 3, io_burst: 8
+process[6] cpu_burst: 1, io_burst: 10
+process[7] cpu_burst: 4, io_burst: 7
+process[8] cpu_burst: 1, io_burst: 7
+process[9] cpu_burst: 3, io_burst: 7
+-----------------------------------
+     1 (count: 4)
+ [runq] curent_process[0] 121252(cpu:4, io: 7) - idx(cpu_burst)
+ 0(4) -> 1(8) -> 2(4) -> 3(7) -> 4(10) -> 5(3) -> 6(1) -> 7(4) -> 8(1) -> 9(3)
+ [waitq] - idx(io_burst)
+
+-----------------------------------
+     2 (count: 3)
+ [runq] curent_process[0] 121252(cpu:3, io: 7) - idx(cpu_burst)
+ 0(3) -> 1(8) -> 2(4) -> 3(7) -> 4(10) -> 5(3) -> 6(1) -> 7(4) -> 8(1) -> 9(3)
+ [waitq] - idx(io_burst)
+
+-----------------------------------
+     3 (count: 2)
+ [runq] curent_process[0] 121252(cpu:3, io: 7) - idx(cpu_burst)
+ 0(3) -> 1(8) -> 2(4) -> 3(7) -> 4(10) -> 5(3) -> 6(1) -> 7(4) -> 8(1) -> 9(3)
+ [waitq] - idx(io_burst)
+
+-----------------------------------
+     4 (count: 1)
+ [runq] curent_process[0] 121252(cpu:2, io: 7) - idx(cpu_burst)
+ 0(2) -> 1(8) -> 2(4) -> 3(7) -> 4(10) -> 5(3) -> 6(1) -> 7(4) -> 8(1) -> 9(3)
+ [waitq] - idx(io_burst)
+
+-----------------------------------
+     5 (count: 0)
+ [runq] curent_process[0] 121252(cpu:1, io: 7) - idx(cpu_burst)
+ 0(1) -> 1(8) -> 2(4) -> 3(7) -> 4(10) -> 5(3) -> 6(1) -> 7(4) -> 8(1) -> 9(3)
+ [waitq] - idx(io_burst)
+
+-----------------------------------
+     6 (count: 4)
+ [runq] curent_process[1] 120018(cpu:8, io: 6) - idx(cpu_burst)
+ 1(8) -> 2(4) -> 3(7) -> 4(10) -> 5(3) -> 6(1) -> 7(4) -> 8(1) -> 9(3) -> 0(0)
+ [waitq] - idx(io_burst)
+
