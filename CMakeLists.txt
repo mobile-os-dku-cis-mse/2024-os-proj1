@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.29)
+cmake_minimum_required(VERSION 3.22)
 project(2024_os_proj1 C)
 
 set(CMAKE_C_STANDARD 11)

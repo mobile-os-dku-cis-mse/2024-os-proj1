@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/scheduler.dir/src/main.c.o CMakeFiles/scheduler.dir/src/entity/scheduler.c.o CMakeFiles/scheduler.dir/src/util/process.c.o CMakeFiles/scheduler.dir/src/entity/child.c.o CMakeFiles/scheduler.dir/src/util/pid_queue.c.o CMakeFiles/scheduler.dir/src/util/timer.c.o CMakeFiles/scheduler.dir/src/util/message_queue.c.o -o scheduler 
