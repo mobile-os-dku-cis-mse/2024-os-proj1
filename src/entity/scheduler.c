@@ -18,7 +18,7 @@
 
 //#define DEBUG
 //#define SIGALRM_DEBUG
-
+#define METRICS
 unsigned int current_time = 0;
 pcb_queue* ready_queue_schd = NULL;
 pcb_queue* waiting_queue_schd = NULL;
@@ -31,22 +31,45 @@ void sigint_handler(int sig) {
     if (sig == SIGINT) {
         pcb_t* process;
         while ((process = dequeue_pcb(ready_queue_schd, "sigint_handler")) != NULL) {
+            process->waiting_time += current_time - process->arrival_time;
             kill(process->pid, SIGTERM);
             waitpid(process->pid, NULL, 0);
+            process->completion_time = current_time - process->arrival_time;
+
+            printf("Process %d Metrics:\n", process->pid);
+            printf("  Waiting Time: %u\n", process->waiting_time);
+            printf("  Response Time: %u\n", process->response_time);
+            printf("  Execution Time: %u\n", process->execution_time);
+            printf("  Completion Time: %lu\n", process->completion_time);
+
+            destroy_pcb(process);
         }
+        // Waiting 큐에 있는 모든 프로세스 종료
         while ((process = dequeue_pcb(waiting_queue_schd, "sigint_handler")) != NULL) {
             kill(process->pid, SIGTERM);
             waitpid(process->pid, NULL, 0);
+            destroy_pcb(process);
         }
+        // 현재 실행 중인 프로세스 종료
         if (current_process != NULL) {
+            // 실행 시간 업데이트
+            current_process->execution_time += TIME_QUANTUAM - current_process->remaining_time;
+            current_process->completion_time = current_time - current_process->arrival_time;
             kill(current_process->pid, SIGTERM);
             waitpid(current_process->pid, NULL, 0);
+
+            printf("Process %d Metrics:\n", current_process->pid);
+            printf("  Waiting Time: %u\n", current_process->waiting_time);
+            printf("  Response Time: %u\n", current_process->response_time);
+            printf("  Execution Time: %u\n", current_process->execution_time);
+            printf("  Completion Time: %lu\n", current_process->completion_time);
+
+            destroy_pcb(current_process);
         }
         msgctl(msg_queue_id, IPC_RMID, NULL);  // 메시지 큐 삭제
         exit(0);
     }
 }
-
 void handle_io_from_child_by_checking_ipc() {
     io_msg msg;
     memset(&msg, 0, sizeof(msg));
@@ -64,13 +87,15 @@ void handle_io_from_child_by_checking_ipc() {
         if(current_process != NULL && current_process->pid == pid) {
             current_process->state = PROCESS_BLOCKED;
             current_process->io_time = io_time;
-            if(is_finished) current_process->state = PROCESS_TERMINATED;
+            if(is_finished) {
+                current_process->state = PROCESS_TERMINATED;
+
+            }
             if(io_time) {
                 // 현재 프로세스가 IO 요청을 할 것임
                 kill(current_process->pid, SIGUSR2);
                 current_process->io_burst_time = new_io_time;
                 current_process->cpu_burst_time = new_cpu_time;
-
                 enqueue_pcb(waiting_queue_schd, current_process);
 #ifdef DEBUG
                 printf("[IO Handler] Current process = %d has been enqueued into waiting queue\n", current_process->pid);
@@ -97,6 +122,14 @@ void decrease_IO_time() {
 
         if(process->io_time <= 0) {
             process->state = PROCESS_READY;
+            print_pcb(current_process);
+
+            // metric 초기화
+            process->arrival_time = current_time;
+            process->start_time = 0;
+            process->waiting_time = 0;
+            process->response_time = 0;
+
             enqueue_pcb(ready_queue_schd, process);
             kill(process->pid, SIGUSR2);  // 자식 프로세스에 IO 완료 알림
         } else {
@@ -107,18 +140,21 @@ void decrease_IO_time() {
 
 void alarm_handler(int sig) {
     printf("[Tick:: %d]\n", current_time);
-    if(current_process != NULL) {
-        printf("[Scheduler] Current Process = [%d(%d:%d)]\n", current_process->pid, current_process->cpu_burst_time, current_process->io_burst_time);
-    }else {
-        printf("[Scheduler] No current process\n");
-    }
+    if(current_process != NULL) printf("[Scheduler] Current Process = [%d(%d:%d)]\n", current_process->pid, current_process->cpu_burst_time, current_process->io_burst_time);
+    else printf("[Scheduler] No current process\n");
+
     print_ready_pcb_queue(ready_queue_schd);
     print_waiting_pcb_queue(waiting_queue_schd);
     current_time++;  // 전역 시간 증가
     decrease_IO_time();
     handle_io_from_child_by_checking_ipc();
 
-
+    // 대기 시간 증가 구문
+    pcb_t* temp = ready_queue_schd->front;
+    while (temp != NULL) {
+        temp->waiting_time++;
+        temp = temp->next;
+    }
 
 #ifdef SIGALRM_DEBUG
     printf("1\n");
@@ -129,6 +165,7 @@ void alarm_handler(int sig) {
         kill(current_process->pid, SIGALRM);
         current_process->remaining_time--;
         current_process->cpu_burst_time--;
+        current_process->execution_time++;
 #ifdef SIGALRM_DEBUG
         printf("2\n");
 #endif
@@ -145,6 +182,12 @@ void alarm_handler(int sig) {
             enqueue_pcb(ready_queue_schd, current_process);
 
             current_process = dequeue_pcb(ready_queue_schd, "Time out schedule out");
+#ifdef METRICS
+            if (current_process->start_time == 0) {
+                current_process->start_time = current_time;
+                current_process->response_time = current_time - current_process->arrival_time;
+            }
+#endif
             current_process->state = PROCESS_RUNNING;
             current_process->remaining_time = TIME_QUANTUAM;
             kill(current_process->pid, SIGUSR1);
@@ -167,14 +210,17 @@ void alarm_handler(int sig) {
             current_process->remaining_time = TIME_QUANTUAM;
             kill(current_process->pid, SIGUSR1);
 
+            if (current_process->start_time == 0) {
+                current_process->start_time = current_time;
+                current_process->response_time = current_time - current_process->arrival_time;
+            }
+
             printf("========================================\n");
             printf("[Scheduler] Schedule In %d\n", current_process->pid);
             printf("========================================\n");
 
 
             current_time--;
-            //kill(getpid(), SIGALRM);
-            //return;
         } else {
             // 디큐할 거 없으면 틱 그냥 넘기기
 #ifdef SIGALRM_DEBUG
@@ -241,7 +287,7 @@ void scheduler_run(pcb_queue* ready_queue, int n_process) {
 
     // just work with handler function
     while(1) {
-        if(current_time > 10000) {
+        if(current_time > 1000) {
             break;
         }
     };

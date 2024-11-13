@@ -1,0 +1,920 @@
+========================================
+Process ID          : 9703
+State               : 1
+Arrival Time        : 0
+Start Time          : 3
+Completion Time     : 0
+Waiting Time        : 5
+Response Time       : 3
+Execution Time      : 0
+========================================
+========================================
+Process ID          : 9704
+State               : 1
+Arrival Time        : 0
+Start Time          : 4
+Completion Time     : 0
+Waiting Time        : 7
+Response Time       : 4
+Execution Time      : 0
+========================================
+========================================
+Process ID          : 9705
+State               : 1
+Arrival Time        : 0
+Start Time          : 5
+Completion Time     : 0
+Waiting Time        : 9
+Response Time       : 5
+Execution Time      : 0
+========================================
+========================================
+Process ID          : 9706
+State               : 1
+Arrival Time        : 0
+Start Time          : 6
+Completion Time     : 0
+Waiting Time        : 11
+Response Time       : 6
+Execution Time      : 0
+========================================
+========================================
+Process ID          : 9707
+State               : 1
+Arrival Time        : 0
+Start Time          : 7
+Completion Time     : 0
+Waiting Time        : 13
+Response Time       : 7
+Execution Time      : 0
+========================================
+========================================
+Process ID          : 9708
+State               : 1
+Arrival Time        : 0
+Start Time          : 8
+Completion Time     : 0
+Waiting Time        : 15
+Response Time       : 8
+Execution Time      : 0
+========================================
+========================================
+Process ID          : 9709
+State               : 1
+Arrival Time        : 0
+Start Time          : 9
+Completion Time     : 0
+Waiting Time        : 17
+Response Time       : 9
+Execution Time      : 0
+========================================
+========================================
+Process ID          : 9710
+State               : 1
+Arrival Time        : 0
+Start Time          : 10
+Completion Time     : 0
+Waiting Time        : 19
+Response Time       : 10
+Execution Time      : 0
+========================================
+========================================
+Process ID          : 9701
+State               : 1
+Arrival Time        : 3
+Start Time          : 11
+Completion Time     : 0
+Waiting Time        : 16
+Response Time       : 8
+Execution Time      : 1
+========================================
+========================================
+Process ID          : 9701
+State               : 1
+Arrival Time        : 3
+Start Time          : 11
+Completion Time     : 0
+Waiting Time        : 16
+Response Time       : 8
+Execution Time      : 3
+========================================
+========================================
+Process ID          : 9710
+State               : 1
+Arrival Time        : 13
+Start Time          : 55
+Completion Time     : 0
+Waiting Time        : 109
+Response Time       : 42
+Execution Time      : 11
+========================================
+========================================
+Process ID          : 9701
+State               : 1
+Arrival Time        : 123
+Start Time          : 125
+Completion Time     : 0
+Waiting Time        : 3
+Response Time       : 2
+Execution Time      : 12
+========================================
+========================================
+Process ID          : 9702
+State               : 1
+Arrival Time        : 125
+Start Time          : 126
+Completion Time     : 0
+Waiting Time        : 2
+Response Time       : 1
+Execution Time      : 13
+========================================
+========================================
+Process ID          : 9703
+State               : 1
+Arrival Time        : 126
+Start Time          : 127
+Completion Time     : 0
+Waiting Time        : 2
+Response Time       : 1
+Execution Time      : 13
+========================================
+========================================
+Process ID          : 9704
+State               : 2
+Arrival Time        : 128
+Start Time          : 128
+Completion Time     : 0
+Waiting Time        : 1
+Response Time       : 0
+Execution Time      : 14
+========================================
+========================================
+Process ID          : 9705
+State               : 1
+Arrival Time        : 129
+Start Time          : 130
+Completion Time     : 0
+Waiting Time        : 1
+Response Time       : 1
+Execution Time      : 13
+========================================
+========================================
+Process ID          : 9706
+State               : 1
+Arrival Time        : 130
+Start Time          : 131
+Completion Time     : 0
+Waiting Time        : 2
+Response Time       : 1
+Execution Time      : 12
+========================================
+========================================
+Process ID          : 9707
+State               : 1
+Arrival Time        : 131
+Start Time          : 132
+Completion Time     : 0
+Waiting Time        : 2
+Response Time       : 1
+Execution Time      : 12
+========================================
+========================================
+Process ID          : 9708
+State               : 1
+Arrival Time        : 132
+Start Time          : 133
+Completion Time     : 0
+Waiting Time        : 2
+Response Time       : 1
+Execution Time      : 12
+========================================
+========================================
+Process ID          : 9708
+State               : 1
+Arrival Time        : 132
+Start Time          : 133
+Completion Time     : 0
+Waiting Time        : 2
+Response Time       : 1
+Execution Time      : 12
+========================================
+========================================
+Process ID          : 9709
+State               : 1
+Arrival Time        : 133
+Start Time          : 134
+Completion Time     : 0
+Waiting Time        : 2
+Response Time       : 1
+Execution Time      : 12
+========================================
+========================================
+Process ID          : 9709
+State               : 1
+Arrival Time        : 133
+Start Time          : 134
+Completion Time     : 0
+Waiting Time        : 2
+Response Time       : 1
+Execution Time      : 13
+========================================
+========================================
+Process ID          : 9701
+State               : 1
+Arrival Time        : 133
+Start Time          : 135
+Completion Time     : 0
+Waiting Time        : 4
+Response Time       : 2
+Execution Time      : 13
+========================================
+========================================
+Process ID          : 9701
+State               : 1
+Arrival Time        : 133
+Start Time          : 135
+Completion Time     : 0
+Waiting Time        : 4
+Response Time       : 2
+Execution Time      : 15
+========================================
+========================================
+Process ID          : 9702
+State               : 1
+Arrival Time        : 134
+Start Time          : 139
+Completion Time     : 0
+Waiting Time        : 7
+Response Time       : 5
+Execution Time      : 15
+========================================
+========================================
+Process ID          : 9702
+State               : 1
+Arrival Time        : 134
+Start Time          : 139
+Completion Time     : 0
+Waiting Time        : 7
+Response Time       : 5
+Execution Time      : 17
+========================================
+========================================
+Process ID          : 9710
+State               : 1
+Arrival Time        : 135
+Start Time          : 144
+Completion Time     : 0
+Waiting Time        : 11
+Response Time       : 9
+Execution Time      : 13
+========================================
+========================================
+Process ID          : 9703
+State               : 1
+Arrival Time        : 135
+Start Time          : 146
+Completion Time     : 0
+Waiting Time        : 12
+Response Time       : 11
+Execution Time      : 13
+========================================
+========================================
+Process ID          : 9703
+State               : 1
+Arrival Time        : 135
+Start Time          : 146
+Completion Time     : 0
+Waiting Time        : 12
+Response Time       : 11
+Execution Time      : 15
+========================================
+========================================
+Process ID          : 9701
+State               : 1
+Arrival Time        : 133
+Start Time          : 135
+Completion Time     : 0
+Waiting Time        : 21
+Response Time       : 2
+Execution Time      : 22
+========================================
+========================================
+Process ID          : 9705
+State               : 1
+Arrival Time        : 141
+Start Time          : 160
+Completion Time     : 0
+Waiting Time        : 64
+Response Time       : 19
+Execution Time      : 19
+========================================
+========================================
+Process ID          : 9707
+State               : 1
+Arrival Time        : 145
+Start Time          : 175
+Completion Time     : 0
+Waiting Time        : 73
+Response Time       : 30
+Execution Time      : 18
+========================================
+========================================
+Process ID          : 9704
+State               : 1
+Arrival Time        : 137
+Start Time          : 150
+Completion Time     : 0
+Waiting Time        : 94
+Response Time       : 13
+Execution Time      : 24
+========================================
+========================================
+Process ID          : 9710
+State               : 1
+Arrival Time        : 160
+Start Time          : 200
+Completion Time     : 0
+Waiting Time        : 78
+Response Time       : 40
+Execution Time      : 19
+========================================
+========================================
+Process ID          : 9705
+State               : 1
+Arrival Time        : 141
+Start Time          : 160
+Completion Time     : 0
+Waiting Time        : 101
+Response Time       : 19
+Execution Time      : 24
+========================================
+========================================
+Process ID          : 9706
+State               : 1
+Arrival Time        : 143
+Start Time          : 165
+Completion Time     : 0
+Waiting Time        : 102
+Response Time       : 22
+Execution Time      : 23
+========================================
+========================================
+Process ID          : 9702
+State               : 1
+Arrival Time        : 220
+Start Time          : 250
+Completion Time     : 0
+Waiting Time        : 35
+Response Time       : 30
+Execution Time      : 26
+========================================
+========================================
+Process ID          : 9707
+State               : 1
+Arrival Time        : 145
+Start Time          : 175
+Completion Time     : 0
+Waiting Time        : 106
+Response Time       : 30
+Execution Time      : 23
+========================================
+========================================
+Process ID          : 9708
+State               : 1
+Arrival Time        : 146
+Start Time          : 180
+Completion Time     : 0
+Waiting Time        : 107
+Response Time       : 34
+Execution Time      : 23
+========================================
+========================================
+Process ID          : 9709
+State               : 1
+Arrival Time        : 148
+Start Time          : 185
+Completion Time     : 0
+Waiting Time        : 108
+Response Time       : 37
+Execution Time      : 23
+========================================
+========================================
+Process ID          : 9703
+State               : 1
+Arrival Time        : 237
+Start Time          : 258
+Completion Time     : 0
+Waiting Time        : 29
+Response Time       : 21
+Execution Time      : 25
+========================================
+========================================
+Process ID          : 9704
+State               : 1
+Arrival Time        : 239
+Start Time          : 260
+Completion Time     : 0
+Waiting Time        : 29
+Response Time       : 21
+Execution Time      : 26
+========================================
+========================================
+Process ID          : 9710
+State               : 1
+Arrival Time        : 160
+Start Time          : 200
+Completion Time     : 0
+Waiting Time        : 105
+Response Time       : 40
+Execution Time      : 24
+========================================
+========================================
+Process ID          : 9701
+State               : 1
+Arrival Time        : 246
+Start Time          : 266
+Completion Time     : 0
+Waiting Time        : 29
+Response Time       : 20
+Execution Time      : 27
+========================================
+========================================
+Process ID          : 9706
+State               : 1
+Arrival Time        : 250
+Start Time          : 273
+Completion Time     : 0
+Waiting Time        : 31
+Response Time       : 23
+Execution Time      : 25
+========================================
+========================================
+Process ID          : 9702
+State               : 1
+Arrival Time        : 252
+Start Time          : 275
+Completion Time     : 0
+Waiting Time        : 31
+Response Time       : 23
+Execution Time      : 28
+========================================
+========================================
+Process ID          : 9708
+State               : 1
+Arrival Time        : 256
+Start Time          : 282
+Completion Time     : 0
+Waiting Time        : 33
+Response Time       : 26
+Execution Time      : 25
+========================================
+========================================
+Process ID          : 9709
+State               : 1
+Arrival Time        : 258
+Start Time          : 284
+Completion Time     : 0
+Waiting Time        : 33
+Response Time       : 26
+Execution Time      : 25
+========================================
+========================================
+Process ID          : 9703
+State               : 1
+Arrival Time        : 260
+Start Time          : 286
+Completion Time     : 0
+Waiting Time        : 33
+Response Time       : 26
+Execution Time      : 27
+========================================
+========================================
+Process ID          : 9701
+State               : 1
+Arrival Time        : 246
+Start Time          : 266
+Completion Time     : 0
+Waiting Time        : 62
+Response Time       : 20
+Execution Time      : 32
+========================================
+========================================
+Process ID          : 9701
+State               : 1
+Arrival Time        : 246
+Start Time          : 266
+Completion Time     : 0
+Waiting Time        : 239
+Response Time       : 20
+Execution Time      : 52
+========================================
+========================================
+Process ID          : 9706
+State               : 1
+Arrival Time        : 275
+Start Time          : 307
+Completion Time     : 0
+Waiting Time        : 259
+Response Time       : 32
+Execution Time      : 52
+========================================
+========================================
+Process ID          : 9708
+State               : 1
+Arrival Time        : 284
+Start Time          : 322
+Completion Time     : 0
+Waiting Time        : 263
+Response Time       : 38
+Execution Time      : 52
+========================================
+========================================
+Process ID          : 9704
+State               : 1
+Arrival Time        : 494
+Start Time          : 538
+Completion Time     : 0
+Waiting Time        : 90
+Response Time       : 44
+Execution Time      : 54
+========================================
+========================================
+Process ID          : 9706
+State               : 1
+Arrival Time        : 275
+Start Time          : 307
+Completion Time     : 0
+Waiting Time        : 304
+Response Time       : 32
+Execution Time      : 57
+========================================
+========================================
+Process ID          : 9702
+State               : 1
+Arrival Time        : 567
+Start Time          : 608
+Completion Time     : 0
+Waiting Time        : 45
+Response Time       : 41
+Execution Time      : 62
+========================================
+========================================
+Process ID          : 9708
+State               : 1
+Arrival Time        : 284
+Start Time          : 322
+Completion Time     : 0
+Waiting Time        : 308
+Response Time       : 38
+Execution Time      : 57
+========================================
+========================================
+Process ID          : 9710
+State               : 1
+Arrival Time        : 298
+Start Time          : 342
+Completion Time     : 0
+Waiting Time        : 302
+Response Time       : 44
+Execution Time      : 60
+========================================
+========================================
+Process ID          : 9703
+State               : 1
+Arrival Time        : 586
+Start Time          : 625
+Completion Time     : 0
+Waiting Time        : 45
+Response Time       : 39
+Execution Time      : 61
+========================================
+========================================
+Process ID          : 9704
+State               : 1
+Arrival Time        : 494
+Start Time          : 538
+Completion Time     : 0
+Waiting Time        : 135
+Response Time       : 44
+Execution Time      : 59
+========================================
+========================================
+Process ID          : 9705
+State               : 1
+Arrival Time        : 600
+Start Time          : 637
+Completion Time     : 0
+Waiting Time        : 44
+Response Time       : 37
+Execution Time      : 63
+========================================
+========================================
+Process ID          : 9705
+State               : 1
+Arrival Time        : 600
+Start Time          : 637
+Completion Time     : 0
+Waiting Time        : 44
+Response Time       : 37
+Execution Time      : 65
+========================================
+========================================
+Process ID          : 9707
+State               : 1
+Arrival Time        : 613
+Start Time          : 650
+Completion Time     : 0
+Waiting Time        : 43
+Response Time       : 37
+Execution Time      : 64
+========================================
+========================================
+Process ID          : 9710
+State               : 1
+Arrival Time        : 630
+Start Time          : 668
+Completion Time     : 0
+Waiting Time        : 42
+Response Time       : 38
+Execution Time      : 67
+========================================
+========================================
+Process ID          : 9706
+State               : 1
+Arrival Time        : 608
+Start Time          : 641
+Completion Time     : 0
+Waiting Time        : 81
+Response Time       : 33
+Execution Time      : 69
+========================================
+========================================
+Process ID          : 9702
+State               : 1
+Arrival Time        : 653
+Start Time          : 690
+Completion Time     : 0
+Waiting Time        : 40
+Response Time       : 37
+Execution Time      : 73
+========================================
+========================================
+Process ID          : 9708
+State               : 1
+Arrival Time        : 621
+Start Time          : 654
+Completion Time     : 0
+Waiting Time        : 80
+Response Time       : 33
+Execution Time      : 69
+========================================
+========================================
+Process ID          : 9709
+State               : 1
+Arrival Time        : 625
+Start Time          : 659
+Completion Time     : 0
+Waiting Time        : 79
+Response Time       : 34
+Execution Time      : 69
+========================================
+========================================
+Process ID          : 9703
+State               : 1
+Arrival Time        : 671
+Start Time          : 704
+Completion Time     : 0
+Waiting Time        : 38
+Response Time       : 33
+Execution Time      : 72
+========================================
+========================================
+Process ID          : 9704
+State               : 1
+Arrival Time        : 638
+Start Time          : 672
+Completion Time     : 0
+Waiting Time        : 77
+Response Time       : 34
+Execution Time      : 71
+========================================
+========================================
+Process ID          : 9701
+State               : 1
+Arrival Time        : 640
+Start Time          : 677
+Completion Time     : 0
+Waiting Time        : 79
+Response Time       : 37
+Execution Time      : 77
+========================================
+========================================
+Process ID          : 9708
+State               : 1
+Arrival Time        : 704
+Start Time          : 739
+Completion Time     : 0
+Waiting Time        : 127
+Response Time       : 35
+Execution Time      : 79
+========================================
+========================================
+Process ID          : 9710
+State               : 1
+Arrival Time        : 715
+Start Time          : 754
+Completion Time     : 0
+Waiting Time        : 128
+Response Time       : 39
+Execution Time      : 82
+========================================
+========================================
+Process ID          : 9707
+State               : 1
+Arrival Time        : 701
+Start Time          : 734
+Completion Time     : 0
+Waiting Time        : 158
+Response Time       : 33
+Execution Time      : 85
+========================================
+========================================
+Process ID          : 9709
+State               : 1
+Arrival Time        : 707
+Start Time          : 744
+Completion Time     : 0
+Waiting Time        : 163
+Response Time       : 37
+Execution Time      : 86
+========================================
+========================================
+Process ID          : 9702
+State               : 1
+Arrival Time        : 849
+Start Time          : 879
+Completion Time     : 0
+Waiting Time        : 35
+Response Time       : 30
+Execution Time      : 90
+========================================
+========================================
+Process ID          : 9710
+State               : 1
+Arrival Time        : 715
+Start Time          : 754
+Completion Time     : 0
+Waiting Time        : 163
+Response Time       : 39
+Execution Time      : 88
+========================================
+========================================
+Process ID          : 9703
+State               : 1
+Arrival Time        : 866
+Start Time          : 890
+Completion Time     : 0
+Waiting Time        : 29
+Response Time       : 24
+Execution Time      : 89
+========================================
+========================================
+Process ID          : 9701
+State               : 1
+Arrival Time        : 836
+Start Time          : 868
+Completion Time     : 0
+Waiting Time        : 62
+Response Time       : 32
+Execution Time      : 93
+========================================
+========================================
+Process ID          : 9705
+State               : 1
+Arrival Time        : 878
+Start Time          : 896
+Completion Time     : 0
+Waiting Time        : 22
+Response Time       : 18
+Execution Time      : 89
+========================================
+========================================
+Process ID          : 9706
+State               : 1
+Arrival Time        : 881
+Start Time          : 900
+Completion Time     : 0
+Waiting Time        : 23
+Response Time       : 19
+Execution Time      : 91
+========================================
+========================================
+Process ID          : 9707
+State               : 1
+Arrival Time        : 885
+Start Time          : 907
+Completion Time     : 0
+Waiting Time        : 26
+Response Time       : 22
+Execution Time      : 87
+========================================
+========================================
+Process ID          : 9707
+State               : 1
+Arrival Time        : 885
+Start Time          : 907
+Completion Time     : 0
+Waiting Time        : 26
+Response Time       : 22
+Execution Time      : 88
+========================================
+========================================
+Process ID          : 9709
+State               : 1
+Arrival Time        : 896
+Start Time          : 918
+Completion Time     : 0
+Waiting Time        : 25
+Response Time       : 22
+Execution Time      : 88
+========================================
+========================================
+Process ID          : 9710
+State               : 1
+Arrival Time        : 904
+Start Time          : 929
+Completion Time     : 0
+Waiting Time        : 28
+Response Time       : 25
+Execution Time      : 91
+========================================
+========================================
+Process ID          : 9704
+State               : 1
+Arrival Time        : 907
+Start Time          : 935
+Completion Time     : 0
+Waiting Time        : 31
+Response Time       : 28
+Execution Time      : 90
+========================================
+========================================
+Process ID          : 9708
+State               : 1
+Arrival Time        : 892
+Start Time          : 911
+Completion Time     : 0
+Waiting Time        : 55
+Response Time       : 19
+Execution Time      : 93
+========================================
+========================================
+Process ID          : 9703
+State               : 1
+Arrival Time        : 919
+Start Time          : 947
+Completion Time     : 0
+Waiting Time        : 32
+Response Time       : 28
+Execution Time      : 94
+========================================
+========================================
+Process ID          : 9701
+State               : 1
+Arrival Time        : 897
+Start Time          : 922
+Completion Time     : 0
+Waiting Time        : 58
+Response Time       : 25
+Execution Time      : 99
+========================================
+========================================
+Process ID          : 9706
+State               : 1
+Arrival Time        : 936
+Start Time          : 964
+Completion Time     : 0
+Waiting Time        : 32
+Response Time       : 28
+Execution Time      : 95
+========================================
+========================================
+Process ID          : 9702
+State               : 1
+Arrival Time        : 908
+Start Time          : 939
+Completion Time     : 0
+Waiting Time        : 65
+Response Time       : 31
+Execution Time      : 100
+========================================
+========================================
+Process ID          : 9705
+State               : 1
+Arrival Time        : 930
+Start Time          : 957
+Completion Time     : 0
+Waiting Time        : 69
+Response Time       : 27
+Execution Time      : 102
+========================================

@@ -108,7 +108,7 @@ void init_child() {
         exit(1);
     }
     srand(time(NULL));
-    cpu_burst = 1;
+    cpu_burst = rand() % 10 + 1;
     io_burst = rand() % 10 + 1;
 
 

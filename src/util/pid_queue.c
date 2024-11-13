@@ -5,6 +5,8 @@
 #include <time.h>
 #include "pid_queue.h"
 //#define DEBUG
+
+extern FILE* pcb_logs;
 pcb_t* create_pcb(pid_t pid, int cpu_burst, int priority) {
     pcb_t* new_pcb = (pcb_t*)malloc(sizeof(pcb_t));
     if (!new_pcb) {
@@ -119,6 +121,24 @@ pcb_t* find_pcb(pcb_queue* queue, pid_t pid) {
         current = current->next;
     }
     return NULL;
+}
+
+void print_pcb(pcb_t* pcb) {
+    if (pcb == NULL) {
+        printf("PCB is NULL\n");
+        return;
+    }
+
+    fprintf(pcb_logs,"========================================\n");
+    fprintf(pcb_logs,"Process ID          : %d\n", pcb->pid);
+    fprintf(pcb_logs,"State               : %d\n", pcb->state);
+    fprintf(pcb_logs,"Arrival Time        : %u\n", (unsigned int)pcb->arrival_time);
+    fprintf(pcb_logs,"Start Time          : %u\n", (unsigned int)pcb->start_time);
+    fprintf(pcb_logs,"Completion Time     : %u\n", (unsigned int)pcb->completion_time);
+    fprintf(pcb_logs,"Waiting Time        : %u\n", pcb->waiting_time);
+    fprintf(pcb_logs,"Response Time       : %u\n", pcb->response_time);
+    fprintf(pcb_logs,"Execution Time      : %u\n", pcb->execution_time);
+    fprintf(pcb_logs,"========================================\n");
 }
 
 // print its cpu burst and io burst
