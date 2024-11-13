@@ -129,7 +129,7 @@ void decrease_IO_time() {
             process->start_time = 0;
             process->waiting_time = 0;
             process->response_time = 0;
-
+            process->execution_time = 0;
             enqueue_pcb(ready_queue_schd, process);
             kill(process->pid, SIGUSR2);  // 자식 프로세스에 IO 완료 알림
         } else {
@@ -287,7 +287,7 @@ void scheduler_run(pcb_queue* ready_queue, int n_process) {
 
     // just work with handler function
     while(1) {
-        if(current_time > 1000) {
+        if(current_time > 10000) {
             break;
         }
     };
