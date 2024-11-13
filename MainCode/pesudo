@@ -1,0 +1,128 @@
+1. 
+자식 프로세스 생성 함수 (create_children):
+    for i = 0 to NUM_CHILDREN - 1:
+        pid = fork()
+        if (pid == 0):  // 자식 프로세스인 경우
+            랜덤한 cpu_burst와 io_burst 초기화
+            메시지 구조체 msg 선언
+
+            while (true):
+                msg 큐에서 메시지 수신 (msgrcv 호출)
+                if (수신 실패):
+                    오류 메시지 출력 후 종료
+
+                cpu_burst -= TIME_QUANTUM
+
+                if (cpu_burst <= 0):
+                    msg에 다음 io_burst 값을 저장
+                    부모 프로세스에 메시지 전송 (msgsnd 호출)
+                    if (전송 실패):
+                        오류 메시지 출력 후 종료
+
+            프로세스 종료
+        else:  // 부모 프로세스인 경우
+            run_queue[i]에 자식 PID 저장
+            remaining_burst[i]와 io_burst[i]를 랜덤하게 초기화
+
+
+2. 
+타이머 설정 함수 (setup_timer):
+    타이머 값 설정 (0.05초 주기)
+
+    SIGALRM 신호 핸들러 설정 (signal_handler 함수로 설정)
+    if (sigaction 실패):
+        오류 메시지 출력 후 종료
+
+
+3. 
+signal_handler 함수:
+    tick_count 증가
+
+    if (tick_count가 100의 배수):
+        "Current Timer Tick: tick_count" 출력
+
+    // 모든 프로세스의 대기 시간 및 I/O 대기 시간 업데이트
+    for i = 0 to NUM_CHILDREN - 1:
+        if (i != current_process && remaining_burst[i] > 0):
+            wait_time[i] += 1  // 현재 프로세스가 아닌 경우 대기 시간 증가
+
+        if (io_burst[i] > 0):
+            io_wait_time[i] += 1  // I/O 대기 시간 증가
+
+    RR 스케줄러 호출 (RR_scheduler)
+
+    // 현재 Run-queue와 Wait-queue 상태를 로그에 기록
+    "Tick tick_count:"를 로그에 기록
+    "Run-queue:" 및 각 프로세스의 remaining_burst 값을 로그에 기록
+    "Wait-queue:" 및 각 프로세스의 io_burst 값을 로그에 기록
+    로그 파일을 플러시 (즉시 기록)
+
+
+4. 
+RR_scheduler 함수:
+    if (현재 프로세스의 remaining_burst > 0):
+        msg에 현재 프로세스 PID와 타임 슬라이스 저장
+        msg 큐에 메시지 전송 (msgsnd 호출)
+        if (전송 실패):
+            오류 메시지 출력
+
+        // CPU 사용 상황을 로그에 기록
+        "at time tick_count, process PID gets cpu time, remaining cpu-burst: remaining_burst" 기록
+
+        remaining_burst 감소 (TIME_QUANTUM만큼)
+        현재 프로세스의 CPU 사용 시간 증가 (cpu_usage_time 배열에 기록)
+
+        if (remaining_burst <= 0):
+            I/O 처리 함수 호출 (handle_io)
+
+    current_process = (current_process + 1) % NUM_CHILDREN
+
+
+5. 
+handle_io 함수:
+    for i = 0 to NUM_CHILDREN - 1:
+        if (io_burst[i] > 0):
+            io_burst 감소 (1씩 감소)
+
+            if (io_burst[i] == 0):
+                remaining_burst[i]와 io_burst[i]에 새로운 랜덤 값 할당
+                "Process PID completed I/O, returning to Run-queue" 로그에 기록
+
+
+6. 
+메인 함수:
+    현재 시간 기록 (프로그램 시작 시간)
+
+    "Program started" 메시지 출력
+    
+    schedule_dump.txt 파일 열기
+    if (파일 열기 실패):
+        오류 메시지 출력 후 종료
+
+    메시지 큐 생성
+    if (메시지 큐 생성 실패):
+        오류 메시지 출력 후 종료
+
+    자식 프로세스 생성 함수 호출 (create_children)
+    타이머 설정 함수 호출 (setup_timer)
+
+    while (tick_count < MAX_TICKS):
+        SIGALRM 신호를 기다림 (pause 함수로 대기)
+
+    모든 자식 프로세스가 종료될 때까지 기다림 (wait 호출 반복)
+
+    메시지 큐 삭제 (msgctl 호출)
+    schedule_dump.txt 파일 닫기
+
+    현재 시간 기록 (프로그램 종료 시간)
+
+    프로그램 실행 시간 계산
+    각 프로세스별 CPU 사용률 계산
+
+    "Process Statistics" 메시지 출력
+    각 프로세스별 CPU 사용 시간, 대기 시간, I/O 대기 시간 출력
+
+    "Total Execution Time", "CPU Utilization" 출력
+    "All processes have been terminated" 메시지 출력
+
+
