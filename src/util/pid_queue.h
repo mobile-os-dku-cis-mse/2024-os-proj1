@@ -13,19 +13,20 @@
 #ifndef TIME_QUANTUAM
 #define TIME_QUANTUAM 5
 #endif
+
 // PCB(Process Control Block) 구조체
 typedef struct _PCB {
     pid_t pid;              // 프로세스 ID
     int cpu_burst_time;     // CPU 실행 시간
     int io_burst_time;      // I/O 작업 시간
-    int remaining_time;   // 남은 타임 퀀텀
+    int remaining_time;     // 남은 타임 퀀텀
     int priority;           // 우선순위
-    int state;             // 프로세스 상태
-    unsigned int io_time;           // 입출력 요청 시간
+    int state;              // 프로세스 상태
+    unsigned int io_time;   // 입출력 요청 시간
     time_t arrival_time;    // 도착 시간
     time_t start_time;      // 첫 실행 시작 시간
     time_t completion_time; // 완료 시간
-    struct _PCB* next;     // 다음 PCB 포인터
+    struct _PCB* next;      // 다음 PCB 포인터
 } pcb_t;
 
 // PCB 큐 구조체
@@ -41,7 +42,8 @@ void enqueue_pcb(pcb_queue* queue, pcb_t* process);
 pcb_t* dequeue_pcb(pcb_queue* queue, char* callback_name);
 void remove_pcb(pcb_queue* queue, pid_t pid);
 pcb_t* find_pcb(pcb_queue* queue, pid_t pid);
-void print_pcb_queue(pcb_queue* queue);
+void print_ready_pcb_queue(pcb_queue* queue);
+void print_waiting_pcb_queue(pcb_queue* queue);
 void destroy_pcb_queue(pcb_queue* queue);
 int is_queue_empty(pcb_queue* queue);
 int get_queue_size(pcb_queue* queue);

@@ -30,12 +30,14 @@ int EOP = 0; // End of Process
 volatile sig_atomic_t sigusr1_received = 0;
 volatile sig_atomic_t sigusr2_received = 0;
 
-void request_io_msgsnd(int io_time) {
+void request_io_msgsnd(int requesting_io_time, int new_cpu_burst, int new_io_burst) {
     io_msg msg;
-    memset(&msg, 0, sizeof(msg));
+    memset(&msg, 0, sizeof(io_msg));
     msg.msg_t = 0;
     msg.pid = getpid();
-    msg.io_time = io_time;
+    msg.io_time = requesting_io_time;
+    msg.new_cpu_burst = new_cpu_burst;
+    msg.new_io_burst = new_io_burst;
     msg.is_finished = EOP;
     if(msgsnd(msg_queue_id, &msg, sizeof(io_msg), IPC_NOWAIT) == -1) {
         perror("child_msgsnd");
@@ -62,10 +64,13 @@ void child_SIGALRM(int sig) {
         printf("[Child::%d] CPU burst completed. Requesting IO.\n", getpid());
 #endif
         process_state = PROCESS_BLOCKED;
-        request_io_msgsnd(io_burst);
+        int new_cpu_burst = rand() % 20 + 1;
+        int new_io_burst = rand() % 20 + 1;
+
+        request_io_msgsnd(io_burst, new_cpu_burst, new_io_burst);
         total_exec_time += io_burst;
-        cpu_burst = rand() % 10 + 1;
-        io_burst = rand() % 10 + 1;
+        cpu_burst = new_cpu_burst;
+        io_burst = new_io_burst;
         cpu_time = TIME_QUANTUAM;
     }
 }

@@ -121,18 +121,33 @@ pcb_t* find_pcb(pcb_queue* queue, pid_t pid) {
     return NULL;
 }
 
-void print_pcb_queue(pcb_queue* queue) {
+// print its cpu burst and io burst
+void print_ready_pcb_queue(pcb_queue* queue) {
     if (queue == NULL || is_queue_empty(queue)) {
         printf("Queue is empty.\n");
         return;
     }
     pcb_t* current = queue->front;
-    printf("PCB Queue PIDs: ");
+    printf("Ready Queue: ");
     while (current != NULL) {
-        printf("[%d] ", current->pid);
+        printf("[%d(%d:%d)] ", current->pid, current->cpu_burst_time, current->io_burst_time);
         current = current->next;
     }
     printf("\n");
+}
+
+void print_waiting_pcb_queue(pcb_queue* queue) {
+    if (queue == NULL || is_queue_empty(queue)) {
+        printf("Queue is empty.\n");
+        return;
+    }
+    pcb_t* current = queue->front;
+    printf("Waiting Queue: ");
+    while (current != NULL) {
+        printf("[%d(X:%d)] ", current->pid, current->io_time);
+        current = current->next;
+    }
+    printf("\n\n");
 }
 
 

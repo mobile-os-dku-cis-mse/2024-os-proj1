@@ -16,6 +16,8 @@ typedef struct{
     int msg_t;
     pid_t pid;
     unsigned int io_time;
+    int new_io_burst;
+    int new_cpu_burst;
     int is_finished;
 }io_msg;
 

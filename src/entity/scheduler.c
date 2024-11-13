@@ -55,7 +55,12 @@ void handle_io_from_child_by_checking_ipc() {
         pid_t pid = msg.pid;
         unsigned int io_time = msg.io_time;
         int is_finished = msg.is_finished;
-
+        int new_cpu_time = msg.new_cpu_burst;
+        int new_io_time = msg.new_io_burst;
+#ifdef DEBUG
+        printf("[IO Handler] received the msg by child %d, io time = %d, is_finished = %d, new_cpu_time = %d, new_io_t ime = %d\n",
+            msg.pid, msg.io_time, msg.new_cpu_burst, msg.new_io_burst);
+#endif
         if(current_process != NULL && current_process->pid == pid) {
             current_process->state = PROCESS_BLOCKED;
             current_process->io_time = io_time;
@@ -63,10 +68,13 @@ void handle_io_from_child_by_checking_ipc() {
             if(io_time) {
                 // 현재 프로세스가 IO 요청을 할 것임
                 kill(current_process->pid, SIGUSR2);
+                current_process->io_burst_time = new_io_time;
+                current_process->cpu_burst_time = new_cpu_time;
 
                 enqueue_pcb(waiting_queue_schd, current_process);
+#ifdef DEBUG
                 printf("[IO Handler] Current process = %d has been enqueued into waiting queue\n", current_process->pid);
-
+#endif
 
                 //current_process = dequeue_pcb(ready_queue_schd, "handle_io_from_child_by_checking_ipc");
                 //kill(current_process->pid, SIGUSR1);
@@ -91,9 +99,6 @@ void decrease_IO_time() {
             process->state = PROCESS_READY;
             enqueue_pcb(ready_queue_schd, process);
             kill(process->pid, SIGUSR2);  // 자식 프로세스에 IO 완료 알림
-#ifdef DEBUG
-            fprintf(IO_result,"[Tick:: %d] Process %d IO completed, moved to ready queue\n", current_time, process->pid);
-#endif
         } else {
             enqueue_pcb(waiting_queue_schd, process);
         }
@@ -102,17 +107,18 @@ void decrease_IO_time() {
 
 void alarm_handler(int sig) {
     printf("[Tick:: %d]\n", current_time);
-    print_pcb_queue(ready_queue_schd);
-    print_pcb_queue(waiting_queue_schd);
-
-    current_time++;  // 전역 시간 증가
-    decrease_IO_time();
-    handle_io_from_child_by_checking_ipc();
     if(current_process != NULL) {
-        printf("[Scheduler] Current Process = %d\n", current_process->pid);
+        printf("[Scheduler] Current Process = [%d(%d:%d)]\n", current_process->pid, current_process->cpu_burst_time, current_process->io_burst_time);
     }else {
         printf("[Scheduler] No current process\n");
     }
+    print_ready_pcb_queue(ready_queue_schd);
+    print_waiting_pcb_queue(waiting_queue_schd);
+    current_time++;  // 전역 시간 증가
+    decrease_IO_time();
+    handle_io_from_child_by_checking_ipc();
+
+
 
 #ifdef SIGALRM_DEBUG
     printf("1\n");
@@ -122,6 +128,7 @@ void alarm_handler(int sig) {
                                         && current_process->remaining_time > 0) {
         kill(current_process->pid, SIGALRM);
         current_process->remaining_time--;
+        current_process->cpu_burst_time--;
 #ifdef SIGALRM_DEBUG
         printf("2\n");
 #endif
@@ -141,6 +148,10 @@ void alarm_handler(int sig) {
             current_process->state = PROCESS_RUNNING;
             current_process->remaining_time = TIME_QUANTUAM;
             kill(current_process->pid, SIGUSR1);
+            printf("========================================\n");
+            printf("[Scheduler] Schedule In %d\n", current_process->pid);
+            printf("========================================\n");
+
         }
     }else {
         // 현재 실행 중인 프로세스가 없는 경우
@@ -155,11 +166,11 @@ void alarm_handler(int sig) {
             current_process->state = PROCESS_RUNNING;
             current_process->remaining_time = TIME_QUANTUAM;
             kill(current_process->pid, SIGUSR1);
-#ifdef DEBUG
+
             printf("========================================\n");
             printf("[Scheduler] Schedule In %d\n", current_process->pid);
             printf("========================================\n");
-#endif
+
 
             current_time--;
             //kill(getpid(), SIGALRM);
@@ -234,5 +245,5 @@ void scheduler_run(pcb_queue* ready_queue, int n_process) {
             break;
         }
     };
-    kill(getpid(), SIGINT);
+    sigint_handler(SIGINT);
 }
