@@ -9,8 +9,13 @@
 #include "message_queue.h"
 
 #define NUM_CHILDREN 10
+#define TIME_QUANTUM 1
 
 int msgid;
+int msgid;
+int remaining_quantum[NUM_CHILDREN];
+pid_t child_pids[NUM_CHILDREN];
+int current_child = 0;
 
 int main()
 {
