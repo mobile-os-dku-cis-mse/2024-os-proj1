@@ -270,10 +270,11 @@ void RR_scheduler()
     current_process = (current_process + 1) % NUM_CHILDREN;
 }
 
+// FCFS 방식으로 run_queue의 처음 프로세스부터 시작하여 종료할 때까지 실행
 void FCFS_scheduler() 
 {
-    // FCFS 방식으로 run_queue의 처음 프로세스부터 시작하여 종료할 때까지 실행
-    for (int i = 0; i < NUM_CHILDREN; i++) {
+    for (int i = 0; i < NUM_CHILDREN; i++) 
+    {
         if (remaining_burst[i] > 0) {
             struct my_msgbuf msg;
             msg.mtype = run_queue[i];
@@ -298,19 +299,20 @@ void FCFS_scheduler()
     }
 }
 
+    // SJF 방식으로 최소 burst time을 가진 프로세스 선택
 void SJF_scheduler() 
 {
     int shortest_job = -1;
     int min_burst = __INT_MAX__; // 초기값 설정
-    
-    // SJF 방식으로 최소 burst time을 가진 프로세스 선택
-    for (int i = 0; i < NUM_CHILDREN; i++) {
+
+    for (int i = 0; i < NUM_CHILDREN; i++) 
+    {
         if (remaining_burst[i] > 0 && remaining_burst[i] < min_burst) {
             min_burst = remaining_burst[i];
             shortest_job = i;
         }
     }
-    
+
     if (shortest_job != -1) {
         struct my_msgbuf msg;
         msg.mtype = run_queue[shortest_job];
@@ -333,6 +335,7 @@ void SJF_scheduler()
     }
 }
 
+// 72tick 까지 작동하고 다시 tick이 0으로 초기화됨 이게 원인인 듯ㄴ
 
 // I/O 작업 완료 후 큐로 복귀
 void handle_io() 
