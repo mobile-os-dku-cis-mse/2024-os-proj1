@@ -4,7 +4,7 @@
 # compile C with /usr/bin/cc
 C_DEFINES = 
 
-C_INCLUDES = -I/home/hochacha/repos/2024-os-proj1/.
+C_INCLUDES = -I/home/assam_vallen/myProj2/2024-os-proj1/.
 
 C_FLAGS = -std=gnu11
 

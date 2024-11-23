@@ -1,8 +1,8 @@
 CMakeFiles/scheduler.dir/src/util/message_queue.c.o: \
- /home/hochacha/repos/2024-os-proj1/src/util/message_queue.c \
+ /home/assam_vallen/myProj2/2024-os-proj1/src/util/message_queue.c \
  /usr/include/stdc-predef.h \
- /home/hochacha/repos/2024-os-proj1/src/util/message_queue.h \
- /home/hochacha/repos/2024-os-proj1/src/util/pid_queue.h \
+ /home/assam_vallen/myProj2/2024-os-proj1/src/util/message_queue.h \
+ /home/assam_vallen/myProj2/2024-os-proj1/src/util/pid_queue.h \
  /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/features.h \
  /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \

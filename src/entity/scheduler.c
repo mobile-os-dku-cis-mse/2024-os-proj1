@@ -34,7 +34,7 @@ void sigint_handler(int sig) {
             process->waiting_time += current_time - process->arrival_time;
             kill(process->pid, SIGTERM);
             waitpid(process->pid, NULL, 0);
-            process->completion_time = current_time - process->arrival_time;
+	    process->completion_time = process->response_time + process->waiting_time + process->execution_time;
 
             printf("Process %d Metrics:\n", process->pid);
             printf("  Waiting Time: %u\n", process->waiting_time);
@@ -54,7 +54,7 @@ void sigint_handler(int sig) {
         if (current_process != NULL) {
             // 실행 시간 업데이트
             current_process->execution_time += TIME_QUANTUAM - current_process->remaining_time;
-            current_process->completion_time = current_time - current_process->arrival_time;
+            current_process->completion_time = current_process->response_time + current_process->waiting_time + current_process->execution_time;
             kill(current_process->pid, SIGTERM);
             waitpid(current_process->pid, NULL, 0);
 
@@ -176,7 +176,7 @@ void alarm_handler(int sig) {
 #endif
         if(current_process->remaining_time <= 0) {
             printf("[Scheduler::%d] Schedule out ", getpid());
-            printf("[Currentprocess = %d]\n",current_process->pid);
+            printf("[Current process = %d]\n",current_process->pid);
             kill(current_process->pid, SIGUSR2);
             current_process->state = PROCESS_READY;
             enqueue_pcb(ready_queue_schd, current_process);

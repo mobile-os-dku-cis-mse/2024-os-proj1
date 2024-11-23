@@ -1,8 +1,8 @@
 CMakeFiles/scheduler.dir/src/util/process.c.o: \
- /home/hochacha/repos/2024-os-proj1/src/util/process.c \
+ /home/assam_vallen/myProj2/2024-os-proj1/src/util/process.c \
  /usr/include/stdc-predef.h \
- /home/hochacha/repos/2024-os-proj1/src/util/process.h \
- /home/hochacha/repos/2024-os-proj1/src/util/pid_queue.h \
+ /home/assam_vallen/myProj2/2024-os-proj1/src/util/process.h \
+ /home/assam_vallen/myProj2/2024-os-proj1/src/util/pid_queue.h \
  /usr/include/x86_64-linux-gnu/sys/types.h /usr/include/features.h \
  /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -56,5 +56,5 @@ CMakeFiles/scheduler.dir/src/util/process.c.o: \
  /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
  /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
  /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
- /home/hochacha/repos/2024-os-proj1/src/util/../entity/child.h \
- /home/hochacha/repos/2024-os-proj1/src/util/../entity/scheduler.h
+ /home/assam_vallen/myProj2/2024-os-proj1/src/util/../entity/child.h \
+ /home/assam_vallen/myProj2/2024-os-proj1/src/util/../entity/scheduler.h

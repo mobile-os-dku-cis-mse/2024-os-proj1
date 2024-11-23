@@ -1,7 +1,7 @@
 CMakeFiles/scheduler.dir/src/entity/scheduler.c.o: \
- /home/hochacha/repos/2024-os-proj1/src/entity/scheduler.c \
+ /home/assam_vallen/myProj2/2024-os-proj1/src/entity/scheduler.c \
  /usr/include/stdc-predef.h \
- /home/hochacha/repos/2024-os-proj1/src/entity/scheduler.h \
+ /home/assam_vallen/myProj2/2024-os-proj1/src/entity/scheduler.h \
  /usr/include/signal.h /usr/include/features.h \
  /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -92,7 +92,7 @@ CMakeFiles/scheduler.dir/src/entity/scheduler.c.o: \
  /usr/include/x86_64-linux-gnu/bits/types/struct_msqid_ds.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_msqid64_ds.h \
  /usr/include/x86_64-linux-gnu/sys/wait.h \
- /home/hochacha/repos/2024-os-proj1/./src/util/pid_queue.h \
- /home/hochacha/repos/2024-os-proj1/src/entity/../util/timer.h \
- /home/hochacha/repos/2024-os-proj1/src/entity/../util/message_queue.h \
- /home/hochacha/repos/2024-os-proj1/src/entity/../util/pid_queue.h
+ /home/assam_vallen/myProj2/2024-os-proj1/./src/util/pid_queue.h \
+ /home/assam_vallen/myProj2/2024-os-proj1/src/entity/../util/timer.h \
+ /home/assam_vallen/myProj2/2024-os-proj1/src/entity/../util/message_queue.h \
+ /home/assam_vallen/myProj2/2024-os-proj1/src/entity/../util/pid_queue.h

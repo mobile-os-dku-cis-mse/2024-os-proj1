@@ -1,7 +1,7 @@
 CMakeFiles/scheduler.dir/src/entity/child.c.o: \
- /home/hochacha/repos/2024-os-proj1/src/entity/child.c \
+ /home/assam_vallen/myProj2/2024-os-proj1/src/entity/child.c \
  /usr/include/stdc-predef.h \
- /home/hochacha/repos/2024-os-proj1/src/entity/child.h \
+ /home/assam_vallen/myProj2/2024-os-proj1/src/entity/child.h \
  /usr/include/errno.h /usr/include/features.h \
  /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
@@ -94,5 +94,5 @@ CMakeFiles/scheduler.dir/src/entity/child.c.o: \
  /usr/include/x86_64-linux-gnu/bits/msq.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_msqid_ds.h \
  /usr/include/x86_64-linux-gnu/bits/types/struct_msqid64_ds.h \
- /home/hochacha/repos/2024-os-proj1/./src/util/message_queue.h \
- /home/hochacha/repos/2024-os-proj1/./src/util/pid_queue.h
+ /home/assam_vallen/myProj2/2024-os-proj1/./src/util/message_queue.h \
+ /home/assam_vallen/myProj2/2024-os-proj1/./src/util/pid_queue.h

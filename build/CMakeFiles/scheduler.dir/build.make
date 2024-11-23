@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/hochacha/repos/2024-os-proj1
+CMAKE_SOURCE_DIR = /home/assam_vallen/myProj2/2024-os-proj1
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/hochacha/repos/2024-os-proj1/build
+CMAKE_BINARY_DIR = /home/assam_vallen/myProj2/2024-os-proj1/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/scheduler.dir/depend.make
@@ -72,100 +72,100 @@ include CMakeFiles/scheduler.dir/flags.make
 CMakeFiles/scheduler.dir/src/main.c.o: CMakeFiles/scheduler.dir/flags.make
 CMakeFiles/scheduler.dir/src/main.c.o: ../src/main.c
 CMakeFiles/scheduler.dir/src/main.c.o: CMakeFiles/scheduler.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hochacha/repos/2024-os-proj1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/scheduler.dir/src/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/scheduler.dir/src/main.c.o -MF CMakeFiles/scheduler.dir/src/main.c.o.d -o CMakeFiles/scheduler.dir/src/main.c.o -c /home/hochacha/repos/2024-os-proj1/src/main.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/assam_vallen/myProj2/2024-os-proj1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/scheduler.dir/src/main.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/scheduler.dir/src/main.c.o -MF CMakeFiles/scheduler.dir/src/main.c.o.d -o CMakeFiles/scheduler.dir/src/main.c.o -c /home/assam_vallen/myProj2/2024-os-proj1/src/main.c
 
 CMakeFiles/scheduler.dir/src/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/scheduler.dir/src/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/hochacha/repos/2024-os-proj1/src/main.c > CMakeFiles/scheduler.dir/src/main.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/assam_vallen/myProj2/2024-os-proj1/src/main.c > CMakeFiles/scheduler.dir/src/main.c.i
 
 CMakeFiles/scheduler.dir/src/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/scheduler.dir/src/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/hochacha/repos/2024-os-proj1/src/main.c -o CMakeFiles/scheduler.dir/src/main.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/assam_vallen/myProj2/2024-os-proj1/src/main.c -o CMakeFiles/scheduler.dir/src/main.c.s
 
 CMakeFiles/scheduler.dir/src/entity/scheduler.c.o: CMakeFiles/scheduler.dir/flags.make
 CMakeFiles/scheduler.dir/src/entity/scheduler.c.o: ../src/entity/scheduler.c
 CMakeFiles/scheduler.dir/src/entity/scheduler.c.o: CMakeFiles/scheduler.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hochacha/repos/2024-os-proj1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/scheduler.dir/src/entity/scheduler.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/scheduler.dir/src/entity/scheduler.c.o -MF CMakeFiles/scheduler.dir/src/entity/scheduler.c.o.d -o CMakeFiles/scheduler.dir/src/entity/scheduler.c.o -c /home/hochacha/repos/2024-os-proj1/src/entity/scheduler.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/assam_vallen/myProj2/2024-os-proj1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/scheduler.dir/src/entity/scheduler.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/scheduler.dir/src/entity/scheduler.c.o -MF CMakeFiles/scheduler.dir/src/entity/scheduler.c.o.d -o CMakeFiles/scheduler.dir/src/entity/scheduler.c.o -c /home/assam_vallen/myProj2/2024-os-proj1/src/entity/scheduler.c
 
 CMakeFiles/scheduler.dir/src/entity/scheduler.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/scheduler.dir/src/entity/scheduler.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/hochacha/repos/2024-os-proj1/src/entity/scheduler.c > CMakeFiles/scheduler.dir/src/entity/scheduler.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/assam_vallen/myProj2/2024-os-proj1/src/entity/scheduler.c > CMakeFiles/scheduler.dir/src/entity/scheduler.c.i
 
 CMakeFiles/scheduler.dir/src/entity/scheduler.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/scheduler.dir/src/entity/scheduler.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/hochacha/repos/2024-os-proj1/src/entity/scheduler.c -o CMakeFiles/scheduler.dir/src/entity/scheduler.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/assam_vallen/myProj2/2024-os-proj1/src/entity/scheduler.c -o CMakeFiles/scheduler.dir/src/entity/scheduler.c.s
 
 CMakeFiles/scheduler.dir/src/util/process.c.o: CMakeFiles/scheduler.dir/flags.make
 CMakeFiles/scheduler.dir/src/util/process.c.o: ../src/util/process.c
 CMakeFiles/scheduler.dir/src/util/process.c.o: CMakeFiles/scheduler.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hochacha/repos/2024-os-proj1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/scheduler.dir/src/util/process.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/scheduler.dir/src/util/process.c.o -MF CMakeFiles/scheduler.dir/src/util/process.c.o.d -o CMakeFiles/scheduler.dir/src/util/process.c.o -c /home/hochacha/repos/2024-os-proj1/src/util/process.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/assam_vallen/myProj2/2024-os-proj1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/scheduler.dir/src/util/process.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/scheduler.dir/src/util/process.c.o -MF CMakeFiles/scheduler.dir/src/util/process.c.o.d -o CMakeFiles/scheduler.dir/src/util/process.c.o -c /home/assam_vallen/myProj2/2024-os-proj1/src/util/process.c
 
 CMakeFiles/scheduler.dir/src/util/process.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/scheduler.dir/src/util/process.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/hochacha/repos/2024-os-proj1/src/util/process.c > CMakeFiles/scheduler.dir/src/util/process.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/assam_vallen/myProj2/2024-os-proj1/src/util/process.c > CMakeFiles/scheduler.dir/src/util/process.c.i
 
 CMakeFiles/scheduler.dir/src/util/process.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/scheduler.dir/src/util/process.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/hochacha/repos/2024-os-proj1/src/util/process.c -o CMakeFiles/scheduler.dir/src/util/process.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/assam_vallen/myProj2/2024-os-proj1/src/util/process.c -o CMakeFiles/scheduler.dir/src/util/process.c.s
 
 CMakeFiles/scheduler.dir/src/entity/child.c.o: CMakeFiles/scheduler.dir/flags.make
 CMakeFiles/scheduler.dir/src/entity/child.c.o: ../src/entity/child.c
 CMakeFiles/scheduler.dir/src/entity/child.c.o: CMakeFiles/scheduler.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hochacha/repos/2024-os-proj1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/scheduler.dir/src/entity/child.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/scheduler.dir/src/entity/child.c.o -MF CMakeFiles/scheduler.dir/src/entity/child.c.o.d -o CMakeFiles/scheduler.dir/src/entity/child.c.o -c /home/hochacha/repos/2024-os-proj1/src/entity/child.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/assam_vallen/myProj2/2024-os-proj1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/scheduler.dir/src/entity/child.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/scheduler.dir/src/entity/child.c.o -MF CMakeFiles/scheduler.dir/src/entity/child.c.o.d -o CMakeFiles/scheduler.dir/src/entity/child.c.o -c /home/assam_vallen/myProj2/2024-os-proj1/src/entity/child.c
 
 CMakeFiles/scheduler.dir/src/entity/child.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/scheduler.dir/src/entity/child.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/hochacha/repos/2024-os-proj1/src/entity/child.c > CMakeFiles/scheduler.dir/src/entity/child.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/assam_vallen/myProj2/2024-os-proj1/src/entity/child.c > CMakeFiles/scheduler.dir/src/entity/child.c.i
 
 CMakeFiles/scheduler.dir/src/entity/child.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/scheduler.dir/src/entity/child.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/hochacha/repos/2024-os-proj1/src/entity/child.c -o CMakeFiles/scheduler.dir/src/entity/child.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/assam_vallen/myProj2/2024-os-proj1/src/entity/child.c -o CMakeFiles/scheduler.dir/src/entity/child.c.s
 
 CMakeFiles/scheduler.dir/src/util/pid_queue.c.o: CMakeFiles/scheduler.dir/flags.make
 CMakeFiles/scheduler.dir/src/util/pid_queue.c.o: ../src/util/pid_queue.c
 CMakeFiles/scheduler.dir/src/util/pid_queue.c.o: CMakeFiles/scheduler.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hochacha/repos/2024-os-proj1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/scheduler.dir/src/util/pid_queue.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/scheduler.dir/src/util/pid_queue.c.o -MF CMakeFiles/scheduler.dir/src/util/pid_queue.c.o.d -o CMakeFiles/scheduler.dir/src/util/pid_queue.c.o -c /home/hochacha/repos/2024-os-proj1/src/util/pid_queue.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/assam_vallen/myProj2/2024-os-proj1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/scheduler.dir/src/util/pid_queue.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/scheduler.dir/src/util/pid_queue.c.o -MF CMakeFiles/scheduler.dir/src/util/pid_queue.c.o.d -o CMakeFiles/scheduler.dir/src/util/pid_queue.c.o -c /home/assam_vallen/myProj2/2024-os-proj1/src/util/pid_queue.c
 
 CMakeFiles/scheduler.dir/src/util/pid_queue.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/scheduler.dir/src/util/pid_queue.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/hochacha/repos/2024-os-proj1/src/util/pid_queue.c > CMakeFiles/scheduler.dir/src/util/pid_queue.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/assam_vallen/myProj2/2024-os-proj1/src/util/pid_queue.c > CMakeFiles/scheduler.dir/src/util/pid_queue.c.i
 
 CMakeFiles/scheduler.dir/src/util/pid_queue.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/scheduler.dir/src/util/pid_queue.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/hochacha/repos/2024-os-proj1/src/util/pid_queue.c -o CMakeFiles/scheduler.dir/src/util/pid_queue.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/assam_vallen/myProj2/2024-os-proj1/src/util/pid_queue.c -o CMakeFiles/scheduler.dir/src/util/pid_queue.c.s
 
 CMakeFiles/scheduler.dir/src/util/timer.c.o: CMakeFiles/scheduler.dir/flags.make
 CMakeFiles/scheduler.dir/src/util/timer.c.o: ../src/util/timer.c
 CMakeFiles/scheduler.dir/src/util/timer.c.o: CMakeFiles/scheduler.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hochacha/repos/2024-os-proj1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/scheduler.dir/src/util/timer.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/scheduler.dir/src/util/timer.c.o -MF CMakeFiles/scheduler.dir/src/util/timer.c.o.d -o CMakeFiles/scheduler.dir/src/util/timer.c.o -c /home/hochacha/repos/2024-os-proj1/src/util/timer.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/assam_vallen/myProj2/2024-os-proj1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/scheduler.dir/src/util/timer.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/scheduler.dir/src/util/timer.c.o -MF CMakeFiles/scheduler.dir/src/util/timer.c.o.d -o CMakeFiles/scheduler.dir/src/util/timer.c.o -c /home/assam_vallen/myProj2/2024-os-proj1/src/util/timer.c
 
 CMakeFiles/scheduler.dir/src/util/timer.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/scheduler.dir/src/util/timer.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/hochacha/repos/2024-os-proj1/src/util/timer.c > CMakeFiles/scheduler.dir/src/util/timer.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/assam_vallen/myProj2/2024-os-proj1/src/util/timer.c > CMakeFiles/scheduler.dir/src/util/timer.c.i
 
 CMakeFiles/scheduler.dir/src/util/timer.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/scheduler.dir/src/util/timer.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/hochacha/repos/2024-os-proj1/src/util/timer.c -o CMakeFiles/scheduler.dir/src/util/timer.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/assam_vallen/myProj2/2024-os-proj1/src/util/timer.c -o CMakeFiles/scheduler.dir/src/util/timer.c.s
 
 CMakeFiles/scheduler.dir/src/util/message_queue.c.o: CMakeFiles/scheduler.dir/flags.make
 CMakeFiles/scheduler.dir/src/util/message_queue.c.o: ../src/util/message_queue.c
 CMakeFiles/scheduler.dir/src/util/message_queue.c.o: CMakeFiles/scheduler.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/hochacha/repos/2024-os-proj1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/scheduler.dir/src/util/message_queue.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/scheduler.dir/src/util/message_queue.c.o -MF CMakeFiles/scheduler.dir/src/util/message_queue.c.o.d -o CMakeFiles/scheduler.dir/src/util/message_queue.c.o -c /home/hochacha/repos/2024-os-proj1/src/util/message_queue.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/assam_vallen/myProj2/2024-os-proj1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/scheduler.dir/src/util/message_queue.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/scheduler.dir/src/util/message_queue.c.o -MF CMakeFiles/scheduler.dir/src/util/message_queue.c.o.d -o CMakeFiles/scheduler.dir/src/util/message_queue.c.o -c /home/assam_vallen/myProj2/2024-os-proj1/src/util/message_queue.c
 
 CMakeFiles/scheduler.dir/src/util/message_queue.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/scheduler.dir/src/util/message_queue.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/hochacha/repos/2024-os-proj1/src/util/message_queue.c > CMakeFiles/scheduler.dir/src/util/message_queue.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/assam_vallen/myProj2/2024-os-proj1/src/util/message_queue.c > CMakeFiles/scheduler.dir/src/util/message_queue.c.i
 
 CMakeFiles/scheduler.dir/src/util/message_queue.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/scheduler.dir/src/util/message_queue.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/hochacha/repos/2024-os-proj1/src/util/message_queue.c -o CMakeFiles/scheduler.dir/src/util/message_queue.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/assam_vallen/myProj2/2024-os-proj1/src/util/message_queue.c -o CMakeFiles/scheduler.dir/src/util/message_queue.c.s
 
 # Object files for target scheduler
 scheduler_OBJECTS = \
@@ -189,7 +189,7 @@ scheduler: CMakeFiles/scheduler.dir/src/util/timer.c.o
 scheduler: CMakeFiles/scheduler.dir/src/util/message_queue.c.o
 scheduler: CMakeFiles/scheduler.dir/build.make
 scheduler: CMakeFiles/scheduler.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/hochacha/repos/2024-os-proj1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable scheduler"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/assam_vallen/myProj2/2024-os-proj1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable scheduler"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/scheduler.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -201,6 +201,6 @@ CMakeFiles/scheduler.dir/clean:
 .PHONY : CMakeFiles/scheduler.dir/clean
 
 CMakeFiles/scheduler.dir/depend:
-	cd /home/hochacha/repos/2024-os-proj1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/hochacha/repos/2024-os-proj1 /home/hochacha/repos/2024-os-proj1 /home/hochacha/repos/2024-os-proj1/build /home/hochacha/repos/2024-os-proj1/build /home/hochacha/repos/2024-os-proj1/build/CMakeFiles/scheduler.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/assam_vallen/myProj2/2024-os-proj1/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/assam_vallen/myProj2/2024-os-proj1 /home/assam_vallen/myProj2/2024-os-proj1 /home/assam_vallen/myProj2/2024-os-proj1/build /home/assam_vallen/myProj2/2024-os-proj1/build /home/assam_vallen/myProj2/2024-os-proj1/build/CMakeFiles/scheduler.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/scheduler.dir/depend
 

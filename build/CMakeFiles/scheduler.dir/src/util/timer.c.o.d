@@ -1,7 +1,8 @@
 CMakeFiles/scheduler.dir/src/util/timer.c.o: \
- /home/hochacha/repos/2024-os-proj1/src/util/timer.c \
+ /home/assam_vallen/myProj2/2024-os-proj1/src/util/timer.c \
  /usr/include/stdc-predef.h \
- /home/hochacha/repos/2024-os-proj1/src/util/timer.h /usr/include/stdio.h \
+ /home/assam_vallen/myProj2/2024-os-proj1/src/util/timer.h \
+ /usr/include/stdio.h \
  /usr/include/x86_64-linux-gnu/bits/libc-header-start.h \
  /usr/include/features.h /usr/include/features-time64.h \
  /usr/include/x86_64-linux-gnu/bits/wordsize.h \
